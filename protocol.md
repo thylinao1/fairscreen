@@ -147,3 +147,8 @@ implementation and must agree exactly.
   Claude Sonnet 5) reduce this to 192 families on the cluster and 48 on Kaggle. The development data (Sonnet 5 at
   100 percent on 8 development families, GPT-5.4 nano at 0 percent) suggest that frontier models are near the
   ceiling on the core suite, so the economical and open-weight tiers carry most of the method contrasts.
+- Added after the first confirmatory Kaggle result (gemini-3.7-flash scored 1.0 on FairScreen-48 direct): a
+  fourth Kaggle task, `fairscreen-evidence-sufficiency`, which runs the registered sufficiency suite (48 families,
+  4 decisions each, direct recipe) so that the abstention behaviour of capable hosted models is measured too. The
+  suite, its labels and its family-pass score were registered above; only its execution on Kaggle is new. It is
+  reported as a secondary result, not as a confirmatory contrast.

@@ -1,0 +1,7 @@
+{
+ "core_decision_accuracy": 0.7109375,
+ "core_robust_fidelity": 0.40625,
+ "sufficiency_family_pass": 0.020833333333333332,
+ "train_items": 662,
+ "test_items": 2528
+}

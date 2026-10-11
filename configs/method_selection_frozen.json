@@ -1,0 +1,18 @@
+{
+ "google_gemini-3.1-flash-lite-preview": {
+  "selected": "structured",
+  "dev_clean_quartet": {
+   "direct": 0.292,
+   "fairness": 0.375,
+   "structured": 0.583
+  }
+ },
+ "openai_gpt-5.4-nano-2026-03-17": {
+  "selected": "structured",
+  "dev_clean_quartet": {
+   "direct": 0.0,
+   "fairness": 0.0,
+   "structured": 0.042
+  }
+ }
+}

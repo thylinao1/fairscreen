@@ -109,6 +109,13 @@ def metrics(view, vs, fams):
     out["clean_quartet"] = boot(clean, strata)
     out["changed_quartet"] = boot(changed, strata)
     out["_fam_pass"] = dict(zip([f["family_id"] for f in core], fam_pass))
+    # robust fidelity stratified by the type of the decisive requirement (lexical status words vs computation)
+    by_type = defaultdict(list)
+    for f, p_ in zip(core, fam_pass):
+        v0 = vs[f["variant_ids"][0]]
+        req = [r["req"] for r in v0["policy_spec"]["requirements"] if r["id"] == f["decisive"]][0]
+        by_type["alternative_or_exception" if req["type"] == "any_of" else req["type"]].append(p_)
+    out["robust_by_decisive_type"] = {k: (sum(v) / len(v), len(v)) for k, v in sorted(by_type.items())}
     out["_clean"] = dict(zip([f["family_id"] for f in core], clean))
     out["_changed"] = dict(zip([f["family_id"] for f in core], changed))
     cells = [v for f in core for v in core_cells(f["family_id"])]
@@ -149,7 +156,7 @@ def metrics(view, vs, fams):
             continue
         vals = [float(all(ok(v) for v in f["variant_ids"])) for f in fs]
         out[f"{suite}_pass"] = boot(vals, [f["occupation"] for f in fs])
-    suff = [v for v in vs if vs[v]["suite"] == "sufficiency"]
+    suff = [v for v in vs if vs[v]["suite"] == "sufficiency" and view.get(v) is not None]
     if suff:
         by = defaultdict(list)
         for v in suff:
@@ -164,10 +171,12 @@ def metrics(view, vs, fams):
         sens_irr, sens_rel = [], []
         for f in rel:
             g = lambda job, sk: view.get(vid(f["family_id"], job=job, skill=sk))
+            if None in (g("irrelevant", "present"), g("irrelevant", "absent"), g("relevant", "present"), g("relevant", "absent")):
+                continue
             sens_irr.append(float(g("irrelevant", "present") != g("irrelevant", "absent")))
             sens_rel.append(float(g("relevant", "present") == RT.MEETS and g("relevant", "absent") == RT.DOES_NOT_MEET))
-        out["relevance_irrelevant_flip"] = sum(sens_irr) / len(sens_irr)
-        out["relevance_correct_use"] = sum(sens_rel) / len(sens_rel)
+        out["relevance_irrelevant_flip"] = sum(sens_irr) / max(1, len(sens_irr))
+        out["relevance_correct_use"] = sum(sens_rel) / max(1, len(sens_rel))
     aud = [f for f in fams if f["suite"] == "audit"]
     if aud:
         for fr in ("neutral", "audit", "operational"):
@@ -269,6 +278,77 @@ def joint_contrast(per_model_a, per_model_b, fams_core, reps=REPS, seed=SEED):
         m: sum(per_model_a[m][f] - per_model_b[m][f] for f in fids) / len(fids) for m in models}}
 
 
+def identity_vs_control(views, vs, fams, reps=REPS, seed=SEED):
+    """Paired, within control families: identity-swap flips minus same-group-name flips, pooled over models.
+
+    For each family with a same-group control, and for each qualification state on the clean presentation, compare
+    the A-vs-B decision change with the A-vs-A2 change. Families are resampled (pairing kept across models)."""
+    core = [f for f in fams if f["suite"] == "core"]
+    per_fam = {}
+    for f in core:
+        fid = f["family_id"]
+        diffs = []
+        for view in views:
+            for q in ("hi", "lo"):
+                a = view.get(vid(fid, q=q, id="A", ctx="clean"))
+                b = view.get(vid(fid, q=q, id="B", ctx="clean"))
+                a2 = view.get(vid(fid, q=q, id="A2", ctx="clean", control="same_group"))
+                if None in (a, b, a2):
+                    continue
+                diffs.append((float(a != b), float(a != a2)))
+        if diffs:
+            per_fam[fid] = diffs
+    if not per_fam:
+        return None
+    fids = sorted(per_fam)
+    def stat(sample):
+        ident = [x for fid in sample for x, _ in per_fam[fid]]
+        ctrl = [y for fid in sample for _, y in per_fam[fid]]
+        return sum(ident) / len(ident), sum(ctrl) / len(ctrl)
+    i0, c0 = stat(fids)
+    rng = random.Random(seed)
+    boots = []
+    for _ in range(reps):
+        smp = [fids[rng.randrange(len(fids))] for _ in fids]
+        i, c = stat(smp)
+        boots.append(i - c)
+    boots.sort()
+    return {"identity_flip": i0, "same_group_flip": c0, "difference": i0 - c0, "lo": boots[int(0.025 * reps)],
+            "hi": boots[int(0.975 * reps) - 1], "n_families": len(fids), "n_pairs": sum(len(v) for v in per_fam.values())}
+
+
+def signed_pooled(views, vs, fams, reps=REPS, seed=SEED):
+    """Accept(group) minus accept(partner) over matched pairs, pooled over models, by group and qualification state,
+    with a family bootstrap."""
+    core = [f for f in fams if f["suite"] == "core"]
+    contrib = defaultdict(lambda: defaultdict(list))  # (group, q) -> fid -> diffs
+    for f in core:
+        ga, gb = f["groups"]
+        for view in views:
+            for q in ("hi", "lo"):
+                for c in ("clean", "changed"):
+                    a = view.get(vid(f["family_id"], q=q, id="A", ctx=c))
+                    b = view.get(vid(f["family_id"], q=q, id="B", ctx=c))
+                    if a is None or b is None:
+                        continue
+                    d = float(a == RT.MEETS) - float(b == RT.MEETS)
+                    contrib[(ga, q)][f["family_id"]].append(d)
+                    contrib[(gb, q)][f["family_id"]].append(-d)
+    out = {}
+    rng = random.Random(seed)
+    for key, by in contrib.items():
+        fids = sorted(by)
+        est = sum(sum(by[f]) for f in fids) / sum(len(by[f]) for f in fids)
+        boots = []
+        for _ in range(reps):
+            smp = [fids[rng.randrange(len(fids))] for _ in fids]
+            boots.append(sum(sum(by[f]) for f in smp) / max(1, sum(len(by[f]) for f in smp)))
+        boots.sort()
+        out[f"{key[0]}|{key[1]}"] = {"estimate": est, "lo": boots[int(0.025 * reps)], "hi": boots[int(0.975 * reps) - 1],
+                                     "n_pairs": sum(len(by[f]) for f in fids), "n_families": len(fids)}
+    return out
+
+
 def holm(ps):
     order = sorted(range(len(ps)), key=lambda i: ps[i])
     adj = [0.0] * len(ps)
@@ -344,6 +424,11 @@ def main():
             res["S_policy_code_minus_direct"] = joint_contrast(per("policy_code_same_extraction", "_fam_pass"), per("direct", "_fam_pass"), core)
     if per("extract_only", "_fam_pass") and per("policy_code_same_extraction", "_fam_pass"):
         res["S_extract_only_minus_policy_code_same_extraction"] = joint_contrast(per("extract_only", "_fam_pass"), per("policy_code_same_extraction", "_fam_pass"), core)
+    for recipe in ("direct", "fairness", "structured"):
+        views = [View(rs) for (m, r), rs in groups.items() if r == recipe]
+        if views:
+            res[f"S_identity_vs_same_group_{recipe}"] = identity_vs_control(views, vs, fams)
+            res[f"S_signed_by_group_{recipe}"] = signed_pooled(views, vs, fams)
     conf = [k for k in ("C1_fairness_minus_direct", "C2_transfer", "C3_policy_code_minus_model_verdict") if k in res]
     for k, p in zip(conf, holm([res[k]["p"] for k in conf])):
         res[k]["p_holm"] = p
@@ -352,7 +437,14 @@ def main():
     json.dump(detail, open(os.path.join(a.out, "metrics.json"), "w"), indent=2, default=str)
     print("\n".join(lines))
     for k, v in res.items():
-        print(f"{k}: {100*v['estimate']:+.1f} pp [{100*v['lo']:+.1f}, {100*v['hi']:+.1f}] p={v['p']:.4f} p_holm={v.get('p_holm', float('nan')):.4f} models={len(v['models'])}")
+        if v is None:
+            continue
+        if "estimate" in v and "models" in v:
+            print(f"{k}: {100*v['estimate']:+.1f} pp [{100*v['lo']:+.1f}, {100*v['hi']:+.1f}] p={v['p']:.4f} p_holm={v.get('p_holm', float('nan')):.4f} models={len(v['models'])}")
+        elif "difference" in v:
+            print(f"{k}: identity {100*v['identity_flip']:.1f}% vs same-group {100*v['same_group_flip']:.1f}% diff {100*v['difference']:+.1f} [{100*v['lo']:+.1f}, {100*v['hi']:+.1f}] n_fam={v['n_families']} pairs={v['n_pairs']}")
+        else:
+            print(k, {g: f"{100*x['estimate']:+.1f} [{100*x['lo']:+.1f},{100*x['hi']:+.1f}]" for g, x in sorted(v.items())})
 
 
 if __name__ == "__main__":

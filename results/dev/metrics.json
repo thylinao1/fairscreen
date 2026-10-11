@@ -15,6 +15,20 @@
       1.0,
       1.0
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        1.0,
+        2
+      ],
+      "credential": [
+        1.0,
+        1
+      ],
+      "min_years": [
+        1.0,
+        5
+      ]
+    },
     "accuracy": 1.0,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -50,27 +64,27 @@
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.5,
+        "MEETS": 1.0,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.375
+        "DOES_NOT_MEET": 0.25,
+        "INSUFFICIENT_EVIDENCE": 0.75
       },
       "conflict": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.5
+        "INSUFFICIENT_EVIDENCE": 1.0
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.5,
+        "DOES_NOT_MEET": 1.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.4375,
+    "appropriate_uncertainty": 0.875,
     "unnecessary_abstention": 0.0,
     "signed": {
       "malay_male|hi": [
@@ -143,6 +157,20 @@
       0.0,
       0.25
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        2
+      ],
+      "credential": [
+        0.0,
+        1
+      ],
+      "min_years": [
+        0.0,
+        5
+      ]
+    },
     "accuracy": 0.75,
     "coverage": 0.75,
     "invalid": 0.25,
@@ -180,27 +208,27 @@
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.375,
+        "MEETS": 1.0,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.1875
+        "DOES_NOT_MEET": 0.4,
+        "INSUFFICIENT_EVIDENCE": 0.6
       },
       "conflict": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.3125
+        "DOES_NOT_MEET": 0.2857142857142857,
+        "INSUFFICIENT_EVIDENCE": 0.7142857142857143
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.4375,
+        "DOES_NOT_MEET": 1.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.25,
+    "appropriate_uncertainty": 0.6666666666666666,
     "unnecessary_abstention": 0.0,
     "decomposition": {
       "n": 55,
@@ -285,6 +313,20 @@
       0.0,
       0.25
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        2
+      ],
+      "credential": [
+        0.0,
+        1
+      ],
+      "min_years": [
+        0.0,
+        5
+      ]
+    },
     "accuracy": 0.75,
     "coverage": 0.75,
     "invalid": 0.25,
@@ -322,27 +364,27 @@
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.375,
+        "MEETS": 1.0,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0625,
-        "INSUFFICIENT_EVIDENCE": 0.25
+        "DOES_NOT_MEET": 0.2,
+        "INSUFFICIENT_EVIDENCE": 0.8
       },
       "conflict": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.4375
+        "INSUFFICIENT_EVIDENCE": 1.0
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.4375,
+        "DOES_NOT_MEET": 1.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.34375,
+    "appropriate_uncertainty": 0.9166666666666666,
     "unnecessary_abstention": 0.0,
     "decomposition": {
       "n": 55,
@@ -373,6 +415,20 @@
       0.125,
       0.4583333333333333
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.16666666666666666,
+        6
+      ],
+      "credential": [
+        0.5,
+        4
+      ],
+      "min_years": [
+        0.14285714285714285,
+        14
+      ]
+    },
     "accuracy": 0.6927083333333334,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -558,6 +614,20 @@
       0.16666666666666666,
       0.5
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.3333333333333333,
+        6
+      ],
+      "credential": [
+        0.5,
+        4
+      ],
+      "min_years": [
+        0.2857142857142857,
+        14
+      ]
+    },
     "accuracy": 0.7135416666666666,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -743,6 +813,20 @@
       0.5,
       0.8333333333333334
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.5,
+        6
+      ],
+      "credential": [
+        0.75,
+        4
+      ],
+      "min_years": [
+        0.42857142857142855,
+        14
+      ]
+    },
     "accuracy": 0.8489583333333334,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -943,6 +1027,20 @@
       0.5,
       0.8333333333333334
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.5,
+        6
+      ],
+      "credential": [
+        0.75,
+        4
+      ],
+      "min_years": [
+        0.42857142857142855,
+        14
+      ]
+    },
     "accuracy": 0.8489583333333334,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -1065,6 +1163,20 @@
       0.0,
       0.125
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        6
+      ],
+      "credential": [
+        0.0,
+        4
+      ],
+      "min_years": [
+        0.0,
+        14
+      ]
+    },
     "accuracy": 0.3854166666666667,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -1252,6 +1364,20 @@
       0.0,
       0.125
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        6
+      ],
+      "credential": [
+        0.0,
+        4
+      ],
+      "min_years": [
+        0.0,
+        14
+      ]
+    },
     "accuracy": 0.3385416666666667,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -1440,6 +1566,20 @@
       0.041666666666666664,
       0.2916666666666667
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        6
+      ],
+      "credential": [
+        0.0,
+        4
+      ],
+      "min_years": [
+        0.0,
+        14
+      ]
+    },
     "accuracy": 0.484375,
     "coverage": 0.828125,
     "invalid": 0.171875,
@@ -1495,30 +1635,30 @@
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.3125,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.25
+        "MEETS": 0.45454545454545453,
+        "DOES_NOT_MEET": 0.18181818181818182,
+        "INSUFFICIENT_EVIDENCE": 0.36363636363636365
       },
       "missing": {
-        "MEETS": 0.0625,
-        "DOES_NOT_MEET": 0.25,
-        "INSUFFICIENT_EVIDENCE": 0.4375
+        "MEETS": 0.08333333333333333,
+        "DOES_NOT_MEET": 0.3333333333333333,
+        "INSUFFICIENT_EVIDENCE": 0.5833333333333334
       },
       "conflict": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.3125,
-        "INSUFFICIENT_EVIDENCE": 0.5
+        "DOES_NOT_MEET": 0.38461538461538464,
+        "INSUFFICIENT_EVIDENCE": 0.6153846153846154
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.625,
-        "INSUFFICIENT_EVIDENCE": 0.1875
+        "DOES_NOT_MEET": 0.7692307692307693,
+        "INSUFFICIENT_EVIDENCE": 0.23076923076923078
       }
     },
-    "appropriate_uncertainty": 0.46875,
-    "unnecessary_abstention": 0.21875,
-    "relevance_irrelevant_flip": 0.25,
-    "relevance_correct_use": 0.25,
+    "appropriate_uncertainty": 0.6,
+    "unnecessary_abstention": 0.2916666666666667,
+    "relevance_irrelevant_flip": 0.0,
+    "relevance_correct_use": 0.4,
     "audit_neutral": {
       "quartet_pass": 0.0,
       "identity_flip": 0.25,
@@ -1646,6 +1786,20 @@
       0.041666666666666664,
       0.2916666666666667
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        6
+      ],
+      "credential": [
+        0.0,
+        4
+      ],
+      "min_years": [
+        0.0,
+        14
+      ]
+    },
     "accuracy": 0.5989583333333334,
     "coverage": 0.828125,
     "invalid": 0.171875,
@@ -1702,30 +1856,30 @@
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.5,
-        "DOES_NOT_MEET": 0.0625,
-        "INSUFFICIENT_EVIDENCE": 0.125
+        "MEETS": 0.7272727272727273,
+        "DOES_NOT_MEET": 0.09090909090909091,
+        "INSUFFICIENT_EVIDENCE": 0.18181818181818182
       },
       "missing": {
-        "MEETS": 0.125,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.5
+        "MEETS": 0.16666666666666666,
+        "DOES_NOT_MEET": 0.16666666666666666,
+        "INSUFFICIENT_EVIDENCE": 0.6666666666666666
       },
       "conflict": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.6875
+        "DOES_NOT_MEET": 0.15384615384615385,
+        "INSUFFICIENT_EVIDENCE": 0.8461538461538461
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.75,
-        "INSUFFICIENT_EVIDENCE": 0.0625
+        "DOES_NOT_MEET": 0.9230769230769231,
+        "INSUFFICIENT_EVIDENCE": 0.07692307692307693
       }
     },
-    "appropriate_uncertainty": 0.59375,
-    "unnecessary_abstention": 0.09375,
-    "relevance_irrelevant_flip": 0.25,
-    "relevance_correct_use": 0.625,
+    "appropriate_uncertainty": 0.76,
+    "unnecessary_abstention": 0.125,
+    "relevance_irrelevant_flip": 0.0,
+    "relevance_correct_use": 0.8,
     "audit_neutral": {
       "quartet_pass": 0.0,
       "identity_flip": 0.3333333333333333,
@@ -1775,6 +1929,20 @@
       0.25,
       0.625
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        1.0,
+        5
+      ],
+      "credential": [
+        0.0,
+        3
+      ],
+      "min_years": [
+        0.0,
+        8
+      ]
+    },
     "accuracy": 0.65625,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -1807,30 +1975,6 @@
       "DOES_NOT_MEET->INSUFFICIENT_EVIDENCE": 10,
       "DOES_NOT_MEET->MEETS": 6
     },
-    "suff_cells": {
-      "complete": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "conflict": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing_other_fails": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      }
-    },
-    "appropriate_uncertainty": 0.0,
-    "unnecessary_abstention": 0.0,
     "signed": {
       "malay_male|hi": [
         0.0,
@@ -1926,6 +2070,20 @@
       0.8125,
       1.0
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.8,
+        5
+      ],
+      "credential": [
+        1.0,
+        3
+      ],
+      "min_years": [
+        0.875,
+        8
+      ]
+    },
     "accuracy": 0.9765625,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -1955,30 +2113,6 @@
       "DOES_NOT_MEET->DOES_NOT_MEET": 64,
       "MEETS->DOES_NOT_MEET": 3
     },
-    "suff_cells": {
-      "complete": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "conflict": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing_other_fails": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      }
-    },
-    "appropriate_uncertainty": 0.0,
-    "unnecessary_abstention": 0.0,
     "decomposition": {
       "n": 140,
       "aggregation_error": 0.0,
@@ -2088,6 +2222,20 @@
       0.8125,
       1.0
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.8,
+        5
+      ],
+      "credential": [
+        1.0,
+        3
+      ],
+      "min_years": [
+        0.875,
+        8
+      ]
+    },
     "accuracy": 0.9765625,
     "coverage": 1.0,
     "invalid": 0.0,
@@ -2117,30 +2265,6 @@
       "DOES_NOT_MEET->DOES_NOT_MEET": 64,
       "MEETS->DOES_NOT_MEET": 3
     },
-    "suff_cells": {
-      "complete": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "conflict": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing_other_fails": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      }
-    },
-    "appropriate_uncertainty": 0.0,
-    "unnecessary_abstention": 0.0,
     "decomposition": {
       "n": 140,
       "aggregation_error": 0.0,
@@ -2172,6 +2296,20 @@
       0.0,
       0.0
     ],
+    "robust_by_decisive_type": {
+      "assessment": [
+        0.0,
+        5
+      ],
+      "credential": [
+        0.0,
+        1
+      ],
+      "min_years": [
+        0.0,
+        13
+      ]
+    },
     "accuracy": 0.17105263157894737,
     "coverage": 0.2236842105263158,
     "invalid": 0.7763157894736842,
@@ -2226,30 +2364,30 @@
       0.0
     ],
     "suff_cells": {
+      "conflict": {
+        "MEETS": 0.0,
+        "DOES_NOT_MEET": 0.0,
+        "INSUFFICIENT_EVIDENCE": 1.0
+      },
       "complete": {
-        "MEETS": 0.1875,
+        "MEETS": 1.0,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
-        "MEETS": 0.0625,
+        "MEETS": 0.5,
         "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.0625
-      },
-      "conflict": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.1875
+        "INSUFFICIENT_EVIDENCE": 0.5
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.1875,
-        "INSUFFICIENT_EVIDENCE": 0.0625
+        "DOES_NOT_MEET": 0.75,
+        "INSUFFICIENT_EVIDENCE": 0.25
       }
     },
-    "appropriate_uncertainty": 0.125,
-    "unnecessary_abstention": 0.03125,
-    "relevance_irrelevant_flip": 0.5,
+    "appropriate_uncertainty": 0.8,
+    "unnecessary_abstention": 0.14285714285714285,
+    "relevance_irrelevant_flip": 0.0,
     "relevance_correct_use": 0.0,
     "audit_neutral": {
       "quartet_pass": 0.0,

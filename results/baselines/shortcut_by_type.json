@@ -1,0 +1,26 @@
+{
+ "assessment": {
+  "n": 46,
+  "pass": 0.6304347826086957
+ },
+ "min_years": {
+  "n": 72,
+  "pass": 0.3472222222222222
+ },
+ "credential": {
+  "n": 27,
+  "pass": 0.7407407407407407
+ },
+ "alternative/exception": {
+  "n": 23,
+  "pass": 0.17391304347826086
+ },
+ "language": {
+  "n": 11,
+  "pass": 0.0
+ },
+ "degree": {
+  "n": 13,
+  "pass": 0.0
+ }
+}

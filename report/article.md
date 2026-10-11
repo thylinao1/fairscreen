@@ -77,7 +77,21 @@ before the confirmatory runs.
 
 ### What I got wrong
 
-[[HONEST LIST]]
+- **I assumed hosted runs were free.** They draw on the same Model Proxy quota as local calls (10 USD a day), and
+  every task push runs the whole task once on the default model. I found out by reconciling the quota with the
+  recorded per-call costs. That is why the Kaggle panel is economical models on a 48-family slice, and why the
+  larger panel runs on open-weight models on a university GPU cluster.
+- **My first version of the data had an ambiguity I did not see.** Two blind reviewers pointed out that some
+  assessment results were dated in the same month as the screening date, so a careful reader could not tell
+  whether the result came before the decision. I had already pushed the first task. I fixed it (with four smaller
+  wording issues), regenerated everything and re-ran; the superseded run is not used.
+- **My first extraction-error metric was too strict.** It counted "FAILED" as wrong when the record said "Not
+  taken", although both mean the requirement is not met. The decomposition now asks whether each requirement gets
+  the same truth value from the extracted facts as from the hidden record.
+- **I underestimated how much of the core can be read off single words.** A bag-of-words classifier trained on the
+  development items reaches [[SHORTCUT]] on the held-out core, almost entirely on families where the decisive fact is
+  a status word ("Failed", "expired"). Families that need a duration, a qualification level or a language level
+  are far harder for it. I report every model's score split the same way.
 
 ### Limitations
 
