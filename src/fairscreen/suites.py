@@ -141,8 +141,9 @@ def _realistic_record(rec: Record, plan: dict, policy: Policy, rng: random.Rando
                       part_time=True)
             roles.insert(1, pt)  # an overlapping part-time role: overlapping periods count once
         oldest = roles[-1]
-        old2 = Role(rng.choice(world.OTHER_TITLES[skill]), plan["employers"]["x2"], oldest.start - 20, oldest.start - 2,
-                    rng.choice(world.OTHER_LINES[skill]).format(d=rng.choice(world.DOMAINS)), ())
+        k = rng.randrange(3)
+        old2 = Role(world.OTHER_TITLES[skill][k], plan["employers"]["x2"], oldest.start - 20, oldest.start - 2,
+                    world.OTHER_LINES[skill][k].format(d=rng.choice(world.DOMAINS)), ())
         roles.append(old2)
         total_years = (NOW - old2.start) // 12
         total_claim = (f"Professional with over {total_years} years of work experience across several roles, "

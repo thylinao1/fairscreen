@@ -15,7 +15,7 @@ from .suites import (CONTRASTS, audit_family, core_family, realistic_family, rel
                      sufficiency_family)
 from .generate import CONTEXT_CHANGES
 
-DATASET_VERSION = "1.0.0"
+DATASET_VERSION = "1.1.0"  # 1.1.0: fixes from the blind label review, see validation/DEFECTS.md
 
 
 def build_split(split: str, n_core: int, n_suff: int, n_rel: int, n_real: int, n_audit: int,

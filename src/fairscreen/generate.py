@@ -114,13 +114,15 @@ def make_plan(policy: Policy, rng: random.Random, realistic: bool = False, thres
         }
         plan["titles"] = {
             "r1": rng.choice(world.ROLE_TITLES[skill]), "r2_rel": rng.choice(world.ROLE_TITLES[skill]),
-            "r2_other": rng.choice(world.OTHER_TITLES[skill]), "r0": rng.choice(world.OTHER_TITLES[skill]),
         }
+        k_other, k_r0 = rng.randrange(3), rng.randrange(3)
+        plan["titles"]["r2_other"] = world.OTHER_TITLES[skill][k_other]
+        plan["titles"]["r0"] = world.OTHER_TITLES[skill][k_r0]
         plan["lines"] = {
             "r1": rng.choice(world.SKILL_LINES[skill]).format(d=rng.choice(world.DOMAINS)),
             "r2_rel": rng.choice(world.SKILL_LINES[skill]).format(d=rng.choice(world.DOMAINS)),
-            "r2_other": rng.choice(world.OTHER_LINES[skill]).format(d=rng.choice(world.DOMAINS)),
-            "r0": rng.choice(world.OTHER_LINES[skill]).format(d=rng.choice(world.DOMAINS)),
+            "r2_other": world.OTHER_LINES[skill][k_other].format(d=rng.choice(world.DOMAINS)),
+            "r0": world.OTHER_LINES[skill][k_r0].format(d=rng.choice(world.DOMAINS)),
         }
         emps = rng.sample(world.EMPLOYERS, 6)
         plan["employers"] = {"r1": emps[0], "r2": emps[1], "r0": emps[2], "x1": emps[3], "x2": emps[4]}
@@ -132,7 +134,7 @@ def make_plan(policy: Policy, rng: random.Random, realistic: bool = False, thres
     plan["cred_low_mode"] = rng.choice(["EXPIRED", "NOT_HELD"] + (["REVOKED"] if realistic else []))
     plan["assess_pass_score"] = rng.randint(62, 95)
     plan["assess_fail_score"] = rng.randint(20, 49)
-    plan["assess_month"] = NOW - rng.randint(0, 2)
+    plan["assess_month"] = NOW - rng.randint(1, 3)  # Jul to Sep 2026: strictly before the screening date
     plan["assess_low_mode"] = rng.choice(["FAILED", "NOT_TAKEN"])
     degs = [leaf for _, r in policy.requirements for lk, leaf in leaves(r) if lk == "degree"]
     if degs:

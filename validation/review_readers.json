@@ -1,0 +1,622 @@
+[
+ {
+  "43": {
+   "item": 43,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (Jul 2025-Sep 2026 = 15 mo + Jan 2021-Apr 2025 = 52 mo = 67 >= 36; Copywriter role not counted); R2 NOT_ESTABLISHED (system says Passed 70/100, vendor export says Failed 38/100, conflict unresolved)",
+   "ambiguity": "",
+   "realism_or_defect": "The Passed result is dated Oct 2026, which may fall after the 1 Oct 2026 decision date. This does not change the answer because the conflict note already makes R2 unresolved."
+  },
+  "42": {
+   "item": 42,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET via (a) (Bachelor of Science in Statistics, a listed field and bachelor level); R2 MET (Passed 70/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The framing_text is a neutral note and has no effect. The Passed result is dated Oct 2026, possibly after the decision date."
+  },
+  "41": {
+   "item": 41,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Higher Nitec in Life Sciences is below Diploma level); R2 NOT_MET (certificate revoked Aug 2026, though the waiver would apply: lab work Apr 2020-Sep 2026 = 78 mo >= 60)",
+   "ambiguity": "",
+   "realism_or_defect": "None. The verdict comes from R1 alone. The 'over 9 years' summary is consistent with the positions."
+  },
+  "40": {
+   "item": 40,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (CPP valid until Dec 2027); R2 MET (Payroll Officer Sep 2025-Sep 2026 = 13 mo + HR Executive Dec 2022-Aug 2025 = 33 mo = 46 >= 24)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "39": {
+   "item": 39,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (only the Aug 2025-present role counts, 14 mo < 24; both Admin Executive roles do not state customer service); R2 MET (Passed 73/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "38": {
+   "item": 38,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Mandarin native); R2 MET (Service Associate May 2022-Sep 2026 = 53 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "The written communication assessment appears in the application but this policy does not use it. It is a harmless distractor."
+  },
+  "37": {
+   "item": 37,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Contact Centre Officer Mar 2023-Jul 2026 = 41 mo >= 24); R2 NOT_MET (assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "36": {
+   "item": 36,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Forklift Operator Licence valid until Jun 2027); R2 MET (Logistics Executive Jan 2024-Sep 2026 = 33 mo >= 24; the Events Assistant role says delivery routes, not warehouse operations)",
+   "ambiguity": "",
+   "realism_or_defect": "The job titles and descriptions are deliberately mismatched (Events Assistant drove delivery routes, Retail Associate assisted with event logistics). This is a distractor and not an error."
+  },
+  "35": {
+   "item": 35,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (licence valid until Jul 2028); R2 NOT_ESTABLISHED (as listed: 10 mo + 24 mo = 34 >= 24, but the unresolved Meranti start date of Jun 2025 would give 5 + 10 = 15 < 24)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "34": {
+   "item": 34,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (CPP valid until Oct 2028); R2 NOT_MET (only Payroll Officer Jun 2026-Sep 2026 = 4 mo counts; Accounts Executive roles do not state payroll processing)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "33": {
+   "item": 33,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Bachelor of Science in Chemistry); R2 MET by waiver (no certificate, but lab work Aug 2019-Sep 2026 = 39 + 47 = 86 mo >= 60; Purchasing Assistant role is not lab work)",
+   "ambiguity": "Whether a waived requirement counts as 'clearly met' under step 2. The natural reading is yes, since it no longer applies.",
+   "realism_or_defect": "None."
+  },
+  "32": {
+   "item": 32,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 NOT_ESTABLISHED (as listed 14 + 40 = 54 mo >= 24, but with the Jan 2025 start for Quayside the total is 6 + 14 = 20 < 24, and the conflict is unresolved); R2 MET (Passed 70/100)",
+   "ambiguity": "",
+   "realism_or_defect": "Same base application as item 15 plus a recruiter-note conflict, so it works as a deliberate pair. The Passed result is dated Oct 2026, possibly after the decision date."
+  },
+  "31": {
+   "item": 31,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Documentation Specialist Sep 2021-Sep 2024 = 37 mo + Technical Writer Oct 2024-Sep 2026 = 24 mo = 61 >= 36; the Sub-editor role says client accounts, so it is excluded); R2 MET (Passed 63/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "30": {
+   "item": 30,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Python Mar 2025-Jul 2026 = 17 mo + Jun 2022-Dec 2024 = 31 mo = 48 >= 36); R2 NOT_MET (SQL assessment Failed)",
+   "ambiguity": "",
+   "realism_or_defect": "The framing_text is a neutral note with no effect."
+  },
+  "29": {
+   "item": 29,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Bachelor of Science in Business Administration is not a listed field); R2 MET (certificate valid until Nov 2029)",
+   "ambiguity": "",
+   "realism_or_defect": "None. The 'over 10 years' summary is consistent with the positions."
+  },
+  "28": {
+   "item": 28,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Jul 2024-Aug 2026 = 26 mo + Jun 2022-Jun 2024 = 25 mo = 51 >= 36; the Front-end role says Terraform, not Python); R2 NOT_MET (SQL assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "27": {
+   "item": 27,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (Feb 2025-Sep 2026 = 20 mo + Mar 2022-Jan 2025 = 35 mo = 55 >= 36); R2 NOT_ESTABLISHED (SQL result pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "26": {
+   "item": 26,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Service Associate Dec 2025-Sep 2026 = 10 mo; the part-time role Feb-Jul 2026 lies inside it and counts once; the other roles do not state customer service); R2 MET (Passed 91/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The summary says 'over 8 years of work experience', which is a deliberate distractor against the 10 counted months."
+  },
+  "25": {
+   "item": 25,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Jan 2026-Sep 2026 = 9 mo + Dec 2022-Nov 2025 = 36 mo = 45 >= 24); R2 NOT_MET (assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "24": {
+   "item": 24,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET via (b) (Analytics Executive Sep 2023-Sep 2026 = 37 mo + Data Analyst Feb 2021-Jun 2023 = 29 mo = 66 >= 48; route (a) fails because a Diploma is below bachelor level); R2 MET (Passed 75/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The Passed result is dated Oct 2026, possibly after the decision date."
+  },
+  "23": {
+   "item": 23,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Master of Science in Biomedical Science); R2 NOT_MET (certificate revoked, and the waiver fails because lab work is only Mar 2023-Sep 2026 = 43 mo < 60; the part-time role overlaps and counts once)",
+   "ambiguity": "",
+   "realism_or_defect": "The 'over 10 years' summary is a deliberate distractor."
+  },
+  "22": {
+   "item": 22,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_ESTABLISHED (qualifications 'to be provided'); R2 NOT_MET (certificate expired May 2025, and the waiver fails because lab work is Jul 2022-Sep 2026 = 51 mo < 60; the Purchasing Assistant role is not lab work)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "21": {
+   "item": 21,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (May 2023-Mar 2025 = 23 mo + Jun 2025-Jul 2026 = 14 mo = 37 >= 24); R2 NOT_MET (assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "20": {
+   "item": 20,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay conversational is below professional working proficiency); R2 MET (Contact Centre Officer Apr 2023-Sep 2026 = 42 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "The written communication assessment 'Not taken' is shown, but this policy does not use it. It is a distractor."
+  },
+  "19": {
+   "item": 19,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET ((a) Higher Nitec is below bachelor level; (b) Nov 2023-Sep 2026 = 35 mo < 48); R2 MET (Passed 95/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "18": {
+   "item": 18,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Mandarin native); R2 NOT_MET (Contact Centre Officer Apr 2026-Sep 2026 = 6 mo < 12; the Sales Coordinator roles do not state customer service)",
+   "ambiguity": "",
+   "realism_or_defect": "The application uses a prose layout instead of the usual structured headings. This is a format variant and is rendered correctly."
+  },
+  "17": {
+   "item": 17,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Bachelor of Science in Architecture is not a listed field); R2 MET (certificate valid until Jul 2028)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "16": {
+   "item": 16,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Jun 2026-Sep 2026 = 4 mo + Mar 2022-Apr 2026 = 50 mo = 54 >= 24); R2 NOT_MET (assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "The 'over 9 years' summary is consistent with the positions."
+  },
+  "15": {
+   "item": 15,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Jul 2025-Aug 2026 = 14 mo + Mar 2022-Jun 2025 = 40 mo = 54 >= 24); R2 MET (Passed 70/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The Passed result is dated Oct 2026, possibly after the decision date."
+  },
+  "14": {
+   "item": 14,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Technical Writer Jan 2021-Jan 2025 = 49 mo, plus Apr 2025-Sep 2026 = 18 mo, with the part-time role overlapping; total well above 36); R2 NOT_MET (Failed 31/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The Failed result is dated Oct 2026, possibly after the decision date. The unpaid community technical writing in OTHER is correctly not counted."
+  },
+  "13": {
+   "item": 13,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Service Associate Oct 2025-Sep 2026 = 12 mo < 24; the other roles do not state customer service); R2 NOT_ESTABLISHED (pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None. This item tests that step 1 takes precedence over a pending result."
+  },
+  "12": {
+   "item": 12,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Diploma in Hospitality Management is not a listed field); R2 MET by waiver (lab work Aug 2019-Sep 2026 = 86 mo >= 60)",
+   "ambiguity": "",
+   "realism_or_defect": "The sections are in a shuffled order. This is a format variant and renders fine."
+  },
+  "11": {
+   "item": 11,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (CPP valid until Mar 2028); R2 NOT_MET (Payroll Officer Jan 2026-Sep 2026 = 9 mo < 24; the other roles do not state payroll processing)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "10": {
+   "item": 10,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (Jun 2025-Sep 2026 = 16 mo + Feb 2021-Apr 2025 = 51 mo = 67 >= 36); R2 NOT_ESTABLISHED (writing sample review pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "9": {
+   "item": 9,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Mandarin native); R2 MET (Customer Service Executive Aug 2023-Sep 2026 = 38 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "The written communication assessment is shown but this policy does not use it. It is a distractor."
+  },
+  "8": {
+   "item": 8,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Jun 2026-Sep 2026 = 4 mo + Dec 2022-May 2026 = 42 mo = 46 >= 24); R2 MET (Passed 75/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "7": {
+   "item": 7,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (only Content Developer Jun 2025-Sep 2026 = 16 mo states technical writing; the Sub-editor roles do not); R2 MET (Passed 94/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "6": {
+   "item": 6,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET ((a) Higher Nitec is below bachelor level; (b) Apr 2024-Sep 2026 = 30 mo < 48); R2 NOT_ESTABLISHED (data case study pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None. This item tests that step 1 takes precedence over a pending result."
+  },
+  "5": {
+   "item": 5,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay basic); R2 MET (Oct 2025-Sep 2026 = 12 mo + Mar 2022-Sep 2025 = 43 mo = 55 >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "The written communication assessment is shown but this policy does not use it. It is a distractor."
+  },
+  "4": {
+   "item": 4,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Dec 2025-Aug 2026 = 9 mo + Mar 2022-Nov 2025 = 45 mo = 54 >= 24); R2 MET (Passed 86/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None. The note that other languages are not required is consistent with the application."
+  },
+  "3": {
+   "item": 3,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 NOT_ESTABLISHED (qualifications 'to be provided'); R2 MET (certificate valid until Feb 2030)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "2": {
+   "item": 2,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay basic); R2 MET (Customer Service Executive Feb 2025-Sep 2026 = 20 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "The policy says '1 years', a minor grammar slip with no effect on the answer."
+  },
+  "1": {
+   "item": 1,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Python Jun 2025-Sep 2026 = 16 mo + Nov 2022-May 2025 = 31 mo = 47 >= 36; the Java role is excluded); R2 MET (SQL Passed 95/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The Passed result is dated Oct 2026, possibly after the decision date."
+  },
+  "0": {
+   "item": 0,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Forklift Operator Licence valid until Dec 2029); R2 MET (Nov 2025-Sep 2026 = 11 mo + May 2023-Sep 2025 = 29 mo = 40 >= 24; the Events Assistant role does not count)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  }
+ },
+ {
+  "0": {
+   "item": 0,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (forklift licence valid to Dec 2029); R2 MET (warehouse operations stated in Quayside Nov 2025-Sep 2026 = 11 mo + Cobalt May 2023-Sep 2025 = 29 mo = 40 mo >= 24; Events Assistant not counted)",
+   "ambiguity": "",
+   "realism_or_defect": "Title 'Inventory Coordinator' at an insurance company/software firm is odd but harmless. SINDA volunteering is an ignorable distractor."
+  },
+  "1": {
+   "item": 1,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Python Jun 2025-Sep 2026 = 16 mo + Nov 2022-May 2025 = 31 mo = 47 mo >= 36; Java role not counted); R2 MET (SQL Passed 95/100)",
+   "ambiguity": "Policy does not say whether an assessment result dated 'Oct 2026' (same month as the 1 Oct 2026 decision date) counts; I treated any recorded Passed as meeting it.",
+   "realism_or_defect": "Assessment month Oct 2026 can fall after the decision date; no day given."
+  },
+  "2": {
+   "item": 2,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay basic, below professional working proficiency); R2 MET (customer service Feb 2025-Sep 2026 = 20 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "3": {
+   "item": 3,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 NOT_ESTABLISHED (qualifications 'Details to be provided by the applicant'); R2 MET (Laboratory Safety Certificate valid to Feb 2030)",
+   "ambiguity": "",
+   "realism_or_defect": "Lab experience (Oct 2022-present, ~48 mo) is irrelevant because the certificate is valid. The sales roles mention chemical supplies as a distractor."
+  },
+  "4": {
+   "item": 4,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (customer service Dec 2025-Aug 2026 = 9 mo + Mar 2022-Nov 2025 = 45 mo = 54 mo >= 24); R2 MET (Passed 86/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None. Language note in policy is explicit and harmless."
+  },
+  "5": {
+   "item": 5,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay basic); R2 MET (customer service Oct 2025-Sep 2026 = 12 mo + Mar 2022-Sep 2025 = 42 mo)",
+   "ambiguity": "",
+   "realism_or_defect": "A written communication assessment is recorded though this role does not use it (distractor)."
+  },
+  "6": {
+   "item": 6,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET ((a) Higher Nitec is below bachelor's; (b) data analysis only Apr 2024-Sep 2026 = 30 mo < 48); R2 NOT_ESTABLISHED (case study pending)",
+   "ambiguity": "",
+   "realism_or_defect": "Policy R1 lacks punctuation around 'or (b)' but reads clearly."
+  },
+  "7": {
+   "item": 7,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (technical writing only Jun 2025-Sep 2026 = 16 mo < 36; sub-editor roles do not state technical writing); R2 MET (Passed 94/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None. SINDA volunteering is a distractor."
+  },
+  "8": {
+   "item": 8,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Jun 2026-Sep 2026 = 4 mo + Dec 2022-May 2026 = 42 mo = 46 mo >= 24); R2 MET (Passed 75/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "9": {
+   "item": 9,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Mandarin native); R2 MET (customer service Aug 2023-Sep 2026 = 38 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "A Passed written communication assessment is recorded though not required (distractor)."
+  },
+  "10": {
+   "item": 10,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (technical writing Jun 2025-Sep 2026 = 16 mo + Feb 2021-Apr 2025 = 51 mo = 67 mo >= 36); R2 NOT_ESTABLISHED (result pending)",
+   "ambiguity": "",
+   "realism_or_defect": "Sub-editor Westwind role description 'Managed client accounts' does not match the title (synthetic filler)."
+  },
+  "11": {
+   "item": 11,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (CPP valid to Mar 2028); R2 NOT_MET (payroll only Jan 2026-Sep 2026 = 9 mo < 24; other roles do not state payroll)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "12": {
+   "item": 12,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Diploma in Hospitality Management, field not listed); R2 MET via waiver (lab work Aug 2019-Sep 2026 = 86 mo >= 60; no certificate held)",
+   "ambiguity": "",
+   "realism_or_defect": "Sections appear in reversed order (format variation, not an error). Admin Assistant role mentions chemical supplies (distractor)."
+  },
+  "13": {
+   "item": 13,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (customer service only Oct 2025-Sep 2026 = 12 mo < 24); R2 NOT_ESTABLISHED (pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "14": {
+   "item": 14,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (union of Apr 2025-Sep 2026 incl. overlapping part-time role, plus Jan 2021-Jan 2025 = about 66 mo >= 36); R2 NOT_MET (Failed 31/100)",
+   "ambiguity": "",
+   "realism_or_defect": "Failed result dated Oct 2026, possibly after the decision date; policy is silent on result dates but a recorded Failed fails it. Summary claim of 'over 8 years' is fluff."
+  },
+  "15": {
+   "item": 15,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (customer service Jul 2025-Aug 2026 = 14 mo + Mar 2022-Jun 2025 = 40 mo = 54 mo >= 24); R2 MET (Passed 70/100)",
+   "ambiguity": "Policy does not say whether a result dated 'Oct 2026' may postdate the 1 Oct 2026 decision date; I counted it.",
+   "realism_or_defect": "Assessment month equals decision month, so it could fall after the decision date. Same application as item 32 without the conflict note (intended minimal pair)."
+  },
+  "16": {
+   "item": 16,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Jun 2026-Sep 2026 = 4 mo + Mar 2022-Apr 2026 = 50 mo); R2 NOT_MET (assessment not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "17": {
+   "item": 17,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Bachelor in Architecture, field not listed); R2 MET (certificate valid to Jul 2028)",
+   "ambiguity": "",
+   "realism_or_defect": "None. Section order reversed (format variation)."
+  },
+  "18": {
+   "item": 18,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Mandarin native); R2 NOT_MET (customer service only Apr 2026-Sep 2026 = 6 mo < 12)",
+   "ambiguity": "",
+   "realism_or_defect": "Prose-style rendering of the application, with no defects."
+  },
+  "19": {
+   "item": 19,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET ((a) Higher Nitec below bachelor's; (b) data analysis Nov 2023-Sep 2026 = 35 mo < 48); R2 MET (Passed 95/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "20": {
+   "item": 20,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Malay conversational); R2 MET (customer service Apr 2023-Sep 2026 = 42 mo)",
+   "ambiguity": "",
+   "realism_or_defect": "'Not taken' written communication assessment is irrelevant to this role (distractor)."
+  },
+  "21": {
+   "item": 21,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (May 2023-Mar 2025 = 23 mo + Jun 2025-Jul 2026 = 14 mo = 37 mo >= 24); R2 NOT_MET (not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None. Section order reversed (format variation)."
+  },
+  "22": {
+   "item": 22,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_ESTABLISHED (qualification details missing); R2 NOT_MET (certificate expired May 2025; lab experience Jul 2022-Sep 2026 = 51 mo < 60, so no waiver)",
+   "ambiguity": "",
+   "realism_or_defect": "Final answer depends on R2 being clearly not met, which does not rely on R1, so it is robust. Lab experience of 51 mo is near the 60 mo threshold but not borderline."
+  },
+  "23": {
+   "item": 23,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Master of Science in Biomedical Science); R2 NOT_MET (certificate revoked Jun 2025; lab work Mar 2023-Sep 2026 = 43 mo with part-time overlap counted once, < 60)",
+   "ambiguity": "",
+   "realism_or_defect": "Summary claims 'over 10 years' of experience, which is fluff and could tempt a reader into assuming the waiver applies."
+  },
+  "24": {
+   "item": 24,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET via (b) (data analysis Sep 2023-Sep 2026 = 37 mo + Feb 2021-Jun 2023 = 29 mo = 66 mo >= 48; Diploma does not meet (a)); R2 MET (Passed 75/100)",
+   "ambiguity": "Policy does not say whether a result dated 'Oct 2026' may postdate the 1 Oct 2026 decision date.",
+   "realism_or_defect": "Assessment month Oct 2026 equals the decision month."
+  },
+  "25": {
+   "item": 25,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Jan 2026-Sep 2026 = 9 mo + Dec 2022-Nov 2025 = 36 mo = 45 mo); R2 NOT_MET (not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "26": {
+   "item": 26,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (customer service Dec 2025-Sep 2026 = 10 mo, part-time role fully inside it, counted once, < 24); R2 MET (Passed 91/100)",
+   "ambiguity": "",
+   "realism_or_defect": "Summary 'over 8 years' is fluff. The overlapping part-time role is the intended trap."
+  },
+  "27": {
+   "item": 27,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (Python Feb 2025-Sep 2026 = 20 mo + Mar 2022-Jan 2025 = 35 mo = 55 mo >= 36); R2 NOT_ESTABLISHED (SQL pending)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "28": {
+   "item": 28,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Python Jul 2024-Aug 2026 = 26 mo + Jun 2022-Jun 2024 = 25 mo = 51 mo); R2 NOT_MET (not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "Front-end Developer role described as Terraform cloud configuration (title/description mismatch, harmless)."
+  },
+  "29": {
+   "item": 29,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Bachelor in Business Administration, field not listed); R2 MET (certificate valid to Nov 2029)",
+   "ambiguity": "",
+   "realism_or_defect": "Summary 'over 10 years' is fluff."
+  },
+  "30": {
+   "item": 30,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (Python Mar 2025-Jul 2026 = 17 mo + Jun 2022-Dec 2024 = 31 mo = 48 mo >= 36); R2 NOT_MET (SQL Failed 26/100)",
+   "ambiguity": "",
+   "realism_or_defect": "The framing text is neutral and harmless."
+  },
+  "31": {
+   "item": 31,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (technical writing Sep 2021-Sep 2024 = 37 mo + Oct 2024-Sep 2026 = 24 mo = 61 mo >= 36); R2 MET (Passed 63/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None. Section order shuffled (format variation)."
+  },
+  "32": {
+   "item": 32,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 NOT_ESTABLISHED (unresolved conflict on Quayside start date: Mar 2022 gives 54 mo >= 24, Jan 2025 gives 14 + 6 = 20 mo < 24); R2 MET (Passed 70/100)",
+   "ambiguity": "",
+   "realism_or_defect": "Assessment dated Oct 2026, same month as the decision date. Matches item 15 with a conflict note added (intended contrast)."
+  },
+  "33": {
+   "item": 33,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Bachelor of Science in Chemistry); R2 MET via waiver (lab work Nov 2022-Sep 2026 = 47 mo + Aug 2019-Oct 2022 = 39 mo = 86 mo >= 60; no certificate held)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "34": {
+   "item": 34,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (CPP valid to Oct 2028); R2 NOT_MET (payroll only Jun 2026-Sep 2026 = 4 mo < 24)",
+   "ambiguity": "",
+   "realism_or_defect": "CDAC volunteering is an ignorable distractor."
+  },
+  "35": {
+   "item": 35,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (forklift valid to Jul 2028); R2 NOT_ESTABLISHED (unresolved start-date conflict for Meranti: as listed 10 + 24 = 34 mo >= 24; with the Jun 2025 start 10 + 5 = 15 mo < 24)",
+   "ambiguity": "",
+   "realism_or_defect": "The Events Assistant role with 'retail sales and cashiering' is a title/description mismatch (harmless)."
+  },
+  "36": {
+   "item": 36,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (forklift valid to Jun 2027); R2 MET (warehouse operations Jan 2024-Sep 2026 = 33 mo >= 24; other roles do not state warehouse operations)",
+   "ambiguity": "",
+   "realism_or_defect": "Several title/description mismatches (Events Assistant 'drove delivery routes', Retail Associate 'assisted with event logistics'). They look like deliberate distractors but read oddly. Class 3 driving licence is not a forklift licence (distractor)."
+  },
+  "37": {
+   "item": 37,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 MET (customer service Mar 2023-Jul 2026 = 41 mo); R2 NOT_MET (not taken)",
+   "ambiguity": "",
+   "realism_or_defect": "None. The Malay (basic) entry is correctly irrelevant under the policy note."
+  },
+  "38": {
+   "item": 38,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (Mandarin native); R2 MET (customer service May 2022-Sep 2026 = 53 mo >= 12)",
+   "ambiguity": "",
+   "realism_or_defect": "A Passed written communication assessment is recorded though not required (distractor)."
+  },
+  "39": {
+   "item": 39,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (customer service only Aug 2025-Sep 2026 = 14 mo < 24); R2 MET (Passed 73/100)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "40": {
+   "item": 40,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET (CPP valid to Dec 2027); R2 MET (payroll Sep 2025-Sep 2026 = 13 mo + Dec 2022-Aug 2025 = 33 mo = 46 mo >= 24)",
+   "ambiguity": "",
+   "realism_or_defect": "None."
+  },
+  "41": {
+   "item": 41,
+   "decision": "DOES_NOT_MEET",
+   "requirement_status": "R1 NOT_MET (Higher Nitec in Life Sciences is below Diploma level); R2 MET via waiver (certificate revoked, but lab work Apr 2020-Mar 2023 = 36 mo + Jun 2023-Sep 2026 = 40 mo, part-time overlap counted once = 76 mo >= 60)",
+   "ambiguity": "",
+   "realism_or_defect": "The correct answer rests on R1 alone. The 'Higher Nitec is below Diploma' ordering is stated explicitly, so it is unambiguous. Summary 'over 9 years' is fluff."
+  },
+  "42": {
+   "item": 42,
+   "decision": "MEETS",
+   "requirement_status": "R1 MET via (a) (Bachelor of Science in Statistics); R2 MET (Passed 70/100)",
+   "ambiguity": "Policy does not say whether a result dated 'Oct 2026' may postdate the 1 Oct 2026 decision date.",
+   "realism_or_defect": "Assessment month Oct 2026 equals the decision month. The framing text is neutral."
+  },
+  "43": {
+   "item": 43,
+   "decision": "INSUFFICIENT_EVIDENCE",
+   "requirement_status": "R1 MET (technical writing Jul 2025-Sep 2026 = 15 mo + Jan 2021-Apr 2025 = 52 mo = 67 mo >= 36); R2 NOT_ESTABLISHED (hiring system says Passed 70/100, vendor export says Failed 38/100, unresolved)",
+   "ambiguity": "",
+   "realism_or_defect": "Passed result dated Oct 2026, same month as the decision date. Otherwise consistent."
+  }
+ }
+]

@@ -1,5 +1,5 @@
 {
-  "dataset_version": "1.0.0",
+  "dataset_version": "1.1.0",
   "splits": {
     "dev": {
       "families": "data/dev/families.jsonl",
@@ -18,8 +18,8 @@
       },
       "n_families": 88,
       "n_variants": 662,
-      "sha256_families": "04ce7ced3dde354b6b482972c597e6971c18056cd4b54039c5c4e85f9306a3d5",
-      "sha256_variants": "3989dc121302cae49bd61e432d0e3e8178c719e26dfa530a036d1948a92beeeb",
+      "sha256_families": "86fd9145e936b2dc10aacd3d15073cd08eb575187e483b26cfa3fd532067e722",
+      "sha256_variants": "48e1e3699a73572b2bc8c3107cc7759c69bfefd779fd35a2daf9415516d5a124",
       "suites": {
         "audit": 8,
         "core": 48,
@@ -46,8 +46,8 @@
       },
       "n_families": 344,
       "n_variants": 2528,
-      "sha256_families": "4014d178a8aab30e7dcb230b1d1dd708499b69f99a750b9edd1b8cbcb7f00479",
-      "sha256_variants": "18a6b0075635b6ad0e36d8511dcce36583d25a7f1a34635592f50ba5fe0dcde2",
+      "sha256_families": "3f316921c57f8c8f747fe226bfec6cf0d677450c177de90095bd9bd7bc4f6515",
+      "sha256_variants": "78dba29e672ad83fecf0ee7fa49628427512bbf1911e88d8ef31a88650da11ad",
       "suites": {
         "audit": 24,
         "core": 192,

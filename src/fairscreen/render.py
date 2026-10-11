@@ -178,11 +178,15 @@ def render_application(rec: Record, applicant_label: str, role_title: str, layou
 LEVEL_PHRASE = {"DIPLOMA": "a diploma", "BACHELOR": "a bachelor's degree", "NITEC": "a Higher Nitec"}
 
 
+def _yrs(n: float) -> str:
+    return f"{n:g} year" + ("" if n == 1 else "s")
+
+
 def _req_text(req, phrasing: int) -> str:
     if isinstance(req, MinYears):
         if phrasing == 1:
-            return f"At least {req.years:g} years of professional experience in {req.skill}."
-        return f"Professional experience in {req.skill} totalling {req.years:g} years or more."
+            return f"At least {_yrs(req.years)} of professional experience in {req.skill}."
+        return f"Professional experience in {req.skill} totalling {_yrs(req.years)} or more."
     if isinstance(req, CredentialValid):
         return f"Holds a valid {req.name}." if phrasing == 1 else f"A {req.name} that is currently valid."
     if isinstance(req, AssessmentPassed):
@@ -201,9 +205,9 @@ def _req_text(req, phrasing: int) -> str:
         # Express "credential OR long experience" as an explicit exception, other pairs as alternatives.
         if isinstance(a, CredentialValid) and isinstance(b, MinYears):
             base = _req_text(a, phrasing)
-            return (f"{base} Exception: this requirement is waived for applicants with at least {b.years:g} years "
-                    f"of professional experience in {b.skill}.")
-        return f"Either (a) {_lower_first(_req_text(a, phrasing))} or (b) {_lower_first(_req_text(b, phrasing))}"
+            return (f"{base} Exception: this requirement is waived, and counts as met, for applicants with at least "
+                    f"{_yrs(b.years)} of professional experience in {b.skill}.")
+        return f"Either (a) {_lower_first(_req_text(a, phrasing))}, or (b) {_lower_first(_req_text(b, phrasing))}."
     raise TypeError(req)
 
 

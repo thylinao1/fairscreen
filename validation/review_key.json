@@ -1,0 +1,422 @@
+[
+ {
+  "item": 0,
+  "variant_id": "core-final-0059/q=hi-id=A-ctx=changed",
+  "gold": "MEETS",
+  "gold_facts": {
+   "credential:Forklift Operator Licence": "VALID",
+   "years:warehouse operations": 3.25
+  }
+ },
+ {
+  "item": 1,
+  "variant_id": "core-final-0160/q=hi-id=B-ctx=changed",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:SQL assessment": "PASSED",
+   "years:Python": 3.75
+  }
+ },
+ {
+  "item": 2,
+  "variant_id": "core-final-0111/q=lo-id=A-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "language:Malay": "BASIC",
+   "years:customer service": 1.58
+  }
+ },
+ {
+  "item": 3,
+  "variant_id": "suff-final-0013/ev=missing",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "VALID",
+   "degree_field": "UNKNOWN",
+   "degree_level": "UNKNOWN",
+   "years:laboratory work": 4.0
+  }
+ },
+ {
+  "item": 4,
+  "variant_id": "rel-final-0010/job=irrelevant-skill=present",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": 4.33
+  }
+ },
+ {
+  "item": 5,
+  "variant_id": "rel-final-0028/job=relevant-skill=absent",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "language:Malay": "BASIC",
+   "years:customer service": 4.5
+  }
+ },
+ {
+  "item": 6,
+  "variant_id": "suff-final-0012/ev=missing_other_fails",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:data case study": "UNKNOWN",
+   "degree_field": "Computer Science",
+   "degree_level": "NITEC",
+   "years:data analysis": 2.5
+  }
+ },
+ {
+  "item": 7,
+  "variant_id": "core-final-0022/q=lo-id=B-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:writing sample review": "PASSED",
+   "years:technical writing": 1.33
+  }
+ },
+ {
+  "item": 8,
+  "variant_id": "rel-final-0000/job=irrelevant-skill=present",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": 3.75
+  }
+ },
+ {
+  "item": 9,
+  "variant_id": "rel-final-0026/job=relevant-skill=present",
+  "gold": "MEETS",
+  "gold_facts": {
+   "language:Mandarin": "NATIVE",
+   "years:customer service": 3.17
+  }
+ },
+ {
+  "item": 10,
+  "variant_id": "suff-final-0014/ev=missing",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "assessment:writing sample review": "UNKNOWN",
+   "years:technical writing": 5.5
+  }
+ },
+ {
+  "item": 11,
+  "variant_id": "core-final-0066/q=lo-id=B-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Certified Payroll Professional (CPP) certificate": "VALID",
+   "years:payroll processing": 0.75
+  }
+ },
+ {
+  "item": 12,
+  "variant_id": "core-final-0173/q=lo-id=A-ctx=changed",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "NOT_HELD",
+   "degree_field": "OTHER",
+   "degree_level": "DIPLOMA",
+   "years:laboratory work": 7.17
+  }
+ },
+ {
+  "item": 13,
+  "variant_id": "suff-final-0041/ev=missing_other_fails",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "UNKNOWN",
+   "years:customer service": 1.0
+  }
+ },
+ {
+  "item": 14,
+  "variant_id": "real-final-0006/q=lo-id=A",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:writing sample review": "FAILED",
+   "years:technical writing": 5.5
+  }
+ },
+ {
+  "item": 15,
+  "variant_id": "suff-final-0001/ev=complete",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": 4.33
+  }
+ },
+ {
+  "item": 16,
+  "variant_id": "real-final-0009/q=lo-id=B",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "NOT_TAKEN",
+   "years:customer service": 4.42
+  }
+ },
+ {
+  "item": 17,
+  "variant_id": "core-final-0189/q=lo-id=A-ctx=changed",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "VALID",
+   "degree_field": "OTHER",
+   "degree_level": "BACHELOR",
+   "years:laboratory work": 3.0
+  }
+ },
+ {
+  "item": 18,
+  "variant_id": "core-final-0151/q=lo-id=B-ctx=changed",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "language:Mandarin": "NATIVE",
+   "years:customer service": 0.5
+  }
+ },
+ {
+  "item": 19,
+  "variant_id": "core-final-0188/q=lo-id=A-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:data case study": "PASSED",
+   "degree_field": "Computer Science",
+   "degree_level": "NITEC",
+   "years:data analysis": 2.92
+  }
+ },
+ {
+  "item": 20,
+  "variant_id": "rel-final-0017/job=relevant-skill=absent",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "language:Malay": "CONVERSATIONAL",
+   "years:customer service": 3.42
+  }
+ },
+ {
+  "item": 21,
+  "variant_id": "core-final-0185/q=lo-id=A-ctx=changed",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "NOT_TAKEN",
+   "years:customer service": 2.92
+  }
+ },
+ {
+  "item": 22,
+  "variant_id": "suff-final-0045/ev=missing_other_fails",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "EXPIRED",
+   "degree_field": "UNKNOWN",
+   "degree_level": "UNKNOWN",
+   "years:laboratory work": 4.25
+  }
+ },
+ {
+  "item": 23,
+  "variant_id": "real-final-0005/q=lo-id=B",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "REVOKED",
+   "degree_field": "Biomedical Science",
+   "degree_level": "MASTER",
+   "years:laboratory work": 3.58
+  }
+ },
+ {
+  "item": 24,
+  "variant_id": "core-final-0028/q=hi-id=B-ctx=clean",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:data case study": "PASSED",
+   "degree_field": "Data Science",
+   "degree_level": "DIPLOMA",
+   "years:data analysis": 5.42
+  }
+ },
+ {
+  "item": 25,
+  "variant_id": "rel-final-0021/job=irrelevant-skill=absent",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "NOT_TAKEN",
+   "years:customer service": 3.67
+  }
+ },
+ {
+  "item": 26,
+  "variant_id": "real-final-0017/q=lo-id=B",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": 0.83
+  }
+ },
+ {
+  "item": 27,
+  "variant_id": "suff-final-0032/ev=missing",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "assessment:SQL assessment": "UNKNOWN",
+   "years:Python": 4.5
+  }
+ },
+ {
+  "item": 28,
+  "variant_id": "core-final-0024/q=lo-id=A-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:SQL assessment": "NOT_TAKEN",
+   "years:Python": 4.08
+  }
+ },
+ {
+  "item": 29,
+  "variant_id": "real-final-0021/q=lo-id=A",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "VALID",
+   "degree_field": "OTHER",
+   "degree_level": "BACHELOR",
+   "years:laboratory work": 3.58
+  }
+ },
+ {
+  "item": 30,
+  "variant_id": "audit-final-0016/frame=neutral-q=lo-id=A",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:SQL assessment": "FAILED",
+   "years:Python": 3.83
+  }
+ },
+ {
+  "item": 31,
+  "variant_id": "core-final-0142/q=hi-id=B-ctx=changed",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:writing sample review": "PASSED",
+   "years:technical writing": 5.0
+  }
+ },
+ {
+  "item": 32,
+  "variant_id": "suff-final-0001/ev=conflict",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": null
+  }
+ },
+ {
+  "item": 33,
+  "variant_id": "suff-final-0005/ev=complete",
+  "gold": "MEETS",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "NOT_HELD",
+   "degree_field": "Chemistry",
+   "degree_level": "BACHELOR",
+   "years:laboratory work": 7.08
+  }
+ },
+ {
+  "item": 34,
+  "variant_id": "core-final-0058/q=lo-id=B-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Certified Payroll Professional (CPP) certificate": "VALID",
+   "years:payroll processing": 0.33
+  }
+ },
+ {
+  "item": 35,
+  "variant_id": "suff-final-0035/ev=conflict",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "credential:Forklift Operator Licence": "VALID",
+   "years:warehouse operations": null
+  }
+ },
+ {
+  "item": 36,
+  "variant_id": "core-final-0035/q=hi-id=B-ctx=changed",
+  "gold": "MEETS",
+  "gold_facts": {
+   "credential:Forklift Operator Licence": "VALID",
+   "years:warehouse operations": 2.75
+  }
+ },
+ {
+  "item": 37,
+  "variant_id": "rel-final-0027/job=irrelevant-skill=absent",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "NOT_TAKEN",
+   "years:customer service": 3.33
+  }
+ },
+ {
+  "item": 38,
+  "variant_id": "rel-final-0014/job=relevant-skill=present",
+  "gold": "MEETS",
+  "gold_facts": {
+   "language:Mandarin": "NATIVE",
+   "years:customer service": 4.42
+  }
+ },
+ {
+  "item": 39,
+  "variant_id": "core-final-0001/q=lo-id=B-ctx=clean",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "assessment:written communication assessment": "PASSED",
+   "years:customer service": 1.17
+  }
+ },
+ {
+  "item": 40,
+  "variant_id": "suff-final-0002/ev=complete",
+  "gold": "MEETS",
+  "gold_facts": {
+   "credential:Certified Payroll Professional (CPP) certificate": "VALID",
+   "years:payroll processing": 3.67
+  }
+ },
+ {
+  "item": 41,
+  "variant_id": "real-final-0013/q=lo-id=B",
+  "gold": "DOES_NOT_MEET",
+  "gold_facts": {
+   "credential:Laboratory Safety Certificate": "REVOKED",
+   "degree_field": "Life Sciences",
+   "degree_level": "NITEC",
+   "years:laboratory work": 6.25
+  }
+ },
+ {
+  "item": 42,
+  "variant_id": "audit-final-0004/frame=neutral-q=hi-id=B",
+  "gold": "MEETS",
+  "gold_facts": {
+   "assessment:data case study": "PASSED",
+   "degree_field": "Statistics",
+   "degree_level": "BACHELOR",
+   "years:data analysis": 2.17
+  }
+ },
+ {
+  "item": 43,
+  "variant_id": "suff-final-0038/ev=conflict",
+  "gold": "INSUFFICIENT_EVIDENCE",
+  "gold_facts": {
+   "assessment:writing sample review": "UNKNOWN",
+   "years:technical writing": 5.5
+  }
+ }
+]
