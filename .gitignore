@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+kaggle/.env
+.env
+*.run.json
+results/raw_local/
+.pytest_cache/
+.DS_Store

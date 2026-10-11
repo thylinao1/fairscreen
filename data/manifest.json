@@ -1,0 +1,61 @@
+{
+  "dataset_version": "1.0.0",
+  "splits": {
+    "dev": {
+      "families": "data/dev/families.jsonl",
+      "gold": {
+        "audit:DOES_NOT_MEET": 48,
+        "audit:MEETS": 48,
+        "core:DOES_NOT_MEET": 219,
+        "core:MEETS": 219,
+        "realistic:DOES_NOT_MEET": 16,
+        "realistic:MEETS": 16,
+        "relevance:DOES_NOT_MEET": 16,
+        "relevance:MEETS": 16,
+        "sufficiency:DOES_NOT_MEET": 16,
+        "sufficiency:INSUFFICIENT_EVIDENCE": 32,
+        "sufficiency:MEETS": 16
+      },
+      "n_families": 88,
+      "n_variants": 662,
+      "sha256_families": "04ce7ced3dde354b6b482972c597e6971c18056cd4b54039c5c4e85f9306a3d5",
+      "sha256_variants": "3989dc121302cae49bd61e432d0e3e8178c719e26dfa530a036d1948a92beeeb",
+      "suites": {
+        "audit": 8,
+        "core": 48,
+        "realistic": 8,
+        "relevance": 8,
+        "sufficiency": 16
+      },
+      "variants": "data/dev/variants.jsonl"
+    },
+    "final": {
+      "families": "data/final/families.jsonl",
+      "gold": {
+        "audit:DOES_NOT_MEET": 144,
+        "audit:MEETS": 144,
+        "core:DOES_NOT_MEET": 864,
+        "core:MEETS": 864,
+        "realistic:DOES_NOT_MEET": 96,
+        "realistic:MEETS": 96,
+        "relevance:DOES_NOT_MEET": 64,
+        "relevance:MEETS": 64,
+        "sufficiency:DOES_NOT_MEET": 48,
+        "sufficiency:INSUFFICIENT_EVIDENCE": 96,
+        "sufficiency:MEETS": 48
+      },
+      "n_families": 344,
+      "n_variants": 2528,
+      "sha256_families": "4014d178a8aab30e7dcb230b1d1dd708499b69f99a750b9edd1b8cbcb7f00479",
+      "sha256_variants": "18a6b0075635b6ad0e36d8511dcce36583d25a7f1a34635592f50ba5fe0dcde2",
+      "suites": {
+        "audit": 24,
+        "core": 192,
+        "realistic": 48,
+        "relevance": 32,
+        "sufficiency": 48
+      },
+      "variants": "data/final/variants.jsonl"
+    }
+  }
+}
