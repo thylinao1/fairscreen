@@ -63,10 +63,10 @@
     "p_holm": 1.0
   },
   "S_structured_minus_direct": {
-    "estimate": -0.28125,
-    "lo": -0.375,
-    "hi": -0.15625,
-    "p": 0.0,
+    "estimate": -0.03125,
+    "lo": -0.125,
+    "hi": 0.09375,
+    "p": 0.811,
     "models": [
       "anthropic_claude-sonnet-5@default",
       "google_gemini-3.1-flash-lite-preview",
@@ -75,16 +75,16 @@
     ],
     "per_model": {
       "anthropic_claude-sonnet-5@default": -1.0,
-      "google_gemini-3.1-flash-lite-preview": 0.0,
+      "google_gemini-3.1-flash-lite-preview": 0.125,
       "openai_gpt-5.4-nano-2026-03-17": 0.0,
-      "qwen3.6_35b": -0.125
+      "qwen3.6_35b": 0.75
     }
   },
   "S_policy_code_minus_direct": {
-    "estimate": -0.28125,
-    "lo": -0.375,
-    "hi": -0.15625,
-    "p": 0.0,
+    "estimate": -0.03125,
+    "lo": -0.125,
+    "hi": 0.09375,
+    "p": 0.811,
     "models": [
       "anthropic_claude-sonnet-5@default",
       "google_gemini-3.1-flash-lite-preview",
@@ -93,9 +93,9 @@
     ],
     "per_model": {
       "anthropic_claude-sonnet-5@default": -1.0,
-      "google_gemini-3.1-flash-lite-preview": 0.0,
+      "google_gemini-3.1-flash-lite-preview": 0.125,
       "openai_gpt-5.4-nano-2026-03-17": 0.0,
-      "qwen3.6_35b": -0.125
+      "qwen3.6_35b": 0.75
     }
   }
 }

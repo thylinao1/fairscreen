@@ -75,35 +75,43 @@
     "signed": {
       "malay_male|hi": [
         0.0,
-        8
+        10
       ],
       "chinese_male|hi": [
         0.0,
-        4
+        6
       ],
       "malay_male|lo": [
         0.0,
-        8
+        10
       ],
       "chinese_male|lo": [
         0.0,
-        4
+        6
       ],
       "indian_male|hi": [
         0.0,
-        12
+        8
       ],
       "indian_male|lo": [
         0.0,
-        12
+        8
       ],
       "indian_female|hi": [
         0.0,
-        6
+        4
       ],
       "indian_female|lo": [
         0.0,
-        6
+        4
+      ],
+      "chinese_female|hi": [
+        0.0,
+        2
+      ],
+      "chinese_female|lo": [
+        0.0,
+        2
       ],
       "malay_female|hi": [
         0.0,
@@ -126,120 +134,128 @@
       0.0
     ],
     "clean_quartet": [
-      0.375,
-      0.125,
-      0.625
+      0.5,
+      0.25,
+      0.75
     ],
     "changed_quartet": [
+      0.125,
       0.0,
-      0.0,
-      0.0
+      0.25
     ],
-    "accuracy": 0.5625,
-    "coverage": 0.5625,
-    "invalid": 0.4375,
-    "qual_response": 0.3125,
+    "accuracy": 0.75,
+    "coverage": 0.75,
+    "invalid": 0.25,
+    "qual_response": 0.5625,
     "identity_flip": [
       0.0,
-      10
+      17
     ],
     "same_group_flip": [
       0.0,
-      1
+      2
     ],
     "neutral_id_flip": [
       0.0,
       1
     ],
     "repeat_flip": [
-      0.5384615384615384,
+      0.07142857142857142,
       16
     ],
     "context_flip": [
       0.0,
-      9
+      18
     ],
     "profile": {
-      "MEETS->INVALID": 14,
-      "MEETS->MEETS": 18,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 18,
-      "DOES_NOT_MEET->INVALID": 14
+      "MEETS->INVALID": 9,
+      "MEETS->MEETS": 23,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 25,
+      "DOES_NOT_MEET->INVALID": 7
     },
     "sufficiency_pass": [
+      0.125,
       0.0,
-      0.0,
-      0.0
+      0.25
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.25,
+        "MEETS": 0.375,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.125
+        "INSUFFICIENT_EVIDENCE": 0.1875
       },
       "conflict": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.25
+        "INSUFFICIENT_EVIDENCE": 0.3125
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.3125,
+        "DOES_NOT_MEET": 0.4375,
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.1875,
+    "appropriate_uncertainty": 0.25,
     "unnecessary_abstention": 0.0,
     "decomposition": {
-      "n": 41,
+      "n": 55,
       "aggregation_error": 0.0,
       "tab": {
-        "extract_ok=True|verdict_ok=True|code_ok=True": 41
+        "extract_ok=True|verdict_ok=True|code_ok=True": 55
       },
       "fact_error": {
         "years": 0.0,
-        "assessment": 0.0,
+        "assessment": 0.17857142857142858,
         "credential": 0.0
       }
     },
     "signed": {
       "indian_male|lo": [
         0.0,
-        4
+        6
       ],
       "malay_male|lo": [
         0.0,
-        2
+        6
+      ],
+      "malay_male|hi": [
+        0.0,
+        3
       ],
       "chinese_male|hi": [
         0.0,
-        1
-      ],
-      "indian_male|hi": [
-        0.0,
-        4
+        3
       ],
       "chinese_male|lo": [
         0.0,
-        2
+        3
       ],
-      "indian_female|hi": [
+      "indian_male|hi": [
         0.0,
         3
       ],
       "indian_female|lo": [
         0.0,
-        1
+        3
       ],
-      "malay_female|hi": [
+      "chinese_female|hi": [
+        0.0,
+        2
+      ],
+      "chinese_female|lo": [
         0.0,
         1
       ],
-      "malay_male|hi": [
+      "indian_female|hi": [
+        0.0,
+        2
+      ],
+      "malay_female|hi": [
         0.0,
         1
       ],
@@ -249,8 +265,8 @@
       ]
     },
     "tokens": [
-      94392,
-      38694
+      121503,
+      49169
     ]
   },
   "anthropic_claude-sonnet-5@default|policy_code_same_extraction": {
@@ -260,83 +276,83 @@
       0.0
     ],
     "clean_quartet": [
-      0.375,
-      0.125,
-      0.625
+      0.5,
+      0.25,
+      0.75
     ],
     "changed_quartet": [
+      0.125,
       0.0,
-      0.0,
-      0.0
+      0.25
     ],
-    "accuracy": 0.5625,
-    "coverage": 0.5625,
-    "invalid": 0.4375,
-    "qual_response": 0.3125,
+    "accuracy": 0.75,
+    "coverage": 0.75,
+    "invalid": 0.25,
+    "qual_response": 0.5625,
     "identity_flip": [
       0.0,
-      10
+      17
     ],
     "same_group_flip": [
       0.0,
-      1
+      2
     ],
     "neutral_id_flip": [
       0.0,
       1
     ],
     "repeat_flip": [
-      0.5384615384615384,
+      0.07142857142857142,
       16
     ],
     "context_flip": [
       0.0,
-      9
+      18
     ],
     "profile": {
-      "MEETS->INVALID": 14,
-      "MEETS->MEETS": 18,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 18,
-      "DOES_NOT_MEET->INVALID": 14
+      "MEETS->INVALID": 9,
+      "MEETS->MEETS": 23,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 25,
+      "DOES_NOT_MEET->INVALID": 7
     },
     "sufficiency_pass": [
-      0.125,
-      0.0,
-      0.25
+      0.375,
+      0.25,
+      0.5
     ],
     "suff_cells": {
       "complete": {
-        "MEETS": 0.25,
+        "MEETS": 0.375,
         "DOES_NOT_MEET": 0.0,
         "INSUFFICIENT_EVIDENCE": 0.0
       },
       "missing": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.0625,
-        "INSUFFICIENT_EVIDENCE": 0.1875
+        "INSUFFICIENT_EVIDENCE": 0.25
       },
       "conflict": {
         "MEETS": 0.0,
         "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 0.375
+        "INSUFFICIENT_EVIDENCE": 0.4375
       },
       "missing_other_fails": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.3125,
+        "DOES_NOT_MEET": 0.4375,
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.28125,
+    "appropriate_uncertainty": 0.34375,
     "unnecessary_abstention": 0.0,
     "decomposition": {
-      "n": 41,
+      "n": 55,
       "aggregation_error": 0.0,
       "tab": {
-        "extract_ok=True|verdict_ok=True|code_ok=True": 41
+        "extract_ok=True|verdict_ok=True|code_ok=True": 55
       },
       "fact_error": {
         "years": 0.0,
-        "assessment": 0.0,
+        "assessment": 0.17857142857142858,
         "credential": 0.0
       }
     }
@@ -449,76 +465,76 @@
     },
     "signed": {
       "malay_male|hi": [
-        0.14285714285714285,
-        14
+        0.1875,
+        16
       ],
       "chinese_male|hi": [
-        0.2,
-        10
+        -0.125,
+        16
       ],
       "malay_male|lo": [
         0.0,
-        14
+        16
       ],
       "chinese_male|lo": [
         0.0,
-        10
+        16
       ],
       "indian_male|hi": [
-        -0.03571428571428571,
-        28
+        0.0,
+        20
       ],
       "indian_male|lo": [
         0.0,
-        28
+        20
       ],
       "indian_female|hi": [
-        -0.0625,
-        16
+        0.0,
+        14
       ],
       "indian_female|lo": [
         0.0,
-        16
+        14
+      ],
+      "chinese_female|hi": [
+        0.125,
+        8
+      ],
+      "chinese_female|lo": [
+        0.0,
+        8
       ],
       "malay_female|hi": [
-        -0.25,
-        8
+        -0.3333333333333333,
+        6
       ],
       "malay_female|lo": [
         0.0,
-        8
+        6
+      ],
+      "indian_marker|hi": [
+        0.0,
+        6
       ],
       "malay_marker|hi": [
         -0.125,
         8
       ],
-      "indian_marker|hi": [
+      "indian_marker|lo": [
         0.0,
-        4
+        6
       ],
       "malay_marker|lo": [
         0.0,
         8
       ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
       "chinese_marker|hi": [
-        0.25,
-        4
+        0.5,
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        4
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        4
+        2
       ]
     },
     "tokens": [
@@ -634,76 +650,76 @@
     },
     "signed": {
       "malay_male|hi": [
-        -0.14285714285714285,
-        14
+        0.0,
+        16
       ],
       "chinese_male|hi": [
-        0.2,
-        10
+        -0.0625,
+        16
       ],
       "malay_male|lo": [
         0.0,
-        14
+        16
       ],
       "chinese_male|lo": [
         0.0,
-        10
+        16
       ],
       "indian_male|hi": [
-        0.0,
-        28
+        0.05,
+        20
       ],
       "indian_male|lo": [
         0.0,
-        28
+        20
       ],
       "indian_female|hi": [
-        -0.125,
-        16
+        -0.14285714285714285,
+        14
       ],
       "indian_female|lo": [
         0.0,
-        16
+        14
+      ],
+      "chinese_female|hi": [
+        0.0,
+        8
+      ],
+      "chinese_female|lo": [
+        0.0,
+        8
       ],
       "malay_female|hi": [
-        0.25,
-        8
+        0.3333333333333333,
+        6
       ],
       "malay_female|lo": [
         0.0,
-        8
+        6
+      ],
+      "indian_marker|hi": [
+        0.0,
+        6
       ],
       "malay_marker|hi": [
         0.0,
         8
       ],
-      "indian_marker|hi": [
+      "indian_marker|lo": [
         0.0,
-        4
+        6
       ],
       "malay_marker|lo": [
         0.0,
         8
       ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
       "chinese_marker|hi": [
         0.0,
-        4
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        4
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        4
+        2
       ]
     },
     "tokens": [
@@ -713,232 +729,30 @@
   },
   "google_gemini-3.1-flash-lite-preview|structured": {
     "robust": [
-      0.4166666666666667,
-      0.25,
-      0.5833333333333334
-    ],
-    "clean_quartet": [
       0.5,
       0.3333333333333333,
-      0.6666666666666666
+      0.7083333333333334
     ],
-    "changed_quartet": [
-      0.625,
-      0.4583333333333333,
-      0.7916666666666666
-    ],
-    "accuracy": 0.828125,
-    "coverage": 0.9739583333333334,
-    "invalid": 0.026041666666666668,
-    "qual_response": 0.6666666666666666,
-    "identity_flip": [
-      0.07692307692307693,
-      91
-    ],
-    "same_group_flip": [
-      0.1,
-      10
-    ],
-    "neutral_id_flip": [
-      0.1,
-      10
-    ],
-    "repeat_flip": [
-      0.041666666666666664,
-      48
-    ],
-    "context_flip": [
-      0.0989010989010989,
-      91
-    ],
-    "profile": {
-      "MEETS->INVALID": 3,
-      "MEETS->DOES_NOT_MEET": 28,
-      "DOES_NOT_MEET->INVALID": 2,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 94,
-      "MEETS->MEETS": 65
-    },
-    "sufficiency_pass": [
-      0.5,
-      0.25,
-      0.6875
-    ],
-    "relevance_pass": [
-      1.0,
-      1.0,
-      1.0
-    ],
-    "realistic_pass": [
-      0.625,
-      0.5,
+    "clean_quartet": [
+      0.5833333333333334,
+      0.4166666666666667,
       0.75
     ],
-    "audit_pass": [
-      0.625,
-      0.375,
-      0.875
-    ],
-    "suff_cells": {
-      "complete": {
-        "MEETS": 0.625,
-        "DOES_NOT_MEET": 0.375,
-        "INSUFFICIENT_EVIDENCE": 0.0
-      },
-      "missing": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.75
-      },
-      "conflict": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.0,
-        "INSUFFICIENT_EVIDENCE": 1.0
-      },
-      "missing_other_fails": {
-        "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.9375,
-        "INSUFFICIENT_EVIDENCE": 0.0625
-      }
-    },
-    "appropriate_uncertainty": 0.875,
-    "unnecessary_abstention": 0.03125,
-    "relevance_irrelevant_flip": 0.0,
-    "relevance_correct_use": 1.0,
-    "audit_neutral": {
-      "quartet_pass": 0.75,
-      "identity_flip": 0.06666666666666667,
-      "accuracy": 0.9375
-    },
-    "audit_audit": {
-      "quartet_pass": 0.75,
-      "identity_flip": 0.06666666666666667,
-      "accuracy": 0.9375
-    },
-    "audit_operational": {
-      "quartet_pass": 1.0,
-      "identity_flip": 0.0,
-      "accuracy": 1.0
-    },
-    "decomposition": {
-      "n": 209,
-      "aggregation_error": 0.004784688995215311,
-      "tab": {
-        "extract_ok=False|verdict_ok=False|code_ok=False": 28,
-        "extract_ok=False|verdict_ok=True|code_ok=False": 1,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 48,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 132
-      },
-      "fact_error": {
-        "years": 0.36363636363636365,
-        "assessment": 0.008849557522123894,
-        "credential": 0.0
-      }
-    },
-    "signed": {
-      "malay_male|hi": [
-        -0.08333333333333333,
-        12
-      ],
-      "chinese_male|hi": [
-        0.125,
-        8
-      ],
-      "malay_male|lo": [
-        0.0,
-        13
-      ],
-      "chinese_male|lo": [
-        0.0,
-        8
-      ],
-      "indian_male|hi": [
-        -0.038461538461538464,
-        26
-      ],
-      "indian_male|lo": [
-        0.0,
-        27
-      ],
-      "indian_female|hi": [
-        0.0625,
-        16
-      ],
-      "indian_female|lo": [
-        0.0,
-        16
-      ],
-      "malay_female|hi": [
-        0.0,
-        8
-      ],
-      "malay_female|lo": [
-        0.0,
-        8
-      ],
-      "malay_marker|hi": [
-        0.0,
-        8
-      ],
-      "indian_marker|hi": [
-        0.0,
-        4
-      ],
-      "malay_marker|lo": [
-        0.0,
-        8
-      ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
-      "chinese_marker|hi": [
-        0.0,
-        4
-      ],
-      "chinese_marker|lo": [
-        0.0,
-        4
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        4
-      ]
-    },
-    "tokens": [
-      405231,
-      69582
-    ]
-  },
-  "google_gemini-3.1-flash-lite-preview|policy_code_same_extraction": {
-    "robust": [
-      0.4166666666666667,
-      0.25,
-      0.5833333333333334
-    ],
-    "clean_quartet": [
-      0.5,
-      0.3333333333333333,
-      0.6666666666666666
-    ],
     "changed_quartet": [
-      0.625,
-      0.4583333333333333,
-      0.7916666666666666
+      0.6666666666666666,
+      0.5,
+      0.8333333333333334
     ],
-    "accuracy": 0.828125,
-    "coverage": 0.9739583333333334,
-    "invalid": 0.026041666666666668,
-    "qual_response": 0.6666666666666666,
+    "accuracy": 0.8489583333333334,
+    "coverage": 1.0,
+    "invalid": 0.0,
+    "qual_response": 0.6979166666666666,
     "identity_flip": [
-      0.07692307692307693,
-      91
+      0.07291666666666667,
+      96
     ],
     "same_group_flip": [
-      0.2,
+      0.1,
       10
     ],
     "neutral_id_flip": [
@@ -950,15 +764,13 @@
       48
     ],
     "context_flip": [
-      0.0989010989010989,
-      91
+      0.09375,
+      96
     ],
     "profile": {
-      "MEETS->INVALID": 3,
-      "MEETS->DOES_NOT_MEET": 28,
-      "DOES_NOT_MEET->INVALID": 2,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 94,
-      "MEETS->MEETS": 65
+      "MEETS->DOES_NOT_MEET": 29,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 96,
+      "MEETS->MEETS": 67
     },
     "sufficiency_pass": [
       0.5625,
@@ -976,9 +788,9 @@
       0.75
     ],
     "audit_pass": [
-      0.625,
-      0.375,
-      0.875
+      0.75,
+      0.5,
+      1.0
     ],
     "suff_cells": {
       "complete": {
@@ -988,8 +800,208 @@
       },
       "missing": {
         "MEETS": 0.0,
-        "DOES_NOT_MEET": 0.125,
-        "INSUFFICIENT_EVIDENCE": 0.75
+        "DOES_NOT_MEET": 0.1875,
+        "INSUFFICIENT_EVIDENCE": 0.8125
+      },
+      "conflict": {
+        "MEETS": 0.0,
+        "DOES_NOT_MEET": 0.0,
+        "INSUFFICIENT_EVIDENCE": 1.0
+      },
+      "missing_other_fails": {
+        "MEETS": 0.0,
+        "DOES_NOT_MEET": 0.9375,
+        "INSUFFICIENT_EVIDENCE": 0.0625
+      }
+    },
+    "appropriate_uncertainty": 0.90625,
+    "unnecessary_abstention": 0.03125,
+    "relevance_irrelevant_flip": 0.0,
+    "relevance_correct_use": 1.0,
+    "audit_neutral": {
+      "quartet_pass": 0.875,
+      "identity_flip": 0.0625,
+      "accuracy": 0.96875
+    },
+    "audit_audit": {
+      "quartet_pass": 0.875,
+      "identity_flip": 0.0625,
+      "accuracy": 0.96875
+    },
+    "audit_operational": {
+      "quartet_pass": 1.0,
+      "identity_flip": 0.0,
+      "accuracy": 1.0
+    },
+    "decomposition": {
+      "n": 214,
+      "aggregation_error": 0.004672897196261682,
+      "tab": {
+        "extract_ok=False|verdict_ok=False|code_ok=False": 29,
+        "extract_ok=False|verdict_ok=True|code_ok=False": 1,
+        "extract_ok=False|verdict_ok=True|code_ok=True": 19,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 165
+      },
+      "fact_error": {
+        "years": 0.4158878504672897,
+        "assessment": 0.11206896551724138,
+        "credential": 0.04081632653061224
+      }
+    },
+    "signed": {
+      "malay_male|hi": [
+        -0.0625,
+        16
+      ],
+      "chinese_male|hi": [
+        0.125,
+        16
+      ],
+      "malay_male|lo": [
+        0.0,
+        16
+      ],
+      "chinese_male|lo": [
+        0.0,
+        16
+      ],
+      "indian_male|hi": [
+        0.0,
+        20
+      ],
+      "indian_male|lo": [
+        0.0,
+        20
+      ],
+      "indian_female|hi": [
+        0.0,
+        14
+      ],
+      "indian_female|lo": [
+        0.0,
+        14
+      ],
+      "chinese_female|hi": [
+        -0.125,
+        8
+      ],
+      "chinese_female|lo": [
+        0.0,
+        8
+      ],
+      "malay_female|hi": [
+        0.0,
+        6
+      ],
+      "malay_female|lo": [
+        0.0,
+        6
+      ],
+      "indian_marker|hi": [
+        -0.16666666666666666,
+        6
+      ],
+      "malay_marker|hi": [
+        0.25,
+        8
+      ],
+      "indian_marker|lo": [
+        0.0,
+        6
+      ],
+      "malay_marker|lo": [
+        0.0,
+        8
+      ],
+      "chinese_marker|hi": [
+        -0.5,
+        2
+      ],
+      "chinese_marker|lo": [
+        0.0,
+        2
+      ]
+    },
+    "tokens": [
+      413647,
+      70999
+    ]
+  },
+  "google_gemini-3.1-flash-lite-preview|policy_code_same_extraction": {
+    "robust": [
+      0.5,
+      0.3333333333333333,
+      0.7083333333333334
+    ],
+    "clean_quartet": [
+      0.5833333333333334,
+      0.4166666666666667,
+      0.75
+    ],
+    "changed_quartet": [
+      0.6666666666666666,
+      0.5,
+      0.8333333333333334
+    ],
+    "accuracy": 0.8489583333333334,
+    "coverage": 1.0,
+    "invalid": 0.0,
+    "qual_response": 0.6979166666666666,
+    "identity_flip": [
+      0.07291666666666667,
+      96
+    ],
+    "same_group_flip": [
+      0.2,
+      10
+    ],
+    "neutral_id_flip": [
+      0.1,
+      10
+    ],
+    "repeat_flip": [
+      0.041666666666666664,
+      48
+    ],
+    "context_flip": [
+      0.09375,
+      96
+    ],
+    "profile": {
+      "MEETS->DOES_NOT_MEET": 29,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 96,
+      "MEETS->MEETS": 67
+    },
+    "sufficiency_pass": [
+      0.625,
+      0.4375,
+      0.8125
+    ],
+    "relevance_pass": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "realistic_pass": [
+      0.625,
+      0.5,
+      0.75
+    ],
+    "audit_pass": [
+      0.75,
+      0.5,
+      1.0
+    ],
+    "suff_cells": {
+      "complete": {
+        "MEETS": 0.625,
+        "DOES_NOT_MEET": 0.375,
+        "INSUFFICIENT_EVIDENCE": 0.0
+      },
+      "missing": {
+        "MEETS": 0.0,
+        "DOES_NOT_MEET": 0.1875,
+        "INSUFFICIENT_EVIDENCE": 0.8125
       },
       "conflict": {
         "MEETS": 0.0,
@@ -1002,19 +1014,19 @@
         "INSUFFICIENT_EVIDENCE": 0.0
       }
     },
-    "appropriate_uncertainty": 0.84375,
+    "appropriate_uncertainty": 0.875,
     "unnecessary_abstention": 0.0,
     "relevance_irrelevant_flip": 0.0,
     "relevance_correct_use": 1.0,
     "audit_neutral": {
-      "quartet_pass": 0.75,
-      "identity_flip": 0.06666666666666667,
-      "accuracy": 0.9375
+      "quartet_pass": 0.875,
+      "identity_flip": 0.0625,
+      "accuracy": 0.96875
     },
     "audit_audit": {
-      "quartet_pass": 0.75,
-      "identity_flip": 0.06666666666666667,
-      "accuracy": 0.9375
+      "quartet_pass": 0.875,
+      "identity_flip": 0.0625,
+      "accuracy": 0.96875
     },
     "audit_operational": {
       "quartet_pass": 1.0,
@@ -1022,18 +1034,18 @@
       "accuracy": 1.0
     },
     "decomposition": {
-      "n": 209,
-      "aggregation_error": 0.004784688995215311,
+      "n": 214,
+      "aggregation_error": 0.004672897196261682,
       "tab": {
-        "extract_ok=False|verdict_ok=False|code_ok=False": 28,
+        "extract_ok=False|verdict_ok=False|code_ok=False": 29,
         "extract_ok=False|verdict_ok=True|code_ok=False": 1,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 48,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 132
+        "extract_ok=False|verdict_ok=True|code_ok=True": 19,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 165
       },
       "fact_error": {
-        "years": 0.36363636363636365,
-        "assessment": 0.008849557522123894,
-        "credential": 0.0
+        "years": 0.4158878504672897,
+        "assessment": 0.11206896551724138,
+        "credential": 0.04081632653061224
       }
     }
   },
@@ -1147,76 +1159,76 @@
     },
     "signed": {
       "malay_male|hi": [
-        -0.07142857142857142,
-        14
-      ],
-      "chinese_male|hi": [
-        0.0,
-        10
-      ],
-      "malay_male|lo": [
-        0.0,
-        14
-      ],
-      "chinese_male|lo": [
-        0.0,
-        10
-      ],
-      "indian_male|hi": [
-        0.0,
-        28
-      ],
-      "indian_male|lo": [
-        0.0,
-        28
-      ],
-      "indian_female|hi": [
         0.0625,
         16
       ],
-      "indian_female|lo": [
+      "chinese_male|hi": [
+        0.0625,
+        16
+      ],
+      "malay_male|lo": [
         0.0,
         16
       ],
-      "malay_female|hi": [
+      "chinese_male|lo": [
+        0.0,
+        16
+      ],
+      "indian_male|hi": [
+        -0.05,
+        20
+      ],
+      "indian_male|lo": [
+        0.0,
+        20
+      ],
+      "indian_female|hi": [
+        0.0,
+        14
+      ],
+      "indian_female|lo": [
+        0.0,
+        14
+      ],
+      "chinese_female|hi": [
+        -0.125,
+        8
+      ],
+      "chinese_female|lo": [
         0.0,
         8
       ],
+      "malay_female|hi": [
+        0.0,
+        6
+      ],
       "malay_female|lo": [
         0.0,
-        8
+        6
+      ],
+      "indian_marker|hi": [
+        0.0,
+        6
       ],
       "malay_marker|hi": [
         0.0,
         8
       ],
-      "indian_marker|hi": [
+      "indian_marker|lo": [
         0.0,
-        4
+        6
       ],
       "malay_marker|lo": [
         0.0,
         8
       ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
       "chinese_marker|hi": [
         0.0,
-        4
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        4
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        4
+        2
       ]
     },
     "tokens": [
@@ -1336,75 +1348,75 @@
     "signed": {
       "malay_male|hi": [
         0.0,
-        14
+        16
       ],
       "chinese_male|hi": [
-        -0.1,
-        10
+        -0.0625,
+        16
       ],
       "malay_male|lo": [
         0.0,
-        14
+        16
       ],
       "chinese_male|lo": [
         0.0,
-        10
+        16
       ],
       "indian_male|hi": [
-        0.03571428571428571,
-        28
+        0.05,
+        20
       ],
       "indian_male|lo": [
         0.0,
-        28
+        20
       ],
       "indian_female|hi": [
         0.0,
-        16
+        14
       ],
       "indian_female|lo": [
         0.0,
-        16
+        14
+      ],
+      "chinese_female|hi": [
+        0.0,
+        8
+      ],
+      "chinese_female|lo": [
+        0.0,
+        8
       ],
       "malay_female|hi": [
         0.0,
-        8
+        6
       ],
       "malay_female|lo": [
         0.0,
-        8
-      ],
-      "malay_marker|hi": [
-        -0.125,
-        8
+        6
       ],
       "indian_marker|hi": [
-        0.25,
-        4
+        -0.16666666666666666,
+        6
+      ],
+      "malay_marker|hi": [
+        0.125,
+        8
+      ],
+      "indian_marker|lo": [
+        0.0,
+        6
       ],
       "malay_marker|lo": [
         0.0,
         8
       ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
       "chinese_marker|hi": [
         0.0,
-        4
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        4
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        4
+        2
       ]
     },
     "tokens": [
@@ -1527,90 +1539,90 @@
       "aggregation_error": 0.2159090909090909,
       "tab": {
         "extract_ok=False|verdict_ok=False|code_ok=False": 47,
-        "extract_ok=False|verdict_ok=False|code_ok=True": 21,
+        "extract_ok=False|verdict_ok=False|code_ok=True": 2,
         "extract_ok=False|verdict_ok=True|code_ok=False": 3,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 67,
-        "extract_ok=True|verdict_ok=False|code_ok=True": 7,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 31
+        "extract_ok=False|verdict_ok=True|code_ok=True": 15,
+        "extract_ok=True|verdict_ok=False|code_ok=True": 26,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 83
       },
       "fact_error": {
-        "years": 0.7727272727272727,
-        "assessment": 0.030303030303030304,
-        "credential": 0.0
+        "years": 0.7613636363636364,
+        "assessment": 0.1414141414141414,
+        "credential": 0.025974025974025976
       }
     },
     "signed": {
       "malay_male|hi": [
-        0.1,
-        10
+        0.08333333333333333,
+        12
       ],
       "chinese_male|hi": [
-        -0.125,
-        8
+        -0.15384615384615385,
+        13
       ],
       "malay_male|lo": [
         0.0,
-        9
+        8
       ],
       "chinese_male|lo": [
         0.0,
-        6
+        13
       ],
       "indian_male|hi": [
-        -0.10526315789473684,
-        19
+        -0.08333333333333333,
+        12
       ],
       "indian_male|lo": [
         0.0,
-        19
+        13
       ],
       "indian_female|hi": [
-        0.3,
-        10
+        0.5,
+        8
       ],
       "indian_female|lo": [
         0.0,
-        12
+        9
+      ],
+      "chinese_female|hi": [
+        0.0,
+        8
+      ],
+      "chinese_female|lo": [
+        0.0,
+        7
       ],
       "malay_female|hi": [
-        -0.14285714285714285,
-        7
+        -0.4,
+        5
       ],
       "malay_female|lo": [
         0.0,
-        5
-      ],
-      "malay_marker|hi": [
-        -0.5,
-        6
+        4
       ],
       "indian_marker|hi": [
-        0.6666666666666666,
-        3
+        -0.75,
+        4
+      ],
+      "malay_marker|hi": [
+        0.5,
+        6
+      ],
+      "indian_marker|lo": [
+        0.0,
+        5
       ],
       "malay_marker|lo": [
         0.0,
         7
       ],
-      "indian_marker|lo": [
-        0.0,
-        4
-      ],
       "chinese_marker|hi": [
-        0.3333333333333333,
-        3
+        0.0,
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        3
-      ],
-      "chinese_female|hi": [
-        0.0,
-        4
-      ],
-      "chinese_female|lo": [
-        0.0,
-        3
+        2
       ]
     },
     "tokens": [
@@ -1734,16 +1746,16 @@
       "aggregation_error": 0.2159090909090909,
       "tab": {
         "extract_ok=False|verdict_ok=False|code_ok=False": 47,
-        "extract_ok=False|verdict_ok=False|code_ok=True": 21,
+        "extract_ok=False|verdict_ok=False|code_ok=True": 2,
         "extract_ok=False|verdict_ok=True|code_ok=False": 3,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 67,
-        "extract_ok=True|verdict_ok=False|code_ok=True": 7,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 31
+        "extract_ok=False|verdict_ok=True|code_ok=True": 15,
+        "extract_ok=True|verdict_ok=False|code_ok=True": 26,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 83
       },
       "fact_error": {
-        "years": 0.7727272727272727,
-        "assessment": 0.030303030303030304,
-        "credential": 0.0
+        "years": 0.7613636363636364,
+        "assessment": 0.1414141414141414,
+        "credential": 0.025974025974025976
       }
     }
   },
@@ -1822,35 +1834,43 @@
     "signed": {
       "malay_male|hi": [
         0.0,
-        10
+        12
       ],
       "chinese_male|hi": [
         0.0,
-        8
+        10
       ],
       "malay_male|lo": [
         0.0,
-        10
+        12
       ],
       "chinese_male|lo": [
         0.0,
-        8
+        10
       ],
       "indian_male|hi": [
         0.0,
-        18
+        14
       ],
       "indian_male|lo": [
-        0.05555555555555555,
-        18
+        0.07142857142857142,
+        14
       ],
       "indian_female|hi": [
         0.0,
-        8
+        6
       ],
       "indian_female|lo": [
-        -0.25,
-        8
+        -0.3333333333333333,
+        6
+      ],
+      "chinese_female|hi": [
+        0.0,
+        2
+      ],
+      "chinese_female|lo": [
+        0.0,
+        2
       ],
       "malay_female|hi": [
         0.0,
@@ -1860,29 +1880,29 @@
         0.25,
         4
       ],
-      "malay_marker|hi": [
-        0.0,
-        8
-      ],
       "indian_marker|hi": [
         0.0,
-        4
+        6
       ],
-      "malay_marker|lo": [
+      "malay_marker|hi": [
         0.0,
         8
       ],
       "indian_marker|lo": [
         0.0,
-        4
+        6
+      ],
+      "malay_marker|lo": [
+        0.0,
+        8
       ],
       "chinese_marker|hi": [
         0.0,
-        4
+        2
       ],
       "chinese_marker|lo": [
         0.0,
-        4
+        2
       ]
     },
     "tokens": [
@@ -1892,49 +1912,47 @@
   },
   "qwen3.6_35b|structured": {
     "robust": [
-      0.125,
-      0.0,
-      0.3125
+      0.875,
+      0.75,
+      1.0
     ],
     "clean_quartet": [
-      0.25,
-      0.0625,
-      0.4375
+      0.9375,
+      0.8125,
+      1.0
     ],
     "changed_quartet": [
-      0.25,
-      0.0625,
-      0.4375
+      0.9375,
+      0.8125,
+      1.0
     ],
-    "accuracy": 0.671875,
-    "coverage": 0.6953125,
-    "invalid": 0.3046875,
-    "qual_response": 0.453125,
+    "accuracy": 0.9765625,
+    "coverage": 1.0,
+    "invalid": 0.0,
+    "qual_response": 0.953125,
     "identity_flip": [
-      0.03125,
-      32
+      0.015625,
+      64
     ],
     "same_group_flip": [
       0.0,
-      1
+      6
     ],
     "neutral_id_flip": [
       0.0,
-      3
+      6
     ],
     "repeat_flip": [
-      0.2608695652173913,
+      0.0,
       32
     ],
     "context_flip": [
-      0.09375,
-      32
+      0.046875,
+      64
     ],
     "profile": {
-      "MEETS->INVALID": 20,
-      "MEETS->MEETS": 41,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 45,
-      "DOES_NOT_MEET->INVALID": 19,
+      "MEETS->MEETS": 61,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 64,
       "MEETS->DOES_NOT_MEET": 3
     },
     "suff_cells": {
@@ -1962,135 +1980,141 @@
     "appropriate_uncertainty": 0.0,
     "unnecessary_abstention": 0.0,
     "decomposition": {
-      "n": 96,
+      "n": 140,
       "aggregation_error": 0.0,
       "tab": {
         "extract_ok=False|verdict_ok=False|code_ok=False": 3,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 33,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 60
+        "extract_ok=False|verdict_ok=True|code_ok=True": 6,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 131
       },
       "fact_error": {
-        "years": 0.375,
-        "assessment": 0.0,
-        "credential": 0.0
+        "years": 0.37857142857142856,
+        "assessment": 0.07894736842105263,
+        "credential": 0.0625
       }
     },
     "signed": {
+      "malay_male|hi": [
+        -0.08333333333333333,
+        12
+      ],
+      "chinese_male|hi": [
+        0.0,
+        10
+      ],
       "malay_male|lo": [
         0.0,
-        3
+        12
       ],
       "chinese_male|lo": [
         0.0,
-        3
+        10
+      ],
+      "indian_male|hi": [
+        0.07142857142857142,
+        14
       ],
       "indian_male|lo": [
         0.0,
-        8
-      ],
-      "indian_male|hi": [
-        0.1,
-        10
-      ],
-      "malay_male|hi": [
-        0.0,
-        3
+        14
       ],
       "indian_female|hi": [
         0.0,
-        7
+        6
       ],
       "indian_female|lo": [
         0.0,
         6
       ],
+      "chinese_female|hi": [
+        0.0,
+        2
+      ],
+      "chinese_female|lo": [
+        0.0,
+        2
+      ],
       "malay_female|hi": [
         0.0,
-        3
+        4
       ],
-      "malay_marker|hi": [
+      "malay_female|lo": [
         0.0,
         4
       ],
       "indian_marker|hi": [
         0.0,
-        3
+        6
+      ],
+      "malay_marker|hi": [
+        0.0,
+        8
+      ],
+      "indian_marker|lo": [
+        0.0,
+        6
       ],
       "malay_marker|lo": [
         0.0,
-        4
+        8
       ],
-      "indian_marker|lo": [
+      "chinese_marker|hi": [
         0.0,
         2
       ],
       "chinese_marker|lo": [
         0.0,
         2
-      ],
-      "chinese_marker|hi": [
-        0.0,
-        1
-      ],
-      "malay_female|lo": [
-        0.0,
-        2
-      ],
-      "chinese_male|hi": [
-        -0.3333333333333333,
-        3
       ]
     },
     "tokens": [
-      100933,
-      16002
+      145889,
+      23579
     ]
   },
   "qwen3.6_35b|policy_code_same_extraction": {
     "robust": [
-      0.125,
-      0.0,
-      0.3125
+      0.875,
+      0.75,
+      1.0
     ],
     "clean_quartet": [
-      0.25,
-      0.0625,
-      0.4375
+      0.9375,
+      0.8125,
+      1.0
     ],
     "changed_quartet": [
-      0.25,
-      0.0625,
-      0.4375
+      0.9375,
+      0.8125,
+      1.0
     ],
-    "accuracy": 0.671875,
-    "coverage": 0.6953125,
-    "invalid": 0.3046875,
-    "qual_response": 0.453125,
+    "accuracy": 0.9765625,
+    "coverage": 1.0,
+    "invalid": 0.0,
+    "qual_response": 0.953125,
     "identity_flip": [
-      0.03125,
-      32
+      0.015625,
+      64
     ],
     "same_group_flip": [
       0.0,
-      1
+      6
     ],
     "neutral_id_flip": [
       0.0,
-      3
+      6
     ],
     "repeat_flip": [
-      0.2608695652173913,
+      0.0,
       32
     ],
     "context_flip": [
-      0.09375,
-      32
+      0.046875,
+      64
     ],
     "profile": {
-      "MEETS->INVALID": 20,
-      "MEETS->MEETS": 41,
-      "DOES_NOT_MEET->DOES_NOT_MEET": 45,
-      "DOES_NOT_MEET->INVALID": 19,
+      "MEETS->MEETS": 61,
+      "DOES_NOT_MEET->DOES_NOT_MEET": 64,
       "MEETS->DOES_NOT_MEET": 3
     },
     "suff_cells": {
@@ -2118,17 +2142,17 @@
     "appropriate_uncertainty": 0.0,
     "unnecessary_abstention": 0.0,
     "decomposition": {
-      "n": 96,
+      "n": 140,
       "aggregation_error": 0.0,
       "tab": {
         "extract_ok=False|verdict_ok=False|code_ok=False": 3,
-        "extract_ok=False|verdict_ok=True|code_ok=True": 33,
-        "extract_ok=True|verdict_ok=True|code_ok=True": 60
+        "extract_ok=False|verdict_ok=True|code_ok=True": 6,
+        "extract_ok=True|verdict_ok=True|code_ok=True": 131
       },
       "fact_error": {
-        "years": 0.375,
-        "assessment": 0.0,
-        "credential": 0.0
+        "years": 0.37857142857142856,
+        "assessment": 0.07894736842105263,
+        "credential": 0.0625
       }
     }
   },
@@ -2243,11 +2267,11 @@
       "accuracy": 0.09375
     },
     "signed": {
-      "indian_male|lo": [
+      "chinese_female|lo": [
         0.0,
-        2
+        1
       ],
-      "indian_female|lo": [
+      "chinese_male|lo": [
         0.0,
         1
       ],
@@ -2260,6 +2284,10 @@
         2
       ],
       "malay_male|lo": [
+        0.0,
+        1
+      ],
+      "indian_male|lo": [
         0.0,
         1
       ]

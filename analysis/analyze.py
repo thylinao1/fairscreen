@@ -226,7 +226,10 @@ def decomposition(recs_structured, vs):
         if r["rep"] != 0 or r["suite"] != "core" or r.get("facts") is None:
             continue
         v = vs[r["variant_id"]]
-        ex_ok = all(fact_correct(k, r["facts"].get(k), v["gold_facts"].get(k)) for k in v["fact_keys"])
+        # decision-relevant extraction: every requirement gets the same truth value from the extracted facts as
+        # from the canonical facts (a harmless difference such as FAILED for NOT_TAKEN does not count as an error)
+        tv = {1: "TRUE", 0: "FALSE", None: "UNKNOWN"}
+        ex_ok = all(tv[RT._truth(q["req"], r["facts"])] == v["gold_requirements"][q["id"]] for q in v["policy_spec"]["requirements"])
         for k in v["fact_keys"]:
             kind = k.split(":")[0]
             fact_err[kind][0] += not fact_correct(k, r["facts"].get(k), v["gold_facts"].get(k))
