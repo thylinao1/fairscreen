@@ -1,0 +1,101 @@
+{
+  "C1_fairness_minus_direct": {
+    "estimate": 0.0625,
+    "lo": 0.0,
+    "hi": 0.125,
+    "p": 0.076,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.125,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0
+    },
+    "p_holm": 0.22799999999999998
+  },
+  "C2_transfer": {
+    "estimate": -0.020833333333333332,
+    "lo": -0.14583333333333334,
+    "hi": 0.08333333333333333,
+    "p": 0.83,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": -0.041666666666666664,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0
+    },
+    "p_holm": 1.0
+  },
+  "S_qual_response_fairness_minus_direct": {
+    "estimate": 0.020833333333333332,
+    "lo": -0.015625,
+    "hi": 0.052083333333333336,
+    "p": 0.315,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.041666666666666664,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0
+    }
+  },
+  "C3_policy_code_minus_model_verdict": {
+    "estimate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "p": 1.0,
+    "models": [
+      "anthropic_claude-sonnet-5@default",
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "qwen3.6_35b"
+    ],
+    "per_model": {
+      "anthropic_claude-sonnet-5@default": 0.0,
+      "google_gemini-3.1-flash-lite-preview": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0,
+      "qwen3.6_35b": 0.0
+    },
+    "p_holm": 1.0
+  },
+  "S_structured_minus_direct": {
+    "estimate": -0.28125,
+    "lo": -0.375,
+    "hi": -0.15625,
+    "p": 0.0,
+    "models": [
+      "anthropic_claude-sonnet-5@default",
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "qwen3.6_35b"
+    ],
+    "per_model": {
+      "anthropic_claude-sonnet-5@default": -1.0,
+      "google_gemini-3.1-flash-lite-preview": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0,
+      "qwen3.6_35b": -0.125
+    }
+  },
+  "S_policy_code_minus_direct": {
+    "estimate": -0.28125,
+    "lo": -0.375,
+    "hi": -0.15625,
+    "p": 0.0,
+    "models": [
+      "anthropic_claude-sonnet-5@default",
+      "google_gemini-3.1-flash-lite-preview",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "qwen3.6_35b"
+    ],
+    "per_model": {
+      "anthropic_claude-sonnet-5@default": -1.0,
+      "google_gemini-3.1-flash-lite-preview": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.0,
+      "qwen3.6_35b": -0.125
+    }
+  }
+}

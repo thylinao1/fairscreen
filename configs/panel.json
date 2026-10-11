@@ -1,0 +1,23 @@
+{
+  "registered": "2026-10-12, before any confirmatory output",
+  "catalogue_source": "kaggle b t models (46 models listed on 2026-10-12)",
+  "kaggle_panel": {
+    "dataset": "FairScreen-48: the first 48 confirmatory core families (6 per occupation), eight decisions each, no controls or repeats",
+    "tasks": ["fairscreen-direct", "fairscreen-fairness-instruction", "fairscreen-structured"],
+    "rule": "The push-validation default model (gemini-3.7-flash) plus one economical model per developer family available on Kaggle with measured or listed cost below 0.001 USD per call. Run cheapest first; stop when the remaining Model Proxy quota falls below 1 USD and report the models not run.",
+    "models": ["gemini-3.7-flash", "gpt-5.4-nano-2026-03-17", "gemini-3.1-flash-lite-preview", "gpt-oss-120b",
+               "gemma-4-31b-it", "qwen3-235b-a22b-instruct-2507", "gpt-5.4-mini-2026-03-17", "claude-haiku-4-5-20251001"],
+    "settings": "provider defaults through the SDK (temperature 0 default, default reasoning)",
+    "budget_note": "Model Proxy quota is 10 USD per day; hosted runs are billed to it (verified 2026-10-12 by reconciling the quota with recorded usage). Each task push triggers one full validation run on the default model."
+  },
+  "cluster_panel": {
+    "dataset": "Full confirmatory set: 192 core families with controls and repeats, sufficiency, relevance, realistic and audit suites",
+    "recipes": ["direct", "fairness", "structured", "extract_only"],
+    "rule": "Open-weight instruct models that fit one H200-141 in vLLM, from at least three developers, attempted in this order; models that fail to load are reported, not replaced silently.",
+    "models_in_order": ["openai/gpt-oss-120b", "Qwen/Qwen3-32B", "google/gemma-3-27b-it", "openai/gpt-oss-20b",
+                        "mistralai/Mistral-Small-3.2-24B-Instruct-2506", "meta-llama/Llama-3.1-8B-Instruct"],
+    "settings": "vLLM, temperature 0, chat template of each model, max 4096 new tokens; reasoning models keep their default reasoning",
+    "cross_platform_check": "gpt-oss-120b runs on both platforms; its Kaggle score on FairScreen-48 is compared with the cluster score on the same 48 families"
+  },
+  "development_models_not_in_panel": ["claude-sonnet-5 (8 dev families only; cost 11 USD per 2830 calls)", "qwen3-next-80b (proxy throughput too low)", "qwen3.6:35b on SoCLaaS"]
+}
