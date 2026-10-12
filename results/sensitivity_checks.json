@@ -144,5 +144,18 @@
    "n_pairs": 128,
    "n_families": 13
   }
+ },
+ "c3_kaggle_strict_json": {
+  "estimate": 0.0375,
+  "lo": 0.012500000000000002,
+  "hi": 0.06250000000000001,
+  "p": 0.0,
+  "per_model": {
+   "google_gemini-3.1-flash-lite-preview": -0.020833333333333332,
+   "google_gemini-3.7-flash": 0.0,
+   "google_gemma-4-31b": 0.0,
+   "openai_gpt-5.4-nano-2026-03-17": 0.20833333333333334,
+   "openai_gpt-oss-120b": 0.0
+  }
  }
 }

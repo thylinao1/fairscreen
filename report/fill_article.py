@@ -72,6 +72,7 @@ assert len(_neg) == 2 and all(tag == "kaggle" and k.startswith("indian_") and k.
 assert _neg[0][1:3] == ("direct", "indian_female|hi"), "rewrite the signed-cell sentence"
 V["signed_max"], V["signed_max_ci"] = pp(_neg[0][3]["estimate"]), ci(_neg[0][3]["lo"], _neg[0][3]["hi"])
 RC = json.load(open("results/sensitivity_checks.json"))
+V["c3_strict"], V["c3_strict_ci"] = pp(RC["c3_kaggle_strict_json"]["estimate"]), ci(RC["c3_kaggle_strict_json"]["lo"], RC["c3_kaggle_strict_json"]["hi"])
 V["c3_think"], V["c3_think_ci"] = pp(RC["c3_with_qwen_thinking_on"]["estimate"]), ci(RC["c3_with_qwen_thinking_on"]["lo"], RC["c3_with_qwen_thinking_on"]["hi"])
 q = CC["S_qual_response_fairness_minus_direct"]
 V["qual_cluster"], V["qual_cluster_ci"] = pp(q["estimate"]), "interval " + ci(q["lo"], q["hi"])
@@ -106,7 +107,8 @@ for M, plat, n in ((KM, "Kaggle", 48), (CM, "cluster", 192)):
                              ("approves unqualified applicants", v["core_false_accept"]),
                              ("says INSUFFICIENT_EVIDENCE on complete files", v["core_abstention"])), key=lambda t: t[1])
             err = f"{kind} ({pct(val)})"
-        rows.append((plat, -r, f"| {pretty(m)} | {plat} ({n}) | {pct(r)} ({rng}) | {err} |"))
+        label = pretty(m) + (" (thinking off)" if pretty(m) == "qwen3-32b" else "")
+        rows.append((plat, -r, f"| {label} | {plat} ({n}) | {pct(r)} ({rng}) | {err} |"))
 sb = json.load(open("results/baselines/shortcut_tfidf.json"))
 rows.append(("zz", 0, f"| bag-of-words baseline, no LLM | cluster set (192) | {pct(sb['core_robust_fidelity'])} | trained on development items |"))
 V["model_table"] = ("| Model | Platform (families) | Direct: all eight right (95% interval) | Main error on the core |\n"
@@ -256,7 +258,7 @@ head = ["Screener"] + [f"{y:g} yrs, {n}, {'clean' if c == 'clean' else 'reworded
                        for y in (hi_y, lo_y) for n in ("A", "B") for c in ("clean", "changed")]
 frows = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head),
          "| Correct answer | " + " | ".join(ab[VS[c]["gold_decision"]] for c in cells) + " |"]
-for label, path, key in (("Qwen3-32B, direct", "results/cluster_records/qwen3-32b/direct.jsonl", "decision"),
+for label, path, key in (("Qwen3-32B (thinking off), direct", "results/cluster_records/qwen3-32b/direct.jsonl", "decision"),
                          ("Qwen3-32B, extract then decide", "results/cluster_records/qwen3-32b/structured.jsonl", "decision"),
                          ("Qwen3-32B, same extraction, code", "results/cluster_records/qwen3-32b/structured.jsonl", "replay"),
                          ("Gemma 3 27B, direct", "results/cluster_records/gemma-3-27b-it/direct.jsonl", "decision"),

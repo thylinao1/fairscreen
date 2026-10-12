@@ -70,11 +70,25 @@ def signed_chance():
             "largest_negative": largest}
 
 
+def c3_kaggle_strict_json(vs, core):
+    """Kaggle C3 when the model's own structured decision also requires valid JSON (same usable-output rule as the
+    code arm, which needs the parsed facts). Not registered: the registered parser accepts a fallback decision."""
+    code, strict = {}, {}
+    for path in sorted(glob.glob("results/records/fairscreen-structured/*.jsonl")):
+        recs = load(path)
+        model = os.path.basename(path)[:-6]
+        code[model] = metrics(View(recs, key="replay"), vs, core)["_fam_pass"]
+        strict[model] = metrics(View([dict(r, decision=r["decision"] if r["status"] == "json" else None) for r in recs]), vs, core)["_fam_pass"]
+    c = joint_contrast(code, strict, core)
+    return {k: c[k] for k in ("estimate", "lo", "hi", "p", "per_model")}
+
+
 def main():
     vs, fams = load_data("final")
     core = [f for f in fams if f["suite"] == "core"]
     res = {"c3_with_qwen_thinking_on": c3_sensitivity(vs, core), "length_stops": length_stops(),
-           "method_selection": method_selection(), "signed_cells": signed_chance()}
+           "method_selection": method_selection(), "signed_cells": signed_chance(),
+           "c3_kaggle_strict_json": c3_kaggle_strict_json(vs, [f for f in fams if f["suite"] == "core"])}
     json.dump(res, open("results/sensitivity_checks.json", "w"), indent=1)
     c = res["c3_with_qwen_thinking_on"]
     print(f"C3 with Qwen thinking on: {100*c['estimate']:+.1f} [{100*c['lo']:+.1f}, {100*c['hi']:+.1f}] p={c['p']:.3f}")

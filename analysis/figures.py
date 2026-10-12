@@ -10,6 +10,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.patches import Patch  # noqa: E402
 
 # Reference categorical palette (dataviz skill, light mode), fixed order; text never wears series colour.
 SURFACE, INK, INK2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e1"
@@ -34,7 +35,7 @@ def pretty(model):
     for a, b in (("-2026-03-17", ""), ("-20251001", ""), ("@default", ""), ("-instruct-2507", ""), ("-preview", ""),
                  (".jsonl", "")):
         m = m.replace(a, b)
-    return m
+    return m + " (thinking off)" if m == "qwen3-32b" else m
 
 
 def load(path):
@@ -85,15 +86,25 @@ def fig_controls(M, out, title, config="direct"):
     fig, ax = plt.subplots(figsize=(8.2, 0.6 + 0.6 * len(models)))
     h = 0.26
     for j, (k, label, col) in enumerate(keys):
-        vals = [100 * M[(m, config)][k][0] if M[(m, config)][k][0] == M[(m, config)][k][0] else 0 for m in models]
-        ax.barh([i + (j - 1) * h for i in range(len(models))], vals, height=h - 0.04, color=col, label=label)
+        for i, m in enumerate(models):
+            rate = M[(m, config)][k][0]
+            y = i + (j - 1) * h
+            if rate != rate:  # NaN: this control was not run for the model; do not draw a zero-height bar
+                ax.text(0.15, y, f"{label.lower()}: not measured", va="center", ha="left", fontsize=7, color=INK2,
+                        style="italic")
+            else:
+                ax.barh(y, 100 * rate, height=h - 0.04, color=col)
+    # fixed y-range (what autoscaling gives when every bar is drawn) so rows with only text keep their room
+    lo, hi = -h - (h - 0.04) / 2, len(models) - 1 + h + (h - 0.04) / 2
+    pad = 0.05 * (hi - lo)
+    ax.set_ylim(hi + pad, lo - pad)
     ax.set_yticks(range(len(models)))
     ax.set_yticklabels([pretty(m) for m in models], color=INK)
-    ax.invert_yaxis()
     ax.set_xlabel("Share of matched pairs whose decisions differ (%)")
     ax.grid(axis="x", color=GRID, lw=0.8)
     ax.set_axisbelow(True)
-    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=9)
+    ax.legend(handles=[Patch(color=col, label=label) for _, label, col in keys], loc="lower left",
+              bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=9)
     fig.suptitle(title, x=0.01, ha="left", color=INK, fontsize=11)
     fig.tight_layout()
     fig.savefig(out, dpi=200)
@@ -128,11 +139,11 @@ def fig_transfer(M, out, title):
 def fig_decomposition(M, out, title):
     rows = [(m, v["decomposition"]) for (m, c), v in M.items() if c == "structured" and "decomposition" in v]
     rows.sort(key=lambda r: -sum(v for k, v in r[1]["tab"].items() if k.startswith("extract_ok=True|verdict_ok=False")) / max(1, r[1]["n"]))
-    cats = [("extract_ok=True|verdict_ok=True", "Decisive facts right, decision right", "#1baf7a"),
-            ("extract_ok=True|verdict_ok=False", "Decisive facts right, decision wrong", "#eb6834"),
-            ("extract_ok=False|verdict_ok=True", "Decisive facts wrong, decision right", "#2a78d6"),
-            ("extract_ok=False|verdict_ok=False", "Decisive facts wrong, decision wrong", "#e34948")]
-    fig, ax = plt.subplots(figsize=(8.2, 0.7 + 0.5 * len(rows)))
+    cats = [("extract_ok=True|verdict_ok=True", "Requirement truth values preserved, decision right", "#1baf7a"),
+            ("extract_ok=True|verdict_ok=False", "Requirement truth values preserved, decision wrong", "#eb6834"),
+            ("extract_ok=False|verdict_ok=True", "Requirement truth values changed, decision right", "#2a78d6"),
+            ("extract_ok=False|verdict_ok=False", "Requirement truth values changed, decision wrong", "#e34948")]
+    fig, ax = plt.subplots(figsize=(8.2, 1.3 + 0.5 * len(rows)))
     for i, (m, d) in enumerate(rows):
         n = d["n"] or 1
         left = 0
@@ -145,7 +156,7 @@ def fig_decomposition(M, out, title):
     ax.invert_yaxis()
     ax.set_xlim(0, 100)
     ax.set_xlabel("Core decisions in the structured configuration (%)")
-    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=9)
+    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=1, frameon=False, fontsize=9)
     fig.suptitle(title, x=0.01, ha="left", color=INK, fontsize=11)
     fig.tight_layout()
     fig.savefig(out, dpi=200)

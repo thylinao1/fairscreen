@@ -1,5 +1,5 @@
 ---
-title: "What a name-swap audit misses: testing 10 LLM screeners with paired applicants"
+title: "A consistent screener can still be wrong: what paired applicants revealed about LLM policy decisions"
 published: false
 tags: devchallenge, kagglechallenge, ai, machinelearning
 cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig4_decomposition.png
@@ -7,7 +7,7 @@ cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/main/results
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
 
-Qwen3-32B read a job application and recorded 1.8 years of technical writing experience, quoting the right dates.
+Qwen3-32B, with its thinking mode off, read a job application and recorded 1.8 years of technical writing experience, quoting the right dates.
 It then approved the applicant for a role that requires three years:
 
 ```json
@@ -29,9 +29,10 @@ catch both name sensitivity and policy errors at once.
 >   relevant.
 > - Fixed code applying the policy to the model's **own** extracted facts raised that share by [[c3_cluster]] points
 >   ([[c3_cluster_ci]]); Llama 3.1 8B went from [[llama_struct]] to [[llama_code]]. On the Kaggle models it was
->   [[c3_kaggle]] ([[c3_kaggle_ci]]), unresolved (finding 4).
+>   [[c3_kaggle]] ([[c3_kaggle_ci]]), unresolved; requiring valid JSON for the model's own decision too turns it to
+>   [[c3_strict]] ([[c3_strict_ci]], a sensitivity check, finding 4).
 > - Swapping a name changed about as many decisions as swapping to another name from the same group ([[id_flip]]
->   versus [[sg_flip]] where that control exists), so the name test was inconclusive.
+>   versus [[sg_flip]] in the two occupations that carry that control), so the name test was inconclusive.
 > - gpt-oss-120b scored [[oss120_kaggle48]] on Kaggle and [[oss120_cluster48]] on my university GPU cluster on the
 >   same families; its hosted answers were cut off mid-word.
 > - Exploratory, added after the main analysis: with thinking on, Qwen3-32B scored [[th_on]] instead of [[th_off]],
@@ -75,8 +76,8 @@ register](https://github.com/thylinao1/fairscreen/blob/main/validation/DEFECTS.m
 Identity signals use a Singapore setting: male and female Chinese, Malay and Indian names, or a neutral ID plus
 volunteering for an ethnic self-help group (CDAC, Yayasan MENDAKI, SINDA). A name signals a perceived group, not
 anyone's identity. Diagnostic suites add missing and conflicting evidence, a language skill one policy requires and
-another excludes, longer CVs, and an audit framing note. Confirmatory items use a layout, wording, names and four
-occupations unseen in development. The [protocol](https://github.com/thylinao1/fairscreen/blob/main/protocol.md),
+another excludes, longer CVs, and an audit framing note. Confirmatory items use a layout, wording and names unseen in
+development, and four occupations held out from the development core families. The [protocol](https://github.com/thylinao1/fairscreen/blob/main/protocol.md),
 committed before the confirmatory runs, lists one earlier scale change and [[n_later_dev]] later deviations.
 
 ## Models Tested
@@ -136,8 +137,9 @@ In the [[n_ctrl_fam]] open-weight families with a same-group control, an identit
 decisions. A swap to another name from the **same** group changed [[sg_flip]] (difference [[id_minus_sg]] points,
 [[id_minus_sg_ci]]). Under extract-then-decide the gap was larger, [[id_flip_struct]] versus [[sg_flip_struct]]
 ([[id_minus_sg_struct]], [[id_minus_sg_struct_ci]]), at the edge of zero. Resending the identical prompt changed
-[[repeat_flip]]. So name changes are a real sensitivity to the string, but I cannot attribute that sensitivity to the
-group the name signals. On Kaggle, where FairScreen-48 has no same-group control, GPT-5.4 nano changed [[nano_flip]]
+[[repeat_flip]], measured on a different set of families. The same-group controls fall in two occupations (customer
+support and laboratory support), so this comparison covers those stimuli only. Within them, name changes are a
+sensitivity to the string that I cannot attribute to the group the name signals. On Kaggle, where FairScreen-48 has no same-group control, GPT-5.4 nano changed [[nano_flip]]
 of decisions under an identity swap and Flash-Lite [[fl_flip]]. I cannot say how much of that is the name.
 
 ![Decision changes under identity swaps versus same-group swaps and exact repeats](https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig2_controls.png)
@@ -169,7 +171,8 @@ instruction lowered the score from [[glm_direct]] to [[glm_fair]] ([[glm_diff]] 
 
 ![Where structured decisions go wrong](https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig4_decomposition.png)
 
-The orange band is what code repairs: the model wrote down the right facts, then decided wrongly. Qwen3-32B approved
+The orange band is what code repairs: the model's extracted values gave every requirement its correct truth value
+(met, not met or unknown), and then the model decided wrongly. This checks requirement states, not literal fact accuracy. Qwen3-32B approved
 the 1.8-year applicant above. gpt-oss-20b extracted "Higher Nitec in Chemistry" under a policy that ranks Higher
 Nitec below Diploma, yet decided MEETS in [[oss20_nitec]] such cases.
 
@@ -184,9 +187,12 @@ entirely Llama 3.1 8B ([[llama_xo]] versus [[llama_code]]); the other five model
 
 On the open-weight panel C3 is [[c3_cluster]] points. With Qwen3-32B's thinking-on run in place of the panel run, which
 rarely contradicts its own extraction (finding 7), C3 is [[c3_think]] ([[c3_think_ci]]). On Kaggle C3 is [[c3_kaggle]] and unresolved, and
-its sign comes from one model. Of gpt-oss-120b's structured answers, [[n_trunc_struct]] were cut off just before the
+its sign comes from one model and the parser. Of gpt-oss-120b's structured answers, [[n_trunc_struct]] were cut off just before the
 closing brace, so the parser read the decision but not the facts the code needs (finding 5). The Gemini models and
-Gemma 4 gain nothing, since they already follow their own extraction; nano gains [[nano_code_gain]] points.
+Gemma 4 gain nothing, since they already follow their own extraction; nano gains [[nano_code_gain]] points. If the
+model's own decision must also be valid JSON, so that both arms face the same usable-output rule, the Kaggle C3 becomes
+[[c3_strict]] ([[c3_strict_ci]]). That is a sensitivity check, not a registered result, but it shows that the Kaggle sign
+depends on output validity rather than on decision quality.
 
 Code also inherits the extraction's blind spots. When a decisive date was missing, gpt-oss-120b's own decision on the
 cluster was often correctly INSUFFICIENT_EVIDENCE. Its extraction, however, recorded the partial total of the dated
@@ -197,9 +203,9 @@ sufficiency suite its structured decisions passed [[oss120_suff]] of families; c
 ### 5. The same model scored [[oss120_kaggle48]] on Kaggle and [[oss120_cluster48]] on my cluster
 
 On the [[same_n]] families where every Kaggle answer was complete, both platforms passed [[same_k]] of [[same_n]]. The
-other families contain hosted answers cut off mid-word, such as `{"decision": "DOES_NOT_ME`. The cut-offs do not come
-from a simple output limit: cut-off answers had [[trunc_lo]] to [[trunc_hi]] output tokens, while complete ones ran to
-[[complete_hi]]. In the direct run [[trunc_direct_changed]] of the [[trunc_direct_n]] cut-offs fell on changed
+other families contain hosted answers cut off mid-word, such as `{"decision": "DOES_NOT_ME`. Their lengths do not match one
+common cutoff: cut-off answers had [[trunc_lo]] to [[trunc_hi]] output tokens, while complete ones ran to
+[[complete_hi]]. The cause (a hidden budget, reasoning accounting or a provider error) is unresolved. In the direct run [[trunc_direct_changed]] of the [[trunc_direct_n]] cut-offs fell on changed
 layouts, against [[trunc_fair_changed]] of [[trunc_fair_n]] in the fairness run. That imbalance, not the instruction,
 produces most of the positive Kaggle C2 ([[c2_oss]] points from gpt-oss-120b, [[c2_rest]] on average for the other
 four). My registered parser scores an answer as wrong when it finds no decision. A cut-off direct answer has none,
@@ -224,7 +230,7 @@ CVs the gpt-oss models stayed above 90 percent of families, while Gemma 3, Qwen3
 [[real_mid_range]]. The audit framing note showed no shared pattern: Mistral fell from [[mis_neutral]] to
 [[mis_oper]] under the operational note and Gemma 3 rose (24 families per cell).
 
-### 7. Turning on reasoning fixed the same model (exploratory)
+### 7. A thinking-enabled configuration of the same model passed (exploratory)
 
 The models at the ceiling (Gemini 3.7 Flash, gpt-oss, Gemma 4) all spend hundreds of output tokens before answering.
 In the open-weight panel Qwen3-32B ran with thinking off, a listed deviation: my protocol registered each model's
@@ -243,8 +249,9 @@ comparison is not a pure single-factor change:
 With thinking on, the same model got all eight decisions of the opening family right. Output lengths across the study
 point the same way. Every model at or near the ceiling spent a median of [[reason_lo]] to [[reason_hi]] output tokens
 per direct decision, and every model below it spent [[noreason_lo]] to [[noreason_hi]]. So the open-weight panel is partly a
-comparison of reasoning modes. The low scores belong to models answering without reasoning, and either reasoning or
-fixed code removed most of their errors. This result comes from one model, re-run after the main analysis, so I treat
+comparison of configurations. The low scores belong to configurations that answered in a dozen tokens, and either a
+thinking-enabled configuration or fixed code removed most of their errors. The re-run also changed the sampling
+settings, so it shows a configuration effect, not a single-factor cause. This result comes from one model, re-run after the main analysis, so I treat
 it as a strong lead.
 
 ### What I would change in a screening pipeline
