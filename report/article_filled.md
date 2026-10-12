@@ -2,7 +2,7 @@
 title: "A consistent screener can still be wrong: what paired applicants revealed about LLM policy decisions"
 published: false
 tags: devchallenge, kagglechallenge, ai, machinelearning
-cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig4_decomposition.png
+cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b4025260fbda6135795ed0324f6e758cdf7/results/figures/cluster/fig4_decomposition.png
 ---
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
@@ -163,7 +163,7 @@ support and laboratory support), so this comparison covers those stimuli only. W
 sensitivity to the string that I cannot attribute to the group the name signals. On Kaggle, where FairScreen-48 has no same-group control, GPT-5.4 nano changed 13.5%
 of decisions under an identity swap and Flash-Lite 8.9%. I cannot say how much of that is the name.
 
-![Decision changes under identity swaps versus same-group swaps and exact repeats](https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig2_controls.png)
+![Decision changes under identity swaps versus same-group swaps and exact repeats](https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b4025260fbda6135795ed0324f6e758cdf7/results/figures/cluster/fig2_controls.png)
 
 (Identity and same-group bars share 38 control families, 76 pairs per model, so one flip moves a bar 1.3 points.
 Repeat bars use the families with exact repeats.) Looking for a direction, I checked 108 pooled
@@ -190,7 +190,7 @@ instruction lowered the score from 98% to 93% (-4.7 points, -8.3 to -1.6).
 
 ### 4. Code that applies the policy to the model's own extraction helped most where the model contradicted itself
 
-![Where structured decisions go wrong](https://raw.githubusercontent.com/thylinao1/fairscreen/main/results/figures/cluster/fig4_decomposition.png)
+![Where structured decisions go wrong](https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b4025260fbda6135795ed0324f6e758cdf7/results/figures/cluster/fig4_decomposition.png)
 
 The orange band is what code repairs: the model's extracted values gave every requirement its correct truth value
 (met, not met or unknown), and then the model decided wrongly. This checks requirement states, not literal fact accuracy. Qwen3-32B approved
@@ -200,7 +200,7 @@ Nitec below Diploma, yet decided MEETS in 28 of 50 such cases.
 | Model | Model decides | Code decides, same extraction |
 |---|---|---|
 | llama-3.1-8b-instruct, open-weight | 1% | 56% |
-| qwen3-32b, open-weight | 45% | 73% |
+| qwen3-32b (thinking off), open-weight | 45% | 73% |
 | gemma-3-27b-it, open-weight | 42% | 65% |
 | mistral-small-3.2-24b, open-weight | 79% | 91% |
 | gpt-oss-20b, open-weight | 95% | 99% |
