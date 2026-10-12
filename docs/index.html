@@ -666,12 +666,22 @@ footer .author { white-space: nowrap; font-weight: 600; color: var(--ink); }
       <label for="occ-select">Occupation</label>
       <select id="occ-select" disabled><option>All occupations</option></select>
     </div>
+    <div class="field mid">
+      <label for="id-select">Identity change</label>
+      <select id="id-select" disabled>
+        <option value="all">Any</option>
+        <option value="ethnicity">Ethnicity</option>
+        <option value="gender">Gender</option>
+        <option value="marker">Volunteering marker</option>
+      </select>
+    </div>
     <div class="field wide">
       <label for="filter-select">Show families where</label>
       <select id="filter-select" disabled>
         <option value="any">Any</option>
         <option value="transfer">A model gets the clean layout right but not the changed one (Direct)</option>
         <option value="codeFix">Code fixes a failure</option>
+        <option value="nameFlip">A name swap changes a model's decision (Direct)</option>
       </select>
     </div>
     <div class="nav">
@@ -869,6 +879,11 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
           return clean.every(ok) && !changed.every(ok);
         }),
         codeFixes: data.models.some((m) => (!pass(m, "direct") || !pass(m, "structured")) && pass(m, "code")),
+        nameFlip: data.models.some((m) => ["hi", "lo"].some((q) => ["clean", "changed"].some((ctx) => {
+          const dec = (who) => { const v = findVariant(f, q, who, ctx); return v && v.d && v.d[m] ? v.d[m].direct : null; };
+          const a = dec("A"), b = dec("B");
+          return a != null && b != null && a !== b;
+        }))),
       };
       return { ...f, counts, flags };
     });
@@ -904,7 +919,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
 
   /* ---------- state ---------- */
   let model = null;
-  let state = { famId: null, config: DEFAULT_CONFIG, occ: "all", filter: "any" };
+  let state = { famId: null, config: DEFAULT_CONFIG, occ: "all", ident: "all", filter: "any" };
   let cardViews = [];
 
   const setState = (patch) => { state = { ...state, ...patch }; };
@@ -912,6 +927,8 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
   function visibleFamilies() {
     return model.families.filter((f) => {
       if (state.occ !== "all" && f.occupation !== state.occ) return false;
+      if (state.ident !== "all" && f.contrast !== state.ident) return false;
+      if (state.filter === "nameFlip") return f.flags.nameFlip;
       if (state.filter === "transfer") return f.flags.transfer;
       if (state.filter === "codeFix") return f.flags.codeFixes;
       return true;
@@ -948,7 +965,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
       $("prev-btn").disabled = true;
       $("next-btn").disabled = true;
       $("pos").textContent = "0 of " + total;
-      hint.textContent = "No families match this occupation and filter together.";
+      hint.textContent = "No families match these filters together.";
       return list;
     }
 
@@ -967,6 +984,9 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
       parts.push("Filter: in the Direct configuration, at least one model answers all four clean-layout cards correctly but gets a changed-layout card wrong.");
     } else if (state.filter === "codeFix") {
       parts.push("Filter: for at least one model, \"" + configLabel("direct") + "\" or \"" + configLabel("structured") + "\" fails but \"" + configLabel("code") + "\" passes.");
+    }
+    if (state.filter === "nameFlip") {
+      parts.push("Filter: in the Direct configuration, at least one model gives the two identities different answers for the same qualification and layout.");
     }
     hint.textContent = parts.join(" ");
     return list;
@@ -1201,8 +1221,9 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     if (!model) return;
     const id = readHash();
     if (!id || id === state.famId || !model.byId.has(id)) return;
-    setState({ famId: id, occ: "all", filter: "any" });
+    setState({ famId: id, occ: "all", ident: "all", filter: "any" });
     $("occ-select").value = "all";
+    $("id-select").value = "all";
     $("filter-select").value = "any";
     update(true);
   }
@@ -1210,6 +1231,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
   function wireControls() {
     $("family-select").addEventListener("change", (e) => selectFamily(e.target.value));
     $("occ-select").addEventListener("change", (e) => { setState({ occ: e.target.value }); update(true); });
+    $("id-select").addEventListener("change", (e) => { setState({ ident: e.target.value }); update(true); });
     $("filter-select").addEventListener("change", (e) => { setState({ filter: e.target.value }); update(true); });
     $("prev-btn").addEventListener("click", () => step(-1));
     $("next-btn").addEventListener("click", () => step(1));
@@ -1247,6 +1269,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     fillConfigs();
     $("occ-select").disabled = false;
     $("filter-select").disabled = false;
+    $("id-select").disabled = false;
     $("loading").hidden = true;
     update(false);
   }
