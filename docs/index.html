@@ -964,7 +964,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
       sel.disabled = true;
       $("prev-btn").disabled = true;
       $("next-btn").disabled = true;
-      $("pos").textContent = "0 of " + total;
+      $("pos").textContent = "No results";
       hint.textContent = "No families match these filters together.";
       return list;
     }
@@ -977,7 +977,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     const idx = list.findIndex((f) => f.id === state.famId);
     $("prev-btn").disabled = idx <= 0;
     $("next-btn").disabled = idx >= list.length - 1;
-    $("pos").textContent = (idx + 1) + " of " + list.length;
+    $("pos").textContent = "Result " + (idx + 1) + " of " + list.length;
 
     const parts = ["Showing " + list.length + " of " + total + " families."];
     if (state.filter === "transfer") {
