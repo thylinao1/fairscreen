@@ -59,6 +59,10 @@ name-swap test alone cannot tell it from a good one.
 I asked which ways of running an LLM screener stay correct and consistent across names, and whether a fairness
 instruction still helps when documents look different. Four configurations got identical inputs:
 
+Earlier resume-screening work already varies qualifications and demographics. What FairScreen adds is the combination
+in one reproducible evaluation: known policy labels, pairs that cross a requirement, identity and presentation
+changes, and the same extracted record replayed through code.
+
 | Configuration | What the model does | Who decides |
 |---|---|---|
 | Direct | reads the policy and the CV, returns a decision | model |
@@ -174,7 +178,7 @@ negative cell is also an Indian-named qualified group on Kaggle, which lacks a s
 pattern first. The cells overlap (each pair enters two) and I applied no correction, so I read the result as no
 consistent direction, not as a calibrated test.
 
-### 3. The fairness instruction did not measurably change policy fidelity
+### 3. One fixed fairness instruction did not measurably change policy fidelity
 
 C1 is unresolved on both panels. On Kaggle the interval reaches +6.3, so a practically relevant gain is
 not ruled out there. Most of the Kaggle point estimate comes from gpt-oss-120b, whose direct answers were cut off more often
@@ -216,7 +220,8 @@ Part of the gain comes before any code: asking for quoted facts first raised Mis
 extracts, code-decided fidelity was 3.0 points lower (-4.2 to -1.8). That drop is almost
 entirely Llama 3.1 8B (41% versus 56%); the other five models matched within about two points.
 
-On the open-weight panel C3 is +20.5 points. With Qwen3-32B's thinking-on run in place of the panel run, which
+On the open-weight panel C3 is +20.5 points, and +13.5 without Llama 3.1 8B, so the average depends on
+which models are in the panel. With Qwen3-32B's thinking-on run in place of the panel run, which
 rarely contradicts its own extraction (finding 7), C3 is +16.2 (+14.2 to +18.2). On Kaggle C3 is -2.1 and unresolved, and
 its sign comes from one model and the parser. Of gpt-oss-120b's structured answers, 14 were cut off just before the
 closing brace, so the parser read the decision but not the facts the code needs (finding 5). The Gemini models and
@@ -319,12 +324,16 @@ it as a strong lead.
 - Frontier closed models appear only as Kaggle's default model; the larger panel is open-weight models I could
   self-host. Intervals describe this stimulus set, not hiring in general.
 - A passing score is evidence about these cases only, not a fairness certificate or compliance check.
+- The code arm applies a machine-readable policy that I wrote and checked. It does not test whether arbitrary policy
+  text can be turned into correct code.
 
 ### What I would measure next
 
 - Same-group controls on every hosted model, so the uncontrolled name flips above can be read.
 - Extraction prompts that get models to record "unknown" for a missing fact, tested on missing evidence.
 - Ranking and top-k selection under scarcity, where earlier work found anti-bias prompts break (Karvonen and Marks).
+- Policy counterfactuals: the same applicant under a changed threshold or exception, to test that models read the
+  policy rather than the occupation.
 
 ## My Benchmark
 

@@ -72,6 +72,9 @@ assert len(_neg) == 2 and all(tag == "kaggle" and k.startswith("indian_") and k.
 assert _neg[0][1:3] == ("direct", "indian_female|hi"), "rewrite the signed-cell sentence"
 V["signed_max"], V["signed_max_ci"] = pp(_neg[0][3]["estimate"]), ci(_neg[0][3]["lo"], _neg[0][3]["hi"])
 RC = json.load(open("results/sensitivity_checks.json"))
+_pm = {m: v for m, v in CC["C3_policy_code_minus_model_verdict"]["per_model"].items() if m != "llama-3.1-8b-instruct"}
+assert len(_pm) == 5
+V["c3_no_llama"] = pp(sum(_pm.values()) / len(_pm))
 V["c3_strict"], V["c3_strict_ci"] = pp(RC["c3_kaggle_strict_json"]["estimate"]), ci(RC["c3_kaggle_strict_json"]["lo"], RC["c3_kaggle_strict_json"]["hi"])
 V["c3_think"], V["c3_think_ci"] = pp(RC["c3_with_qwen_thinking_on"]["estimate"]), ci(RC["c3_with_qwen_thinking_on"]["lo"], RC["c3_with_qwen_thinking_on"]["hi"])
 q = CC["S_qual_response_fairness_minus_direct"]
