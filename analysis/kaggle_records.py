@@ -7,6 +7,7 @@ never read the task's own summary.
 python analysis/kaggle_records.py results/kaggle_runs  -> results/records/<task>/<model>.jsonl
 """
 import glob
+import gzip
 import json
 import os
 import re
@@ -57,14 +58,19 @@ def records_from_run(run, variants):
             rec["replay"] = RT.replay(v["policy_spec"], facts) if parsed.get("obj") is not None else None
             if recipe == "extract_only":
                 rec["model_decision"], rec["decision"] = rec["decision"], rec["replay"]
+                if parsed.get("obj") is not None:
+                    rec["status"] = "json"  # no decision is requested in this recipe; a parsed facts object is valid
         out.append(rec)
     return out
 
 
 def main(root):
     variants = load_variants()
-    for path in glob.glob(os.path.join(root, "**", "*.run.json"), recursive=True):
-        run = json.load(open(path))
+    # The repository ships the run files gzipped (*.run.json.gz); a plain *.run.json, if present, takes precedence.
+    paths = glob.glob(os.path.join(root, "**", "*.run.json"), recursive=True)
+    paths += [p for p in glob.glob(os.path.join(root, "**", "*.run.json.gz"), recursive=True) if p[:-3] not in paths]
+    for path in sorted(paths):
+        run = json.load(gzip.open(path, "rt") if path.endswith(".gz") else open(path))
         task = run["taskVersion"]["name"]
         model = run["modelVersion"]["slug"].replace("/", "_")
         recs = records_from_run(run, variants)

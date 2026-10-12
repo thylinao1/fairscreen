@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairScreen explorer</title>
+<meta name="description" content="Browse FairScreen test families and replay the saved decisions of six open models. No model calls: everything is read from a saved data file.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FairScreen explorer">
+<meta property="og:description" content="Browse FairScreen test families and replay the saved decisions of six open models.">
+<meta property="og:url" content="https://thylinao1.github.io/fairscreen/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d1c19'/%3E%3Cpath d='M10 8h12v3.2h-8.2v4h6.6v3.2h-6.6V24H10z' fill='%23f5f2ea'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap">
+<style>
+:root {
+  color-scheme: light dark;
+
+  --bg: #f5f2ea;
+  --surface: #fffdf8;
+  --surface-sunk: #eeeadf;
+  --ink: #1d1c19;
+  --ink-soft: #56534a;
+  --rule: #d9d2c1;
+  --rule-strong: #b6ad97;
+  --accent: #27478a;
+  --accent-wash: #e4e9f5;
+  --on-accent: #ffffff;
+  --focus: #1a56d6;
+
+  --pass: #14683a;
+  --pass-bg: #dff0e3;
+  --pass-rule: #8fc29d;
+  --fail: #a02a1a;
+  --fail-bg: #f9e0db;
+  --fail-rule: #dd9d92;
+
+  --q-bg: #fdecae;
+  --q-bar: #a37400;
+  --id-bg: #d6e6f7;
+  --id-bar: #2a62a8;
+
+  --shadow: 0 1px 0 rgb(29 28 25 / 0.04), 0 6px 18px -10px rgb(29 28 25 / 0.28);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --gutter: 16px;
+  --page: 76rem;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14130f;
+    --surface: #1d1c17;
+    --surface-sunk: #26241e;
+    --ink: #ece8dc;
+    --ink-soft: #aaa595;
+    --rule: #38352c;
+    --rule-strong: #57523f;
+    --accent: #9db8f5;
+    --accent-wash: #1f2a44;
+    --on-accent: #10131c;
+    --focus: #8fb0ff;
+
+    --pass: #8fdca6;
+    --pass-bg: #16301f;
+    --pass-rule: #2f6a43;
+    --fail: #ffab9b;
+    --fail-bg: #3a1d18;
+    --fail-rule: #7d3a30;
+
+    --q-bg: #4a3b08;
+    --q-bar: #e2b52f;
+    --id-bg: #16304a;
+    --id-bar: #6fb2f0;
+
+    --shadow: 0 1px 0 rgb(0 0 0 / 0.3), 0 8px 20px -12px rgb(0 0 0 / 0.7);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* ---------- masthead ---------- */
+.masthead {
+  border-top: 5px solid var(--ink);
+  border-bottom: 1px solid var(--rule-strong);
+  padding-block: 1.5rem 1.4rem;
+}
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(2.3rem, 1.5rem + 3.6vw, 3.9rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.lede {
+  margin: 0.9rem 0 0;
+  max-width: 44rem;
+  font-size: clamp(1.03rem, 0.97rem + 0.3vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* ---------- controls ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.9rem 1rem;
+  padding-block: 1.25rem 0.5rem;
+}
+.field { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.field.grow { flex: 1 1 24rem; }
+.field.mid { flex: 0 1 10.5rem; }
+.field.wide { flex: 0 1 17.5rem; }
+.field > label,
+.label-cap {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.55rem;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--ink);
+  background-color: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+}
+select:hover { border-color: var(--ink-soft); }
+select:disabled { opacity: 0.55; }
+
+.btn {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.95rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 120ms, border-color 120ms, transform 120ms;
+}
+.btn:hover:not(:disabled) { background: var(--surface-sunk); border-color: var(--ink-soft); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn.small { min-height: 2.25rem; padding: 0.3rem 0.7rem; font-size: 0.9rem; }
+
+.nav { display: flex; align-items: center; gap: 0.5rem; flex-wrap: nowrap; }
+.pos { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-size: 0.92rem; min-width: 4.6rem; white-space: nowrap; }
+.hint { margin: 0.4rem 0 0; font-size: 0.9rem; color: var(--ink-soft); max-width: 60rem; }
+
+/* ---------- status panels ---------- */
+.status {
+  margin-block: 2rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+}
+.status h2 { margin: 0 0 0.4rem; font-family: var(--font-display); font-size: 1.35rem; }
+.status p { margin: 0.3rem 0; }
+.status.error { border-color: var(--fail-rule); background: var(--fail-bg); color: var(--ink); }
+.status.error h2 { color: var(--fail); }
+.bar {
+  height: 4px;
+  margin-top: 0.9rem;
+  background: var(--surface-sunk);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: slide 1.1s ease-in-out infinite;
+}
+@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar::after { animation: none; width: 100%; opacity: 0.4; }
+  .btn { transition: none; }
+}
+
+/* ---------- family head ---------- */
+.family { padding-top: 1.6rem; }
+h2.family-id {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
+}
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2.2rem;
+  margin: 0.9rem 0 0;
+}
+.facts div { min-width: 0; }
+.facts dt {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.facts dd { margin: 0.1rem 0 0; font-size: 1rem; }
+.facts dd small { color: var(--ink-soft); font-size: 0.88rem; }
+
+h3.sec {
+  margin: 2.2rem 0 0.7rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule-strong);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+.sec-note { margin: 0 0 0.8rem; color: var(--ink-soft); font-size: 0.93rem; max-width: 52rem; }
+
+/* ---------- summary matrix ---------- */
+.matrix {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.matrix th, .matrix td { padding: 0.35rem; text-align: center; vertical-align: middle; }
+.matrix thead th {
+  padding: 0.7rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule-strong);
+  overflow-wrap: break-word;
+}
+.matrix thead th.sel { color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent); }
+.matrix tbody th {
+  width: 17%;
+  padding-inline: 0.8rem 0.4rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+.matrix tbody tr + tr > * { border-top: 1px solid var(--rule); }
+.matrix td.sel { background: var(--accent-wash); }
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05rem;
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0.3rem 0.2rem;
+  font: inherit;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 120ms;
+}
+.cell:hover { transform: translateY(-1px); }
+.cell .verdict { font-weight: 700; font-size: 0.95rem; }
+.cell .count { font-size: 0.78rem; font-variant-numeric: tabular-nums; opacity: 0.9; }
+.cell.pass { background: var(--pass-bg); color: var(--pass); border-color: var(--pass-rule); }
+.cell.fail { background: var(--fail-bg); color: var(--fail); border-color: var(--fail-rule); border-style: dashed; }
+.matrix-note { margin: 0.6rem 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+/* ---------- policy ---------- */
+details.policy {
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+}
+details.policy > summary {
+  padding: 0.85rem 1.1rem;
+  font-weight: 650;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+details.policy > summary small { font-weight: 400; color: var(--ink-soft); margin-left: 0.4rem; }
+details.policy pre {
+  margin: 0;
+  padding: 0.2rem 1.1rem 1.1rem;
+  max-width: 62rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ---------- cards ---------- */
+.toolbar { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; margin-bottom: 0.9rem; }
+fieldset.seg { margin: 0; padding: 0; border: 0; min-width: 0; }
+fieldset.seg legend { padding: 0; margin-bottom: 0.4rem; }
+.seg-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.seg label { position: relative; display: block; }
+.seg input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.seg span {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  min-height: 2.5rem;
+  font-size: 0.93rem;
+  line-height: 1.3;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  transition: background-color 120ms;
+}
+.seg input:hover + span { background: var(--surface-sunk); }
+.seg input:checked + span { background: var(--ink); color: var(--bg); border-color: var(--ink); font-weight: 650; }
+.seg input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.toolbar-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.legend {
+  display: grid;
+  gap: 0.4rem 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 1.2rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  background: var(--surface-sunk);
+  border-radius: var(--radius);
+}
+.legend p { margin: 0; }
+.swatch {
+  display: inline-block;
+  min-width: 2.4em;
+  margin-right: 0.35em;
+  padding: 0 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+  border-radius: 3px;
+}
+.swatch.q, .ln.q { background: var(--q-bg); box-shadow: inset 3px 0 0 var(--q-bar); }
+.swatch.id, .ln.id { background: var(--id-bg); box-shadow: inset 3px 0 0 var(--id-bar); }
+.swatch.id { box-shadow: inset 3px 0 0 var(--id-bar); }
+.ln.q.id {
+  background: linear-gradient(90deg, var(--q-bg) 0 50%, var(--id-bg) 50% 100%);
+  box-shadow: inset 3px 0 0 var(--q-bar), inset -3px 0 0 var(--id-bar);
+}
+.mono-key { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
+.ok-key { color: var(--pass); font-weight: 700; }
+.bad-key { color: var(--fail); font-weight: 700; }
+
+.colheads, .row-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+.colheads { margin-bottom: 0.4rem; }
+.colheads span {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.row-block + .row-block { margin-top: 1.7rem; }
+.row-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.row-title small { font-family: var(--font-body); font-size: 0.85rem; font-weight: 400; color: var(--ink-soft); }
+
+.row-grid { align-items: start; }
+
+.card {
+  min-width: 0;
+  padding: 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: border-color 120ms, transform 120ms;
+}
+.card:hover { border-color: var(--ink-soft); }
+.card[data-open="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); cursor: default; }
+.card.missing { cursor: default; color: var(--ink-soft); }
+
+.who { display: flex; align-items: flex-start; gap: 0.55rem; }
+.badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--bg);
+  background: var(--ink);
+  border-radius: 50%;
+}
+.who-label { font-weight: 650; line-height: 1.25; overflow-wrap: anywhere; padding-top: 0.15rem; }
+.signal { margin: 0.25rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+.tags { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; margin: 0.6rem 0 0; }
+.tag {
+  padding: 0.12rem 0.5rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--surface-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.tag.gold { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; }
+.tally { margin: 0.7rem 0 0.4rem; font-size: 0.8rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+.decisions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+  padding: 0.3rem 0.3rem 0.35rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  line-height: 1.2;
+}
+.dec .m { font-size: 0.64rem; overflow-wrap: anywhere; opacity: 0.92; }
+.dec .v { font-family: var(--font-mono); font-size: 0.86rem; font-weight: 700; white-space: nowrap; }
+.dec.ok { background: var(--pass-bg); color: var(--pass); border-color: var(--pass-rule); }
+.dec.bad { background: var(--fail-bg); color: var(--fail); border-color: var(--fail-rule); border-style: dashed; }
+
+.expand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.2rem 0.1rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  cursor: pointer;
+  text-align: left;
+}
+
+.doc {
+  margin-top: 0.6rem;
+  padding: 0.55rem 0.15rem 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  cursor: text;
+}
+.ln { display: flex; gap: 0.5rem; padding: 0 0.3rem 0 0.1rem; border-radius: 2px; }
+.gut { flex: none; width: 3.1em; padding-left: 0.4em; font-size: 0.9em; font-weight: 700; color: var(--ink); }
+.ln:not(.q):not(.id) .gut { visibility: hidden; }
+.txt { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.empty { margin-top: 1.5rem; }
+
+footer {
+  margin-top: 3rem;
+  padding-block: 1.4rem 2.4rem;
+  border-top: 1px solid var(--rule-strong);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+footer p { margin: 0; max-width: 52rem; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 899px) {
+  .colheads { display: none; }
+  .legend { grid-template-columns: minmax(0, 1fr); }
+  .row-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 559px) {
+  .row-grid { grid-template-columns: minmax(0, 1fr); }
+  .field.grow, .field.mid, .field.wide { flex: 1 1 100%; }
+  .nav { width: 100%; }
+  .nav .btn { flex: 1 1 0; }
+  .matrix thead th { font-size: 0.62rem; padding: 0.5rem 0.1rem; letter-spacing: -0.01em; }
+  .matrix tbody th { font-size: 0.62rem; padding-inline: 0.4rem 0.1rem; width: 25%; }
+  .matrix th, .matrix td { padding: 0.2rem 0.12rem; }
+  .cell { min-height: 2.9rem; padding: 0.25rem 0; }
+  .cell .verdict { font-size: 0.72rem; }
+  .cell .count { font-size: 0.68rem; }
+  .doc { font-size: 0.75rem; }
+}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Replay of saved model decisions</p>
+    <h1>FairScreen explorer</h1>
+    <p class="lede">Each family is one fictional applicant shown 8 ways: qualified or not, two identity signals, clean or changed layout. A screener passes the family only if all 8 decisions match the written policy.</p>
+    <nav class="links" aria-label="Project links">
+      <a id="article-link" href="#">Article</a>
+      <a href="https://github.com/thylinao1/fairscreen" rel="noopener">Code and data</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <noscript>
+    <div class="status error"><h2>JavaScript is required</h2><p>This explorer reads a saved data file in your browser, so it needs JavaScript to be turned on.</p></div>
+  </noscript>
+
+  <section class="controls" id="controls" aria-label="Choose a family">
+    <div class="field grow">
+      <label for="family-select">Family</label>
+      <select id="family-select" disabled><option>Loading families</option></select>
+    </div>
+    <div class="field mid">
+      <label for="occ-select">Occupation</label>
+      <select id="occ-select" disabled><option>All occupations</option></select>
+    </div>
+    <div class="field wide">
+      <label for="filter-select">Show families where</label>
+      <select id="filter-select" disabled>
+        <option value="any">Any</option>
+        <option value="transfer">A model gets the clean layout right but not the changed one (Direct)</option>
+        <option value="codeFix">Code fixes a failure</option>
+      </select>
+    </div>
+    <div class="nav">
+      <button type="button" class="btn" id="prev-btn" disabled><span aria-hidden="true">&larr;</span> Prev</button>
+      <button type="button" class="btn" id="next-btn" disabled>Next <span aria-hidden="true">&rarr;</span></button>
+      <span class="pos" id="pos"></span>
+    </div>
+  </section>
+  <p class="hint" id="filter-hint"></p>
+  <div class="sr-only" id="live" role="status" aria-live="polite"></div>
+
+  <div class="status" id="loading" role="status">
+    <h2>Loading saved decisions</h2>
+    <p>Fetching the data file (about 3 MB). This page makes no model calls.</p>
+    <div class="bar" aria-hidden="true"></div>
+  </div>
+
+  <div class="status error" id="error" role="alert" hidden>
+    <h2>The saved data could not be loaded</h2>
+    <p id="error-detail"></p>
+    <p><button type="button" class="btn" id="retry-btn">Try again</button></p>
+  </div>
+
+  <div class="status empty" id="empty" hidden>
+    <h2>No families match</h2>
+    <p>Nothing matches this occupation and filter together. Change the occupation or set the filter to Any.</p>
+  </div>
+
+  <article class="family" id="family" hidden aria-labelledby="family-title">
+    <h2 class="family-id" id="family-title"></h2>
+    <dl class="facts" id="facts"></dl>
+
+    <h3 class="sec" id="summary-title">Pass or fail by model and configuration</h3>
+    <p class="sec-note">A cell says Pass only when all 8 decisions of that model, under that configuration, equal the gold answer. The count is how many of the 8 are correct.</p>
+    <div id="summary"></div>
+    <p class="matrix-note" id="matrix-note"></p>
+
+    <h3 class="sec">Written policy</h3>
+    <details class="policy" id="policy" open>
+      <summary>Policy the screener must follow<small id="policy-name"></small></summary>
+      <pre id="policy-text"></pre>
+    </details>
+
+    <h3 class="sec">The 8 presentations</h3>
+    <div class="toolbar">
+      <fieldset class="seg">
+        <legend class="label-cap">Configuration shown in the cards</legend>
+        <div class="seg-row" id="config-seg"></div>
+      </fieldset>
+      <div class="toolbar-actions">
+        <button type="button" class="btn small" id="expand-all">Show all texts</button>
+        <button type="button" class="btn small" id="collapse-all">Hide all texts</button>
+      </div>
+    </div>
+    <div class="legend" id="legend">
+      <p><span class="mono-key">M</span> = MEETS, <span class="mono-key">DNM</span> = DOES_NOT_MEET, <span class="mono-key">IE</span> = INSUFFICIENT_EVIDENCE, <span class="mono-key">none</span> = no saved decision.</p>
+      <p><span class="ok-key">&#10003; correct</span> means the decision equals the gold answer. <span class="bad-key">&#10007; wrong</span> means it does not.</p>
+      <p><span class="swatch q">Q</span>In an open text, a line that differs from the same applicant in the other qualification row (the qualification edit).</p>
+      <p><span class="swatch id">ID</span>In an open text, a line that differs from the other identity with the same qualification and layout. A line can carry both marks.</p>
+    </div>
+    <div class="colheads" aria-hidden="true">
+      <span>Identity A, clean</span><span>Identity A, changed</span><span>Identity B, clean</span><span>Identity B, changed</span>
+    </div>
+    <div id="grid"></div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Fictional applicants and policies. Names signal a perceived group, not anyone's identity. Decisions are saved outputs from the NUS cluster run (vLLM); this page makes no model calls.</p>
+  </div>
+</footer>
+
+<script>
+const ARTICLE_URL = "https://github.com/thylinao1/fairscreen/blob/main/report/article_filled.md";
+
+(() => {
+  "use strict";
+
+  const DATA_URL = "explorer_data.json";
+  const DEFAULT_FAMILY = "core-final-0166";
+  const DEFAULT_CONFIG = "direct";
+
+  const CONFIG_LABELS = {
+    direct: "Direct",
+    fairness: "Fairness instruction",
+    structured: "Extract, then model decides",
+    code: "Same extraction, code decides",
+    extract_only: "Extract only, code decides",
+  };
+  const MODEL_SHORT = {
+    "gpt-oss-120b": "gpt-oss 120b",
+    "gpt-oss-20b": "gpt-oss 20b",
+    "mistral-small-3.2-24b": "Mistral 24b",
+    "gemma-3-27b-it": "Gemma 27b",
+    "qwen3-32b": "Qwen3 32b",
+    "llama-3.1-8b-instruct": "Llama 8b",
+  };
+  const ABBR = { MEETS: "M", DOES_NOT_MEET: "DNM", INSUFFICIENT_EVIDENCE: "IE" };
+  const CHANGE_GLOSS = {
+    org_background: "employer background added",
+    reorder: "sections reordered",
+    paraphrase: "wording rewritten, same facts",
+    distractor: "irrelevant details added",
+  };
+  const CONTRAST_GLOSS = {
+    ethnicity: "names signal different ethnic groups",
+    gender: "names signal different genders",
+    marker: "same neutral applicant ID; an extra line signals the group",
+  };
+  const CARD_ORDER = [
+    { q: "hi", who: "A", ctx: "clean" },
+    { q: "hi", who: "A", ctx: "changed" },
+    { q: "hi", who: "B", ctx: "clean" },
+    { q: "hi", who: "B", ctx: "changed" },
+    { q: "lo", who: "A", ctx: "clean" },
+    { q: "lo", who: "A", ctx: "changed" },
+    { q: "lo", who: "B", ctx: "clean" },
+    { q: "lo", who: "B", ctx: "changed" },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const words = (s) => String(s).replace(/_/g, " ");
+  const sentence = (s) => { const t = words(s); return t.charAt(0).toUpperCase() + t.slice(1); };
+  const configLabel = (c) => CONFIG_LABELS[c] || c;
+  const modelShort = (m) => MODEL_SHORT[m] || m;
+  const abbr = (d) => (d == null ? "none" : ABBR[d] || String(d));
+
+  function h(tag, props, ...kids) {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(props || {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") node.className = v;
+      else if (k === "text") node.textContent = v;
+      else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
+      else node.setAttribute(k, v === true ? "" : v);
+    }
+    for (const kid of kids.flat()) if (kid != null && kid !== false) node.append(kid);
+    return node;
+  }
+
+  /* ---------- data ---------- */
+  async function loadData() {
+    let res;
+    try {
+      res = await fetch(DATA_URL);
+    } catch (err) {
+      throw new Error("The browser could not fetch " + DATA_URL + ". Check the connection. If you opened this page straight from disk, serve the folder over HTTP instead, for example with python3 -m http.server.");
+    }
+    if (!res.ok) throw new Error(DATA_URL + " answered with HTTP " + res.status + ".");
+    let data;
+    try {
+      data = await res.json();
+    } catch (err) {
+      throw new Error(DATA_URL + " arrived but is not valid JSON.");
+    }
+    const ok = data && Array.isArray(data.models) && Array.isArray(data.configs)
+      && Array.isArray(data.families) && data.families.length > 0 && data.policies && typeof data.policies === "object";
+    if (!ok) throw new Error(DATA_URL + " does not have the expected shape (models, configs, policies, families).");
+    return data;
+  }
+
+  function correctCounts(fam, models, configs) {
+    const out = {};
+    for (const m of models) {
+      const row = {};
+      for (const c of configs) {
+        row[c] = fam.variants.filter((v) => v.d && v.d[m] && v.d[m][c] === v.gold).length;
+      }
+      out[m] = row;
+    }
+    return out;
+  }
+
+  function buildModel(data) {
+    const families = data.families.map((f) => {
+      const counts = correctCounts(f, data.models, data.configs);
+      const pass = (m, c) => counts[m][c] === f.variants.length;
+      const flags = {
+        transfer: data.models.some((m) => {
+          const ok = (v) => v.d && v.d[m] && v.d[m].direct === v.gold;
+          const clean = f.variants.filter((v) => v.ctx === "clean");
+          const changed = f.variants.filter((v) => v.ctx === "changed");
+          return clean.every(ok) && !changed.every(ok);
+        }),
+        codeFixes: data.models.some((m) => (!pass(m, "direct") || !pass(m, "structured")) && pass(m, "code")),
+      };
+      return { ...f, counts, flags };
+    });
+    const byId = new Map(families.map((f) => [f.id, f]));
+    const occupations = [...new Set(families.map((f) => f.occupation))].sort((a, b) => words(a).localeCompare(words(b)));
+    return { models: data.models, configs: data.configs, policies: data.policies, families, byId, occupations };
+  }
+
+  /* ---------- line diff ---------- */
+  // Returns a boolean per line of `mine`: true when the line has no partner in `other`
+  // (outside a longest common subsequence). Blank lines are never flagged.
+  function diffMask(mine, other) {
+    const a = mine.map((s) => s.trimEnd());
+    const b = other.map((s) => s.trimEnd());
+    const n = a.length, m = b.length;
+    const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+    for (let i = n - 1; i >= 0; i--) {
+      for (let j = m - 1; j >= 0; j--) {
+        dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+      }
+    }
+    const kept = new Array(n).fill(false);
+    let i = 0, j = 0;
+    while (i < n && j < m) {
+      if (a[i] === b[j]) { kept[i] = true; i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else j++;
+    }
+    return a.map((line, idx) => !kept[idx] && line.trim() !== "");
+  }
+
+  const findVariant = (fam, q, who, ctx) => fam.variants.find((v) => v.q === q && v.who === who && v.ctx === ctx);
+
+  /* ---------- state ---------- */
+  let model = null;
+  let state = { famId: null, config: DEFAULT_CONFIG, occ: "all", filter: "any" };
+  let cardViews = [];
+
+  const setState = (patch) => { state = { ...state, ...patch }; };
+
+  function visibleFamilies() {
+    return model.families.filter((f) => {
+      if (state.occ !== "all" && f.occupation !== state.occ) return false;
+      if (state.filter === "transfer") return f.flags.transfer;
+      if (state.filter === "codeFix") return f.flags.codeFixes;
+      return true;
+    });
+  }
+
+  const famLabel = (f) => [f.id, words(f.occupation), f.contrast, words(f.changed)].join(" · ");
+
+  /* ---------- controls ---------- */
+  function fillOccupations() {
+    const sel = $("occ-select");
+    sel.replaceChildren(
+      h("option", { value: "all", text: "All occupations" }),
+      ...model.occupations.map((o) => h("option", { value: o, text: sentence(o) })),
+    );
+  }
+
+  function fillConfigs() {
+    $("config-seg").replaceChildren(...model.configs.map((c) => h("label", {},
+      h("input", { type: "radio", name: "config", value: c, checked: c === state.config, onchange: () => selectConfig(c) }),
+      h("span", { text: configLabel(c) }),
+    )));
+  }
+
+  function refreshList() {
+    const list = visibleFamilies();
+    const sel = $("family-select");
+    const hint = $("filter-hint");
+    const total = model.families.length;
+
+    if (list.length === 0) {
+      sel.replaceChildren(h("option", { text: "No matching families" }));
+      sel.disabled = true;
+      $("prev-btn").disabled = true;
+      $("next-btn").disabled = true;
+      $("pos").textContent = "0 of " + total;
+      hint.textContent = "No families match this occupation and filter together.";
+      return list;
+    }
+
+    if (!list.some((f) => f.id === state.famId)) setState({ famId: list[0].id });
+    sel.disabled = false;
+    sel.replaceChildren(...list.map((f) => h("option", { value: f.id, text: famLabel(f), selected: f.id === state.famId })));
+    sel.value = state.famId;
+
+    const idx = list.findIndex((f) => f.id === state.famId);
+    $("prev-btn").disabled = idx <= 0;
+    $("next-btn").disabled = idx >= list.length - 1;
+    $("pos").textContent = (idx + 1) + " of " + list.length;
+
+    const parts = ["Showing " + list.length + " of " + total + " families."];
+    if (state.filter === "transfer") {
+      parts.push("Filter: in the Direct configuration, at least one model answers all four clean-layout cards correctly but gets a changed-layout card wrong.");
+    } else if (state.filter === "codeFix") {
+      parts.push("Filter: for at least one model, \"" + configLabel("direct") + "\" or \"" + configLabel("structured") + "\" fails but \"" + configLabel("code") + "\" passes.");
+    }
+    hint.textContent = parts.join(" ");
+    return list;
+  }
+
+  function currentList() { return visibleFamilies(); }
+
+  function step(delta) {
+    const list = currentList();
+    const idx = list.findIndex((f) => f.id === state.famId);
+    const next = list[idx + delta];
+    if (next) selectFamily(next.id);
+  }
+
+  function selectFamily(id) {
+    setState({ famId: id });
+    update(true);
+  }
+
+  function selectConfig(c) {
+    if (c === state.config) return;
+    setState({ config: c });
+    for (const input of document.querySelectorAll("#config-seg input")) input.checked = input.value === c;
+    renderMatrixSelection();
+    renderDecisions();
+  }
+
+  /* ---------- rendering ---------- */
+  function update(announce) {
+    const list = refreshList();
+    const famEl = $("family");
+    const emptyEl = $("empty");
+    if (list.length === 0) {
+      famEl.hidden = true;
+      emptyEl.hidden = false;
+      return;
+    }
+    emptyEl.hidden = true;
+    famEl.hidden = false;
+    renderFamily(model.byId.get(state.famId));
+    try { history.replaceState(null, "", "#" + state.famId); } catch (err) { /* hash stays as it was */ }
+    document.title = state.famId + " · FairScreen explorer";
+    if (announce) {
+      const idx = list.findIndex((f) => f.id === state.famId);
+      $("live").textContent = "Showing " + state.famId + ", " + (idx + 1) + " of " + list.length + ".";
+    }
+  }
+
+  function renderFamily(fam) {
+    $("family-title").textContent = fam.id;
+    $("facts").replaceChildren(
+      h("div", {}, h("dt", { text: "Occupation" }), h("dd", { text: sentence(fam.occupation) })),
+      h("div", {}, h("dt", { text: "Identity contrast" }), h("dd", {}, fam.contrast, " ", h("small", { text: "(" + (CONTRAST_GLOSS[fam.contrast] || "") + ")" }))),
+      h("div", {}, h("dt", { text: "Layout change" }), h("dd", {}, words(fam.changed), " ", h("small", { text: "(" + (CHANGE_GLOSS[fam.changed] || "") + ")" }))),
+    );
+    renderMatrix(fam);
+    renderPolicy(fam);
+    renderGrid(fam);
+  }
+
+  function renderMatrix(fam) {
+    const total = fam.variants.length;
+    const head = h("tr", {}, h("th", { scope: "col", text: "Model" }),
+      ...model.configs.map((c) => h("th", { scope: "col", "data-config": c, text: configLabel(c) })));
+    const rows = model.models.map((m) => h("tr", {},
+      h("th", { scope: "row", text: m }),
+      ...model.configs.map((c) => {
+        const n = fam.counts[m][c];
+        const passed = n === total;
+        const verdict = passed ? "Pass" : "Fail";
+        return h("td", { "data-config": c },
+          h("button", {
+            type: "button",
+            class: "cell " + (passed ? "pass" : "fail"),
+            "aria-label": m + ", " + configLabel(c) + ": " + verdict + ", " + n + " of " + total + " correct. Show this configuration in the cards below.",
+            title: "Show " + configLabel(c) + " in the cards below",
+            onclick: () => selectConfig(c),
+          },
+          h("span", { class: "verdict", text: (passed ? "✓ " : "✗ ") + verdict }),
+          h("span", { class: "count", text: n + "/" + total })));
+      }),
+    ));
+    $("summary").replaceChildren(h("table", { class: "matrix" },
+      h("caption", { class: "sr-only", text: "Pass or fail for " + fam.id + " by model and configuration" }),
+      h("thead", {}, head), h("tbody", {}, rows)));
+    renderMatrixSelection();
+  }
+
+  function renderMatrixSelection() {
+    for (const el of document.querySelectorAll("#summary [data-config]")) {
+      el.classList.toggle("sel", el.dataset.config === state.config);
+    }
+    $("matrix-note").textContent = "Click a cell to show that configuration in the cards below. Showing: " + configLabel(state.config) + ".";
+  }
+
+  function renderPolicy(fam) {
+    const text = model.policies[fam.policy];
+    $("policy-name").textContent = words(String(fam.policy).split("|")[0]);
+    $("policy-text").textContent = typeof text === "string" ? text : "The policy text for this family is not in the data file.";
+  }
+
+  function renderGrid(fam) {
+    cardViews = [];
+    const rows = [
+      { q: "hi", title: "Qualified", cards: CARD_ORDER.filter((c) => c.q === "hi") },
+      { q: "lo", title: "Not qualified", cards: CARD_ORDER.filter((c) => c.q === "lo") },
+    ];
+    $("grid").replaceChildren(...rows.map((row) => {
+      const gold = (findVariant(fam, row.q, "A", "clean") || {}).gold;
+      return h("section", { class: "row-block", "aria-label": row.title },
+        h("h4", { class: "row-title" }, row.title, gold ? h("small", { text: "Gold answer: " + gold }) : null),
+        h("div", { class: "row-grid" }, row.cards.map((spec) => buildCard(fam, spec))));
+    }));
+    renderDecisions();
+  }
+
+  function buildCard(fam, spec) {
+    const v = findVariant(fam, spec.q, spec.who, spec.ctx);
+    const name = (spec.q === "hi" ? "Qualified" : "Not qualified") + ", identity " + spec.who + ", " + spec.ctx + " layout";
+    if (!v) return h("article", { class: "card missing", "aria-label": name }, h("p", { text: "No saved variant for " + name + "." }));
+
+    const idx = cardViews.length;
+    const docId = "doc-" + idx;
+    const layoutTag = spec.ctx === "clean" ? "Clean layout" : "Changed layout: " + words(fam.changed);
+    const tally = h("p", { class: "tally" });
+    const list = h("ul", { class: "decisions", "aria-label": "Decisions by model" });
+    const btn = h("button", { type: "button", class: "expand", "aria-expanded": "false", "aria-controls": docId },
+      h("span", { text: "Show application text" }), h("span", { "aria-hidden": "true", text: "▾" }));
+    const doc = h("div", { class: "doc", id: docId, role: "region", "aria-label": "Application text, " + name, hidden: true });
+
+    const card = h("article", { class: "card", "data-open": "false", "data-idx": String(idx), "aria-label": name },
+      h("div", { class: "who" },
+        h("span", { class: "badge", "aria-hidden": "true", text: spec.who }),
+        h("div", {},
+          h("div", { class: "who-label" }, h("span", { class: "sr-only", text: "Identity " + spec.who + ": " }), v.label),
+          h("p", { class: "signal", text: "Signals: " + (v.group ? sentence(v.group) : "not recorded") }))),
+      h("div", { class: "tags" },
+        h("span", { class: "tag", text: layoutTag }),
+        h("span", { class: "tag gold", text: "Gold: " + v.gold })),
+      tally, list, btn, doc);
+
+    cardViews.push({ fam, v, tally, list, card, btn, doc, built: false });
+    return card;
+  }
+
+  function renderDecisions() {
+    const cfg = state.config;
+    for (const view of cardViews) {
+      const { v, tally, list } = view;
+      let right = 0;
+      const items = model.models.map((m) => {
+        const d = v.d && v.d[m] ? v.d[m][cfg] : undefined;
+        const ok = d === v.gold;
+        if (ok) right++;
+        const word = d == null ? "no saved decision" : d;
+        return h("li", {
+          class: "dec " + (ok ? "ok" : "bad"),
+          title: m + ": " + word + (ok ? " (correct)" : " (wrong)"),
+        },
+        h("span", { class: "m", text: modelShort(m) }),
+        h("span", { class: "v" }, abbr(d) + " ", h("span", { "aria-hidden": "true", text: ok ? "✓" : "✗" }),
+          h("span", { class: "sr-only", text: ok ? ", correct, " + word : ", wrong, " + word })));
+      });
+      list.replaceChildren(...items);
+      tally.textContent = right + " of " + model.models.length + " models correct (" + configLabel(cfg) + ")";
+    }
+  }
+
+  /* ---------- application text ---------- */
+  function buildDoc(view) {
+    const { fam, v } = view;
+    const lines = v.text.split("\n");
+    const qOther = findVariant(fam, v.q === "hi" ? "lo" : "hi", v.who, v.ctx);
+    const idOther = findVariant(fam, v.q, v.who === "A" ? "B" : "A", v.ctx);
+    const qMask = qOther ? diffMask(lines, qOther.text.split("\n")) : lines.map(() => false);
+    const idMask = idOther ? diffMask(lines, idOther.text.split("\n")) : lines.map(() => false);
+
+    view.doc.replaceChildren(...lines.map((line, i) => {
+      const q = qMask[i], id = idMask[i];
+      const tag = q && id ? "Q ID" : q ? "Q" : id ? "ID" : "";
+      const why = q && id ? "Differs in the qualification edit and from the other identity. " : q ? "Differs in the qualification edit. " : id ? "Differs from the other identity. " : "";
+      return h("div", { class: "ln" + (q ? " q" : "") + (id ? " id" : "") },
+        h("span", { class: "gut" }, h("span", { "aria-hidden": "true", text: tag }), why ? h("span", { class: "sr-only", text: why }) : null),
+        h("span", { class: "txt", text: line === "" ? " " : line }));
+    }));
+    view.built = true;
+  }
+
+  function setOpen(view, open) {
+    if (open && !view.built) buildDoc(view);
+    view.doc.hidden = !open;
+    view.card.dataset.open = String(open);
+    view.btn.setAttribute("aria-expanded", String(open));
+    view.btn.firstChild.textContent = open ? "Hide application text" : "Show application text";
+    view.btn.lastChild.textContent = open ? "▴" : "▾";
+  }
+
+  function onGridClick(e) {
+    const cardEl = e.target.closest(".card");
+    if (!cardEl || cardEl.dataset.idx == null) return;
+    if (e.target.closest(".doc")) return;
+    if (String(window.getSelection && window.getSelection()).length > 0) return;
+    const view = cardViews[Number(cardEl.dataset.idx)];
+    if (view) setOpen(view, cardEl.dataset.open !== "true");
+  }
+
+  /* ---------- boot ---------- */
+  function readHash() {
+    try { return decodeURIComponent(location.hash.replace(/^#/, "")); } catch (err) { return ""; }
+  }
+
+  function onHashChange() {
+    if (!model) return;
+    const id = readHash();
+    if (!id || id === state.famId || !model.byId.has(id)) return;
+    setState({ famId: id, occ: "all", filter: "any" });
+    $("occ-select").value = "all";
+    $("filter-select").value = "any";
+    update(true);
+  }
+
+  function wireControls() {
+    $("family-select").addEventListener("change", (e) => selectFamily(e.target.value));
+    $("occ-select").addEventListener("change", (e) => { setState({ occ: e.target.value }); update(true); });
+    $("filter-select").addEventListener("change", (e) => { setState({ filter: e.target.value }); update(true); });
+    $("prev-btn").addEventListener("click", () => step(-1));
+    $("next-btn").addEventListener("click", () => step(1));
+    $("expand-all").addEventListener("click", () => cardViews.forEach((view) => setOpen(view, true)));
+    $("collapse-all").addEventListener("click", () => cardViews.forEach((view) => setOpen(view, false)));
+    $("grid").addEventListener("click", onGridClick);
+    window.addEventListener("hashchange", onHashChange);
+  }
+
+  function showError(err) {
+    $("loading").hidden = true;
+    $("family").hidden = true;
+    $("error").hidden = false;
+    $("error-detail").textContent = err && err.message ? err.message : "Unknown error.";
+    $("family-select").replaceChildren(h("option", { text: "Families unavailable" }));
+  }
+
+  async function start() {
+    $("error").hidden = true;
+    $("loading").hidden = false;
+    $("family-select").replaceChildren(h("option", { text: "Loading families" }));
+    try {
+      model = buildModel(await loadData());
+    } catch (err) {
+      showError(err);
+      return;
+    }
+    const wanted = readHash();
+    const first = model.byId.has(wanted) ? wanted : model.byId.has(DEFAULT_FAMILY) ? DEFAULT_FAMILY : model.families[0].id;
+    setState({ famId: first });
+    fillOccupations();
+    fillConfigs();
+    $("occ-select").disabled = false;
+    $("filter-select").disabled = false;
+    $("loading").hidden = true;
+    update(false);
+  }
+
+  $("article-link").setAttribute("href", ARTICLE_URL);
+  $("retry-btn").addEventListener("click", start);
+  wireControls();
+  start();
+})();
+</script>
+</body>
+</html>

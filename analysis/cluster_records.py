@@ -34,6 +34,8 @@ def main():
                 rec["replay"] = RT.replay(v["policy_spec"], facts) if parsed.get("obj") is not None else None
                 if recipe == "extract_only":
                     rec["model_decision"], rec["decision"] = rec["decision"], rec["replay"]
+                    if parsed.get("obj") is not None:
+                        rec["status"] = "json"  # no decision is requested in this recipe; a parsed facts object is valid
             out.setdefault(recipe, []).append(rec)
             n += 1
         for recipe, recs in out.items():

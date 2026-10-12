@@ -9,7 +9,7 @@
 set -o pipefail
 OUTDIR=$1; LIMIT=$2; MODE=$3; shift 3
 ROOT=$HOME/fairscreen
-PROMPTS=$ROOT/prompts_final_v11.jsonl
+PROMPTS=${PROMPTS_FILE:-$ROOT/prompts_final_v11.jsonl}
 SCR=/tmp/$SLURM_JOB_ID
 mkdir -p "$SCR" "$OUTDIR" "$ROOT/logs"
 SERVER_PID=""
@@ -46,6 +46,8 @@ model_cfg() {
     gpt-oss-120b) HF=openai/gpt-oss-120b; MAXTOK=4096 ;;
     gpt-oss-20b) HF=openai/gpt-oss-20b; MAXTOK=4096 ;;
     qwen3-32b) HF=Qwen/Qwen3-32B; MAXTOK=1024; BODY='{"chat_template_kwargs":{"enable_thinking":false}}' ;;
+    qwen3-32b-thinking) HF=Qwen/Qwen3-32B; MAXTOK=6144; EXTRA=(--reasoning-parser qwen3)
+      BODY='{"chat_template_kwargs":{"enable_thinking":true},"temperature":0.6,"top_p":0.95,"top_k":20,"seed":0}' ;;
     gemma-3-27b-it) HF=google/gemma-3-27b-it; MAXTOK=1024; EXTRA=(--limit-mm-per-prompt '{"image":0}') ;;
     mistral-small-3.2-24b) HF=mistralai/Mistral-Small-3.2-24B-Instruct-2506; MAXTOK=1024
       EXTRA=(--tokenizer-mode mistral --config-format mistral --load-format mistral --limit-mm-per-prompt '{"image":0}') ;;

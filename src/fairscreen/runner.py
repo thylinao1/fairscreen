@@ -50,6 +50,8 @@ def evaluate_variant(v, recipe, call, rep=0):
         if recipe == "extract_only":
             rec["model_decision"] = rec["decision"]
             rec["decision"] = rec["replay"]
+            if parsed.get("obj") is not None:
+                rec["status"] = "json"  # no decision is requested in this recipe; a parsed facts object is valid
     return rec
 
 

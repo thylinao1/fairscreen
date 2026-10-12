@@ -148,7 +148,44 @@ implementation and must agree exactly.
   100 percent on 8 development families, GPT-5.4 nano at 0 percent) suggest that frontier models are near the
   ceiling on the core suite, so the economical and open-weight tiers carry most of the method contrasts.
 - Added after the first confirmatory Kaggle result (gemini-3.7-flash scored 1.0 on FairScreen-48 direct): a
-  fourth Kaggle task, `fairscreen-evidence-sufficiency`, which runs the registered sufficiency suite (48 families,
-  4 decisions each, direct recipe) so that the abstention behaviour of capable hosted models is measured too. The
-  suite, its labels and its family-pass score were registered above; only its execution on Kaggle is new. It is
-  reported as a secondary result, not as a confirmatory contrast.
+  fourth Kaggle task, `fairscreen-evidence-sufficiency`. It runs the registered sufficiency suite (48
+  families, 4 decisions each, direct recipe) so that the abstention behaviour of capable hosted models is measured
+  too. The suite, its labels and its family-pass score were registered above; only its execution on Kaggle is new.
+  The task is reported as a secondary result, not as a confirmatory contrast.
+- Cluster generation limit: `configs/panel.json` registered "max 4096 new tokens". The cluster jobs use 4096 for
+  the gpt-oss models (which reason before answering) and 1024 for the other models. Truncation is checked from
+  `finish_reason` and reported, and the fixed parser scores a truncated response like any other. Result:
+  at most 5 of 2,832 responses per model and recipe stopped at the limit (Llama 3.1 8B structured and extract-only;
+  `results/sensitivity_checks.json`). Because of the home quota, each job downloads model weights to node-local disk.
+- Kaggle panel order: the panel driver was stopped after gemma-4-31b-it (remaining quota 1.61 USD), so that the
+  evidence-sufficiency task could be pushed and run before the budget ran out. Qwen3-235B, GPT-5.4 mini and
+  Claude Haiku 4.5 were not run. Reason: Qwen models had very low throughput on the Model Proxy in development, and
+  the hosted Qwen3-next smoke run never completed. So the next model in the registered order could have blocked the
+  remaining work. The write-up lists the models not run.
+
+The following notes were written on 12 Oct 2026, before publication and after the confirmatory results existed.
+Each describes something that happened before or during the runs; none changes a reported number.
+
+- Qwen3-32B reasoning setting: section 7 and `configs/panel.json` register each model's default reasoning, which for
+  Qwen3 is thinking on. The cluster panel ran Qwen3-32B with `enable_thinking: false` at temperature 0
+  (`cluster/RUNLOG.md`, `cluster/fs_job.sbatch`), and the registered contrasts use that run.
+  An exploratory re-run with thinking on (Qwen's recommended sampling, temperature 0.6) is reported separately. With
+  that re-run in place of the panel run, C3 is +16.2 points (+14.2 to +18.2) against the reported +20.5
+  (`analysis/sensitivity_checks.py`).
+- Extraction error: section 5 defines it as an extracted fact that differs from the canonical fact (years within
+  0.35). The decomposition in the write-up instead uses agreement of each requirement's truth value (changed in
+  commit f497885, before any structured confirmatory output). The fact-level rate is still saved as `fact_error`.
+- Suite, development and control sizes: the planning document proposed 320 development families and 240 relevance,
+  240 sufficiency, 240 realistic and 160 audit families. The data have 88 development families and 32, 48, 48 and
+  24 in those suites. The index rules that place controls alias with the occupation cycle: both repeat in step.
+  As a result, same-group and neutral-ID controls fall in two occupations (customer support, laboratory support),
+  exact repeats in four, and length controls in two (payroll, technical writing). The length controls are not length-matched and are not analysed.
+- Dataset 1.0.0 to 1.1.0: five defects found in the blind review by two separate Claude Sonnet sessions were fixed
+  before any retained confirmatory output (`validation/DEFECTS.md`). Four were in wording or punctuation. The fifth
+  was in the generator, which drew non-qualifying job titles independently of their descriptions. No 1.0.0 model
+  output was retained or used.
+- Method selection: frozen for the two economical Kaggle models in `configs/method_selection_frozen.json` (commit
+  7ed465c) before their confirmatory runs. The selection had three candidates (direct, fairness, structured) and
+  chose structured for both. On the final changed layouts, structured was also the best of the three for both
+  models (descriptive regret 0: no gap to the best candidate's score). Policy code on the same extraction was not
+  a candidate.

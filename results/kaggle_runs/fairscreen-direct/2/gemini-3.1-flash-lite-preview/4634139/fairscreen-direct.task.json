@@ -1,0 +1,6 @@
+{
+  "versionNumber": 1,
+  "name": "fairscreen-direct",
+  "description": "FairScreen, direct screening. Score: share of applicant families with all 8 paired decisions correct (qualification x identity x presentation), with 95% bootstrap half-width.",
+  "definition": "@kbench.task(name=\"fairscreen-direct\", description=\"FairScreen, direct screening. Score: share of applicant families with all 8 paired decisions correct (qualification x identity x presentation), with 95% bootstrap half-width.\")\ndef fairscreen_direct(llm) -> tuple[float, float]:\n    calls = plan_calls(VARIANTS, FAMILIES)\n    call = make_call(llm)\n    with ThreadPoolExecutor(THREADS) as ex:\n        futs = [ex.submit(contextvars.copy_context().run, evaluate_variant, v, RECIPE, call, rep) for v, rep in calls]\n        records = [f.result() for f in futs]\n    summary = summarize(records, FAMILIES)\n    if RECIPE == \"structured\":\n        summary[\"policy_code_on_same_extraction\"] = summarize(records, FAMILIES, decision_key=\"replay\")[\"robust_policy_fidelity\"]\n    print(\"FAIRSCREEN_SUMMARY \" + json.dumps(summary))\n    m = summary[\"robust_policy_fidelity\"]\n    return (float(m[\"mean\"]), float((m[\"hi\"] - m[\"lo\"]) / 2))\n"
+}

@@ -49,8 +49,8 @@ def load(path):
 def fig_fidelity(M, out, title):
     models = sorted({m for m, _ in M}, key=lambda m: -max((M[(m, c)]["robust"][0] for c in CONFIG if (m, c) in M), default=0))
     configs = [c for c in CONFIG if any((m, c) in M for m in models)]
-    fig, ax = plt.subplots(figsize=(8.2, 0.5 + 0.55 * len(models)))
-    step = 0.8 / max(1, len(configs))
+    fig, ax = plt.subplots(figsize=(8.2, 1.7 + 0.95 * len(models)))
+    step = 0.76 / max(1, len(configs))
     for j, c in enumerate(configs):
         label, col, mk = CONFIG[c]
         ys, xs, lo, hi = [], [], [], []
@@ -69,7 +69,7 @@ def fig_fidelity(M, out, title):
     ax.set_xlabel("Robust policy fidelity: families with all eight paired decisions correct (%)")
     ax.grid(axis="x", color=GRID, lw=0.8)
     ax.set_axisbelow(True)
-    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=9)
+    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=3, frameon=False, fontsize=8.5)
     fig.suptitle(title, x=0.01, ha="left", color=INK, fontsize=11)
     fig.tight_layout()
     fig.savefig(out, dpi=200)
@@ -78,8 +78,8 @@ def fig_fidelity(M, out, title):
 
 def fig_controls(M, out, title, config="direct"):
     models = [m for (m, c) in M if c == config]
-    models.sort(key=lambda m: -M[(m, config)]["identity_flip"][0])
-    keys = [("identity_flip", "Identity swapped (A vs B)", "#2a78d6"),
+    models.sort(key=lambda m: -M[(m, config)]["identity_flip_ctrl"][0])
+    keys = [("identity_flip_ctrl", "Identity swapped", "#2a78d6"),
             ("same_group_flip", "Same-group name swapped", "#eb6834"),
             ("repeat_flip", "Identical prompt repeated", "#1baf7a")]
     fig, ax = plt.subplots(figsize=(8.2, 0.6 + 0.6 * len(models)))
@@ -127,7 +127,7 @@ def fig_transfer(M, out, title):
 
 def fig_decomposition(M, out, title):
     rows = [(m, v["decomposition"]) for (m, c), v in M.items() if c == "structured" and "decomposition" in v]
-    rows.sort(key=lambda r: r[0])
+    rows.sort(key=lambda r: -sum(v for k, v in r[1]["tab"].items() if k.startswith("extract_ok=True|verdict_ok=False")) / max(1, r[1]["n"]))
     cats = [("extract_ok=True|verdict_ok=True", "Decisive facts right, decision right", "#1baf7a"),
             ("extract_ok=True|verdict_ok=False", "Decisive facts right, decision wrong", "#eb6834"),
             ("extract_ok=False|verdict_ok=True", "Decisive facts wrong, decision right", "#2a78d6"),
@@ -155,10 +155,10 @@ def fig_decomposition(M, out, title):
 def main(metrics_path, outdir, label):
     os.makedirs(outdir, exist_ok=True)
     M = load(metrics_path)
-    fig_fidelity(M, f"{outdir}/fig1_fidelity.png", f"{label}: robust policy fidelity by configuration (95% bootstrap intervals)")
-    fig_controls(M, f"{outdir}/fig2_controls.png", f"{label}: decision changes under identity swaps versus controls (direct)")
-    fig_transfer(M, f"{outdir}/fig3_transfer.png", f"{label}: clean versus changed presentation")
-    fig_decomposition(M, f"{outdir}/fig4_decomposition.png", f"{label}: where structured decisions go wrong")
+    fig_fidelity(M, f"{outdir}/fig1_fidelity.png", f"Robust policy fidelity by configuration, {label} (95% intervals)")
+    fig_controls(M, f"{outdir}/fig2_controls.png", f"Decision changes: identity swap versus controls, {label}")
+    fig_transfer(M, f"{outdir}/fig3_transfer.png", f"Clean versus changed presentation, {label}")
+    fig_decomposition(M, f"{outdir}/fig4_decomposition.png", f"Where structured decisions go wrong, {label}")
     print("figures in", outdir)
 
 

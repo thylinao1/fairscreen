@@ -1,0 +1,512 @@
+{
+  "C1_fairness_minus_direct": {
+    "estimate": 0.025000000000000005,
+    "lo": -0.016666666666666666,
+    "hi": 0.06250000000000001,
+    "p": 0.257,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.041666666666666664,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": -0.020833333333333332,
+      "openai_gpt-oss-120b": 0.10416666666666667
+    },
+    "p_holm": 0.456
+  },
+  "C2_transfer": {
+    "estimate": 0.04583333333333334,
+    "lo": -0.004166666666666666,
+    "hi": 0.09166666666666667,
+    "p": 0.074,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.020833333333333332,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": -0.020833333333333332,
+      "openai_gpt-oss-120b": 0.22916666666666666
+    },
+    "p_holm": 0.22199999999999998
+  },
+  "S_qual_response_fairness_minus_direct": {
+    "estimate": 0.01979166666666667,
+    "lo": 0.0020833333333333333,
+    "hi": 0.036458333333333336,
+    "p": 0.028,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.015625,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.041666666666666664,
+      "openai_gpt-oss-120b": 0.041666666666666664
+    }
+  },
+  "C3_policy_code_minus_model_verdict": {
+    "estimate": -0.020833333333333332,
+    "lo": -0.05000000000000001,
+    "hi": 0.012499999999999999,
+    "p": 0.228,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": -0.020833333333333332,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.20833333333333334,
+      "openai_gpt-oss-120b": -0.2916666666666667
+    },
+    "p_holm": 0.456
+  },
+  "S_structured_minus_direct": {
+    "estimate": 0.12916666666666668,
+    "lo": 0.09166666666666667,
+    "hi": 0.1625,
+    "p": 0.0,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.22916666666666666,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.041666666666666664,
+      "openai_gpt-oss-120b": 0.375
+    }
+  },
+  "S_policy_code_minus_direct": {
+    "estimate": 0.10833333333333334,
+    "lo": 0.06666666666666667,
+    "hi": 0.15000000000000002,
+    "p": 0.0,
+    "models": [
+      "google_gemini-3.1-flash-lite-preview",
+      "google_gemini-3.7-flash",
+      "google_gemma-4-31b",
+      "openai_gpt-5.4-nano-2026-03-17",
+      "openai_gpt-oss-120b"
+    ],
+    "per_model": {
+      "google_gemini-3.1-flash-lite-preview": 0.20833333333333334,
+      "google_gemini-3.7-flash": 0.0,
+      "google_gemma-4-31b": 0.0,
+      "openai_gpt-5.4-nano-2026-03-17": 0.25,
+      "openai_gpt-oss-120b": 0.08333333333333333
+    }
+  },
+  "S_identity_vs_same_group_direct": null,
+  "S_signed_by_group_direct": {
+    "malay_male|hi": {
+      "estimate": 0.0,
+      "lo": -0.047619047619047616,
+      "hi": 0.048,
+      "n_pairs": 126,
+      "n_families": 13
+    },
+    "chinese_male|hi": {
+      "estimate": -0.014492753623188406,
+      "lo": -0.04411764705882353,
+      "hi": 0.014285714285714285,
+      "n_pairs": 138,
+      "n_families": 14
+    },
+    "malay_male|lo": {
+      "estimate": 0.007874015748031496,
+      "lo": 0.0,
+      "hi": 0.024390243902439025,
+      "n_pairs": 127,
+      "n_families": 13
+    },
+    "chinese_male|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 138,
+      "n_families": 14
+    },
+    "indian_male|hi": {
+      "estimate": 0.0273972602739726,
+      "lo": -0.00684931506849315,
+      "hi": 0.06756756756756757,
+      "n_pairs": 146,
+      "n_families": 15
+    },
+    "indian_male|lo": {
+      "estimate": -0.0136986301369863,
+      "lo": -0.03424657534246575,
+      "hi": 0.0,
+      "n_pairs": 146,
+      "n_families": 15
+    },
+    "chinese_female|hi": {
+      "estimate": -0.01,
+      "lo": -0.03,
+      "hi": 0.0,
+      "n_pairs": 100,
+      "n_families": 10
+    },
+    "malay_female|hi": {
+      "estimate": 0.04054054054054054,
+      "lo": -0.013422818791946308,
+      "hi": 0.10067114093959731,
+      "n_pairs": 148,
+      "n_families": 15
+    },
+    "chinese_female|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 98,
+      "n_families": 10
+    },
+    "malay_female|lo": {
+      "estimate": 0.00684931506849315,
+      "lo": 0.0,
+      "hi": 0.020689655172413793,
+      "n_pairs": 146,
+      "n_families": 15
+    },
+    "indian_female|hi": {
+      "estimate": -0.0546875,
+      "lo": -0.11538461538461539,
+      "hi": -0.007751937984496124,
+      "n_pairs": 128,
+      "n_families": 13
+    },
+    "indian_female|lo": {
+      "estimate": 0.0,
+      "lo": -0.023809523809523808,
+      "hi": 0.023809523809523808,
+      "n_pairs": 125,
+      "n_families": 13
+    },
+    "indian_marker|hi": {
+      "estimate": -0.05128205128205128,
+      "lo": -0.1,
+      "hi": 0.0,
+      "n_pairs": 39,
+      "n_families": 4
+    },
+    "chinese_marker|hi": {
+      "estimate": 0.03333333333333333,
+      "lo": -0.03333333333333333,
+      "hi": 0.08333333333333333,
+      "n_pairs": 60,
+      "n_families": 6
+    },
+    "indian_marker|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 39,
+      "n_families": 4
+    },
+    "chinese_marker|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 57,
+      "n_families": 6
+    },
+    "malay_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.05084745762711865,
+      "hi": 0.05,
+      "n_pairs": 59,
+      "n_families": 6
+    },
+    "malay_marker|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 58,
+      "n_families": 6
+    }
+  },
+  "S_identity_vs_same_group_fairness": null,
+  "S_signed_by_group_fairness": {
+    "malay_male|hi": {
+      "estimate": -0.015503875968992248,
+      "lo": -0.06349206349206349,
+      "hi": 0.031007751937984496,
+      "n_pairs": 129,
+      "n_families": 13
+    },
+    "chinese_male|hi": {
+      "estimate": -0.021739130434782608,
+      "lo": -0.043795620437956206,
+      "hi": 0.0,
+      "n_pairs": 138,
+      "n_families": 14
+    },
+    "malay_male|lo": {
+      "estimate": 0.007874015748031496,
+      "lo": 0.0,
+      "hi": 0.023809523809523808,
+      "n_pairs": 127,
+      "n_families": 13
+    },
+    "chinese_male|lo": {
+      "estimate": 0.014492753623188406,
+      "lo": 0.0,
+      "hi": 0.036231884057971016,
+      "n_pairs": 138,
+      "n_families": 14
+    },
+    "indian_male|hi": {
+      "estimate": 0.04081632653061224,
+      "lo": 0.0,
+      "hi": 0.08783783783783784,
+      "n_pairs": 147,
+      "n_families": 15
+    },
+    "indian_male|lo": {
+      "estimate": -0.00684931506849315,
+      "lo": -0.020689655172413793,
+      "hi": 0.0,
+      "n_pairs": 146,
+      "n_families": 15
+    },
+    "chinese_female|hi": {
+      "estimate": 0.02,
+      "lo": 0.0,
+      "hi": 0.05,
+      "n_pairs": 100,
+      "n_families": 10
+    },
+    "malay_female|hi": {
+      "estimate": -0.013513513513513514,
+      "lo": -0.05442176870748299,
+      "hi": 0.027210884353741496,
+      "n_pairs": 148,
+      "n_families": 15
+    },
+    "chinese_female|lo": {
+      "estimate": -0.02,
+      "lo": -0.05,
+      "hi": 0.0,
+      "n_pairs": 100,
+      "n_families": 10
+    },
+    "malay_female|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 148,
+      "n_families": 15
+    },
+    "indian_female|hi": {
+      "estimate": -0.0078125,
+      "lo": -0.06201550387596899,
+      "hi": 0.046511627906976744,
+      "n_pairs": 128,
+      "n_families": 13
+    },
+    "indian_female|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 127,
+      "n_families": 13
+    },
+    "indian_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.075,
+      "hi": 0.075,
+      "n_pairs": 40,
+      "n_families": 4
+    },
+    "chinese_marker|hi": {
+      "estimate": 0.01694915254237288,
+      "lo": -0.03508771929824561,
+      "hi": 0.06779661016949153,
+      "n_pairs": 59,
+      "n_families": 6
+    },
+    "indian_marker|lo": {
+      "estimate": 0.025,
+      "lo": 0.0,
+      "hi": 0.075,
+      "n_pairs": 40,
+      "n_families": 4
+    },
+    "chinese_marker|lo": {
+      "estimate": 0.01694915254237288,
+      "lo": -0.05,
+      "hi": 0.10526315789473684,
+      "n_pairs": 59,
+      "n_families": 6
+    },
+    "malay_marker|hi": {
+      "estimate": -0.01694915254237288,
+      "lo": -0.06779661016949153,
+      "hi": 0.034482758620689655,
+      "n_pairs": 59,
+      "n_families": 6
+    },
+    "malay_marker|lo": {
+      "estimate": -0.03389830508474576,
+      "lo": -0.10526315789473684,
+      "hi": 0.0,
+      "n_pairs": 59,
+      "n_families": 6
+    }
+  },
+  "S_identity_vs_same_group_structured": null,
+  "S_signed_by_group_structured": {
+    "malay_male|hi": {
+      "estimate": 0.007692307692307693,
+      "lo": -0.038461538461538464,
+      "hi": 0.05384615384615385,
+      "n_pairs": 130,
+      "n_families": 13
+    },
+    "chinese_male|hi": {
+      "estimate": 0.05,
+      "lo": 0.02142857142857143,
+      "hi": 0.08571428571428572,
+      "n_pairs": 140,
+      "n_families": 14
+    },
+    "malay_male|lo": {
+      "estimate": -0.007692307692307693,
+      "lo": -0.023076923076923078,
+      "hi": 0.0,
+      "n_pairs": 130,
+      "n_families": 13
+    },
+    "chinese_male|lo": {
+      "estimate": -0.007142857142857143,
+      "lo": -0.02142857142857143,
+      "hi": 0.0,
+      "n_pairs": 140,
+      "n_families": 14
+    },
+    "indian_male|hi": {
+      "estimate": -0.04666666666666667,
+      "lo": -0.08666666666666667,
+      "hi": -0.006666666666666667,
+      "n_pairs": 150,
+      "n_families": 15
+    },
+    "indian_male|lo": {
+      "estimate": 0.013333333333333334,
+      "lo": 0.0,
+      "hi": 0.03333333333333333,
+      "n_pairs": 150,
+      "n_families": 15
+    },
+    "chinese_female|hi": {
+      "estimate": -0.02,
+      "lo": -0.06,
+      "hi": 0.02,
+      "n_pairs": 100,
+      "n_families": 10
+    },
+    "malay_female|hi": {
+      "estimate": 0.0,
+      "lo": -0.04666666666666667,
+      "hi": 0.04666666666666667,
+      "n_pairs": 150,
+      "n_families": 15
+    },
+    "chinese_female|lo": {
+      "estimate": 0.01,
+      "lo": -0.02,
+      "hi": 0.04,
+      "n_pairs": 100,
+      "n_families": 10
+    },
+    "malay_female|lo": {
+      "estimate": 0.013333333333333334,
+      "lo": 0.0,
+      "hi": 0.03333333333333333,
+      "n_pairs": 150,
+      "n_families": 15
+    },
+    "indian_female|hi": {
+      "estimate": 0.007692307692307693,
+      "lo": -0.03076923076923077,
+      "hi": 0.046153846153846156,
+      "n_pairs": 130,
+      "n_families": 13
+    },
+    "indian_female|lo": {
+      "estimate": -0.023076923076923078,
+      "lo": -0.046153846153846156,
+      "hi": 0.0,
+      "n_pairs": 130,
+      "n_families": 13
+    },
+    "indian_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.075,
+      "hi": 0.075,
+      "n_pairs": 40,
+      "n_families": 4
+    },
+    "chinese_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.1,
+      "hi": 0.08333333333333333,
+      "n_pairs": 60,
+      "n_families": 6
+    },
+    "indian_marker|lo": {
+      "estimate": 0.05,
+      "lo": 0.0,
+      "hi": 0.15,
+      "n_pairs": 40,
+      "n_families": 4
+    },
+    "chinese_marker|lo": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 60,
+      "n_families": 6
+    },
+    "malay_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.08333333333333333,
+      "hi": 0.1,
+      "n_pairs": 60,
+      "n_families": 6
+    },
+    "malay_marker|lo": {
+      "estimate": -0.03333333333333333,
+      "lo": -0.1,
+      "hi": 0.0,
+      "n_pairs": 60,
+      "n_families": 6
+    }
+  }
+}

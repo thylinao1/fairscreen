@@ -9,9 +9,10 @@ TRUE, FALSE or UNKNOWN under Kleene three-valued logic, and the decision rule is
 
 Requirements read typed *facts*. The canonical facts of an applicant are computed
 from the hidden canonical record (see generate.py); the extracted facts of a model
-come from its structured output. The same evaluator is used for both, so the gold
-label and the deterministic policy replay share one code path. An independent
-implementation lives in oracle_b.py and the two are compared in tests.
+come from its structured output. Gold labels are computed by `decide` below (oracle A).
+The deterministic policy replay of model extractions uses `runtime.replay` (oracle B), a
+separately written implementation on the JSON policy spec; tests compare the two on every
+generated variant and on random fact assignments.
 """
 from __future__ import annotations
 

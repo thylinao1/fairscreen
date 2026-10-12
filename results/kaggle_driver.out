@@ -1,2 +1,7 @@
 16:51:24 push fairscreen-direct remaining=6.80
 16:57:14 push fairscreen-fairness-instruction remaining=6.09
+17:02:47 push fairscreen-structured remaining=5.36
+17:12:59 model gpt-5.4-nano-2026-03-17 remaining=3.28
+17:18:02 model gemini-3.1-flash-lite-preview remaining=3.03
+17:24:06 model gpt-oss-120b remaining=2.71
+17:58:29 model gemma-4-31b-it remaining=2.26

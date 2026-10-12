@@ -31,6 +31,9 @@
     },
     "accuracy": 1.0,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.0,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 1.0,
     "identity_flip": [
@@ -173,6 +176,9 @@
     },
     "accuracy": 0.75,
     "coverage": 0.75,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.0,
+    "core_false_accept": 0.0,
     "invalid": 0.25,
     "qual_response": 0.5625,
     "identity_flip": [
@@ -329,6 +335,9 @@
     },
     "accuracy": 0.75,
     "coverage": 0.75,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.0,
+    "core_false_accept": 0.0,
     "invalid": 0.25,
     "qual_response": 0.5625,
     "identity_flip": [
@@ -431,6 +440,9 @@
     },
     "accuracy": 0.6927083333333334,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.6145833333333334,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.3854166666666667,
     "identity_flip": [
@@ -630,6 +642,9 @@
     },
     "accuracy": 0.7135416666666666,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.5729166666666666,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.4270833333333333,
     "identity_flip": [
@@ -829,6 +844,9 @@
     },
     "accuracy": 0.8489583333333334,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.3020833333333333,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.6979166666666666,
     "identity_flip": [
@@ -1043,6 +1061,9 @@
     },
     "accuracy": 0.8489583333333334,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.3020833333333333,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.6979166666666666,
     "identity_flip": [
@@ -1179,6 +1200,9 @@
     },
     "accuracy": 0.3854166666666667,
     "coverage": 1.0,
+    "core_abstention": 0.4010416666666667,
+    "core_false_reject": 0.4270833333333333,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.041666666666666664,
     "identity_flip": [
@@ -1380,6 +1404,9 @@
     },
     "accuracy": 0.3385416666666667,
     "coverage": 1.0,
+    "core_abstention": 0.4895833333333333,
+    "core_false_reject": 0.3229166666666667,
+    "core_false_accept": 0.020833333333333332,
     "invalid": 0.0,
     "qual_response": 0.041666666666666664,
     "identity_flip": [
@@ -1582,6 +1609,9 @@
     },
     "accuracy": 0.484375,
     "coverage": 0.828125,
+    "core_abstention": 0.25157232704402516,
+    "core_false_reject": 0.3291139240506329,
+    "core_false_accept": 0.0,
     "invalid": 0.171875,
     "qual_response": 0.23958333333333334,
     "identity_flip": [
@@ -1802,6 +1832,9 @@
     },
     "accuracy": 0.5989583333333334,
     "coverage": 0.828125,
+    "core_abstention": 0.11949685534591195,
+    "core_false_reject": 0.22784810126582278,
+    "core_false_accept": 0.0875,
     "invalid": 0.171875,
     "qual_response": 0.34375,
     "identity_flip": [
@@ -1945,6 +1978,9 @@
     },
     "accuracy": 0.65625,
     "coverage": 1.0,
+    "core_abstention": 0.203125,
+    "core_false_reject": 0.1875,
+    "core_false_accept": 0.09375,
     "invalid": 0.0,
     "qual_response": 0.421875,
     "identity_flip": [
@@ -2086,6 +2122,9 @@
     },
     "accuracy": 0.9765625,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.046875,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.953125,
     "identity_flip": [
@@ -2238,6 +2277,9 @@
     },
     "accuracy": 0.9765625,
     "coverage": 1.0,
+    "core_abstention": 0.0,
+    "core_false_reject": 0.046875,
+    "core_false_accept": 0.0,
     "invalid": 0.0,
     "qual_response": 0.953125,
     "identity_flip": [
@@ -2312,6 +2354,9 @@
     },
     "accuracy": 0.17105263157894737,
     "coverage": 0.2236842105263158,
+    "core_abstention": 0.058823529411764705,
+    "core_false_reject": 0.07142857142857142,
+    "core_false_accept": 0.25,
     "invalid": 0.7763157894736842,
     "qual_response": 0.013157894736842105,
     "identity_flip": [

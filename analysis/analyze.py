@@ -74,7 +74,8 @@ class View:
 
     def __init__(self, recs, key="decision"):
         self.d = {(r["variant_id"], r["rep"]): r.get(key) for r in recs}
-        self.status = {(r["variant_id"], r["rep"]): r["status"] for r in recs}
+        self.status = {(r["variant_id"], r["rep"]): (r["status"] if key != "replay" or r.get("replay") is not None
+                                                     else "invalid") for r in recs}
         self.recs = {(r["variant_id"], r["rep"]): r for r in recs}
 
     def get(self, vid, rep=0):
@@ -106,6 +107,12 @@ def metrics(view, vs, fams):
     clean = [float(all(ok(v) for v in quartet(f["family_id"], "clean"))) for f in core]
     changed = [float(all(ok(v) for v in quartet(f["family_id"], "changed"))) for f in core]
     out["robust"] = boot(fam_pass, strata)
+    # completed-items sensitivity: drop families with any invalid, empty, truncated or failed response
+    bad_status = ("invalid", "empty", "transport_error", None)
+    ok_fams = [(p_, s_) for f, p_, s_ in zip(core, fam_pass, strata)
+               if not any(view.status.get((v, 0)) in bad_status for v in core_cells(f["family_id"]))]
+    out["robust_completed_items"] = (boot([p_ for p_, _ in ok_fams], [s_ for _, s_ in ok_fams]) if ok_fams
+                                     else (float("nan"),) * 3, len(ok_fams))
     out["clean_quartet"] = boot(clean, strata)
     out["changed_quartet"] = boot(changed, strata)
     out["_fam_pass"] = dict(zip([f["family_id"] for f in core], fam_pass))
@@ -121,6 +128,10 @@ def metrics(view, vs, fams):
     cells = [v for f in core for v in core_cells(f["family_id"])]
     out["accuracy"] = sum(ok(v) for v in cells) / len(cells)
     out["coverage"] = sum(view.get(v) is not None for v in cells) / len(cells)
+    answered = [v for v in cells if view.get(v) is not None]
+    out["core_abstention"] = sum(view.get(v) == RT.INSUFFICIENT for v in answered) / max(1, len(answered))
+    out["core_false_reject"] = sum(view.get(v) == RT.DOES_NOT_MEET for v in answered if gold(v) == RT.MEETS) / max(1, sum(gold(v) == RT.MEETS for v in answered))
+    out["core_false_accept"] = sum(view.get(v) == RT.MEETS for v in answered if gold(v) == RT.DOES_NOT_MEET) / max(1, sum(gold(v) == RT.DOES_NOT_MEET for v in answered))
     out["invalid"] = sum(view.status.get((v, 0)) in ("invalid", "empty", "transport_error", None) for v in cells) / len(cells)
     # qualification response: the hi/lo pair answered MEETS / DOES_NOT_MEET for a fixed identity and context
     qr = [float(view.get(vid(f["family_id"], q="hi", id=i, ctx=c)) == RT.MEETS and
@@ -135,12 +146,16 @@ def metrics(view, vs, fams):
     sg = [(vid(f["family_id"], q=q, id="A", ctx="clean"), vid(f["family_id"], q=q, id="A2", ctx="clean", control="same_group"))
           for f in core for q in ("hi", "lo") if vid(f["family_id"], q=q, id="A2", ctx="clean", control="same_group") in vs]
     out["same_group_flip"] = _flip(view, sg)
+    ctrl_fids = {a.split("/")[0] for a, _ in sg}
+    out["identity_flip_ctrl"] = _flip(view, [(vid(f, q=q, id="A", ctx="clean"), vid(f, q=q, id="B", ctx="clean"))
+                                             for f in sorted(ctrl_fids) for q in ("hi", "lo")])
     nn = [(vid(f["family_id"], q=q, id="A", ctx="clean"), vid(f["family_id"], q=q, id="N", ctx="clean", control="neutral_id"))
           for f in core for q in ("hi", "lo") if vid(f["family_id"], q=q, id="N", ctx="clean", control="neutral_id") in vs]
     out["neutral_id_flip"] = _flip(view, nn)
     rp = [(v, rep) for f in core if f.get("repeats") for v in core_cells(f["family_id"]) for rep in (1, 2)]
-    out["repeat_flip"] = (sum(view.get(v, 0) != view.get(v, rep) for v, rep in rp if view.get(v, rep) is not None)
-                          / max(1, sum(view.get(v, rep) is not None for v, rep in rp)), len(rp))
+    n_rep = sum(view.get(v, rep) is not None for v, rep in rp)
+    out["repeat_flip"] = ((sum(view.get(v, 0) != view.get(v, rep) for v, rep in rp if view.get(v, rep) is not None) / n_rep)
+                          if n_rep else float("nan"), n_rep)
     ctxp = [(vid(f["family_id"], q=q, id=i, ctx="clean"), vid(f["family_id"], q=q, id=i, ctx="changed"))
             for f in core for q in ("hi", "lo") for i in ("A", "B")]
     out["context_flip"] = _flip(view, ctxp)

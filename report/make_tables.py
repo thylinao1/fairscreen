@@ -36,14 +36,14 @@ def main_table(metrics, configs):
     return "\n".join(lines + [r for _, r in sorted(rows)])
 
 
-def controls_table(metrics, config="direct"):
-    lines = ["| Model | Qualification response | Identity swap flips | Same-group name flips | Neutral ID flips | Exact repeat flips | Invalid |",
-             "|---|---|---|---|---|---|---|"]
+def controls_table(metrics, config="direct"):  # noqa: C901
+    lines = ["| Model | Qualification response | False reject | False accept | Abstain on complete files | Identity swap flips | Same-group name flips | Neutral ID flips | Exact repeat flips | Invalid |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
     for k, v in sorted(metrics.items()):
         m, c = k.split("|")
         if c != config:
             continue
-        lines.append(f"| {pretty(m)} | {pct(v['qual_response'])} | {pct(v['identity_flip'][0])} (n={v['identity_flip'][1]}) | "
+        lines.append(f"| {pretty(m)} | {pct(v['qual_response'])} | {pct(v.get('core_false_reject'))} | {pct(v.get('core_false_accept'))} | {pct(v.get('core_abstention'))} | {pct(v['identity_flip'][0])} (n={v['identity_flip'][1]}) | "
                      f"{pct(v['same_group_flip'][0])} (n={v['same_group_flip'][1]}) | {pct(v['neutral_id_flip'][0])} (n={v['neutral_id_flip'][1]}) | "
                      f"{pct(v['repeat_flip'][0])} (n={v['repeat_flip'][1]}) | {pct(v['invalid'])} |")
     return "\n".join(lines)

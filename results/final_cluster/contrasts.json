@@ -1,0 +1,570 @@
+{
+  "C1_fairness_minus_direct": {
+    "estimate": -0.003472222222222222,
+    "lo": -0.012152777777777778,
+    "hi": 0.006076388888888888,
+    "p": 0.481,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": -0.010416666666666666,
+      "gpt-oss-120b": 0.015625,
+      "gpt-oss-20b": 0.005208333333333333,
+      "llama-3.1-8b-instruct": 0.0,
+      "mistral-small-3.2-24b": -0.005208333333333333,
+      "qwen3-32b": -0.026041666666666668
+    },
+    "p_holm": 0.481
+  },
+  "C2_transfer": {
+    "estimate": -0.00954861111111111,
+    "lo": -0.019965277777777776,
+    "hi": 0.0008680555555555555,
+    "p": 0.08,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": 0.0,
+      "gpt-oss-120b": -0.005208333333333333,
+      "gpt-oss-20b": 0.005208333333333333,
+      "llama-3.1-8b-instruct": 0.0,
+      "mistral-small-3.2-24b": -0.036458333333333336,
+      "qwen3-32b": -0.020833333333333332
+    },
+    "p_holm": 0.16
+  },
+  "S_qual_response_fairness_minus_direct": {
+    "estimate": -0.005208333333333333,
+    "lo": -0.011284722222222224,
+    "hi": 0.0006510416666666673,
+    "p": 0.095,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": -0.016927083333333332,
+      "gpt-oss-120b": 0.00390625,
+      "gpt-oss-20b": 0.0,
+      "llama-3.1-8b-instruct": 0.0,
+      "mistral-small-3.2-24b": -0.006510416666666667,
+      "qwen3-32b": -0.01171875
+    }
+  },
+  "C3_policy_code_minus_model_verdict": {
+    "estimate": 0.20486111111111108,
+    "lo": 0.18142361111111108,
+    "hi": 0.22829861111111108,
+    "p": 0.0,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": 0.22916666666666666,
+      "gpt-oss-120b": 0.0,
+      "gpt-oss-20b": 0.041666666666666664,
+      "llama-3.1-8b-instruct": 0.5520833333333334,
+      "mistral-small-3.2-24b": 0.11979166666666667,
+      "qwen3-32b": 0.2864583333333333
+    },
+    "p_holm": 0.0
+  },
+  "S_structured_minus_direct": {
+    "estimate": 0.07118055555555555,
+    "lo": 0.04861111111111111,
+    "hi": 0.09288194444444443,
+    "p": 0.0,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": 0.0,
+      "gpt-oss-120b": 0.015625,
+      "gpt-oss-20b": -0.010416666666666666,
+      "llama-3.1-8b-instruct": 0.010416666666666666,
+      "mistral-small-3.2-24b": 0.3541666666666667,
+      "qwen3-32b": 0.057291666666666664
+    }
+  },
+  "S_policy_code_minus_direct": {
+    "estimate": 0.2760416666666667,
+    "lo": 0.24652777777777776,
+    "hi": 0.30468749999999994,
+    "p": 0.0,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": 0.22916666666666666,
+      "gpt-oss-120b": 0.015625,
+      "gpt-oss-20b": 0.03125,
+      "llama-3.1-8b-instruct": 0.5625,
+      "mistral-small-3.2-24b": 0.4739583333333333,
+      "qwen3-32b": 0.34375
+    }
+  },
+  "S_extract_only_minus_policy_code_same_extraction": {
+    "estimate": -0.030381944444444444,
+    "lo": -0.041666666666666664,
+    "hi": -0.018229166666666668,
+    "p": 0.0,
+    "models": [
+      "gemma-3-27b-it",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "llama-3.1-8b-instruct",
+      "mistral-small-3.2-24b",
+      "qwen3-32b"
+    ],
+    "per_model": {
+      "gemma-3-27b-it": 0.0,
+      "gpt-oss-120b": 0.0,
+      "gpt-oss-20b": 0.0,
+      "llama-3.1-8b-instruct": -0.15625,
+      "mistral-small-3.2-24b": -0.005208333333333333,
+      "qwen3-32b": -0.020833333333333332
+    }
+  },
+  "S_identity_vs_same_group_direct": {
+    "identity_flip": 0.02631578947368421,
+    "same_group_flip": 0.021929824561403508,
+    "difference": 0.0043859649122807015,
+    "lo": -0.008771929824561403,
+    "hi": 0.017543859649122806,
+    "n_families": 38,
+    "n_pairs": 456
+  },
+  "S_signed_by_group_direct": {
+    "malay_male|hi": {
+      "estimate": 0.0070921985815602835,
+      "lo": 0.0,
+      "hi": 0.015957446808510637,
+      "n_pairs": 564,
+      "n_families": 47
+    },
+    "chinese_male|hi": {
+      "estimate": 0.00819672131147541,
+      "lo": -0.00273224043715847,
+      "hi": 0.01912568306010929,
+      "n_pairs": 732,
+      "n_families": 61
+    },
+    "malay_male|lo": {
+      "estimate": -0.0035460992907801418,
+      "lo": -0.015957446808510637,
+      "hi": 0.0070921985815602835,
+      "n_pairs": 564,
+      "n_families": 47
+    },
+    "chinese_male|lo": {
+      "estimate": 0.001366120218579235,
+      "lo": -0.00819672131147541,
+      "hi": 0.01092896174863388,
+      "n_pairs": 732,
+      "n_families": 61
+    },
+    "indian_male|hi": {
+      "estimate": -0.012681159420289856,
+      "lo": -0.02717391304347826,
+      "hi": 0.0,
+      "n_pairs": 552,
+      "n_families": 46
+    },
+    "indian_male|lo": {
+      "estimate": 0.005434782608695652,
+      "lo": -0.007246376811594203,
+      "hi": 0.019927536231884056,
+      "n_pairs": 552,
+      "n_families": 46
+    },
+    "chinese_female|hi": {
+      "estimate": -0.001488095238095238,
+      "lo": -0.00744047619047619,
+      "hi": 0.004464285714285714,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|hi": {
+      "estimate": -0.004901960784313725,
+      "lo": -0.013071895424836602,
+      "hi": 0.0032679738562091504,
+      "n_pairs": 612,
+      "n_families": 51
+    },
+    "chinese_female|lo": {
+      "estimate": -0.005952380952380952,
+      "lo": -0.01636904761904762,
+      "hi": 0.002976190476190476,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|lo": {
+      "estimate": 0.0032679738562091504,
+      "lo": -0.0032679738562091504,
+      "hi": 0.011437908496732025,
+      "n_pairs": 612,
+      "n_families": 51
+    },
+    "indian_female|hi": {
+      "estimate": 0.001937984496124031,
+      "lo": -0.005813953488372093,
+      "hi": 0.011627906976744186,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_female|lo": {
+      "estimate": 0.0,
+      "lo": -0.009689922480620155,
+      "hi": 0.009689922480620155,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_marker|hi": {
+      "estimate": 0.015151515151515152,
+      "lo": 0.003787878787878788,
+      "hi": 0.030303030303030304,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|hi": {
+      "estimate": -0.012345679012345678,
+      "lo": -0.027777777777777776,
+      "hi": 0.0,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "indian_marker|lo": {
+      "estimate": 0.011363636363636364,
+      "lo": 0.0,
+      "hi": 0.022727272727272728,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|lo": {
+      "estimate": -0.006172839506172839,
+      "lo": -0.015432098765432098,
+      "hi": 0.0,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "malay_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.013440860215053764,
+      "hi": 0.013440860215053764,
+      "n_pairs": 372,
+      "n_families": 31
+    },
+    "malay_marker|lo": {
+      "estimate": -0.002688172043010753,
+      "lo": -0.013440860215053764,
+      "hi": 0.005376344086021506,
+      "n_pairs": 372,
+      "n_families": 31
+    }
+  },
+  "S_identity_vs_same_group_fairness": {
+    "identity_flip": 0.006578947368421052,
+    "same_group_flip": 0.008771929824561403,
+    "difference": -0.0021929824561403508,
+    "lo": -0.010964912280701754,
+    "hi": 0.0043859649122807015,
+    "n_families": 38,
+    "n_pairs": 456
+  },
+  "S_signed_by_group_fairness": {
+    "malay_male|hi": {
+      "estimate": -0.0017730496453900709,
+      "lo": -0.008865248226950355,
+      "hi": 0.005319148936170213,
+      "n_pairs": 564,
+      "n_families": 47
+    },
+    "chinese_male|hi": {
+      "estimate": 0.004098360655737705,
+      "lo": -0.004098360655737705,
+      "hi": 0.01366120218579235,
+      "n_pairs": 732,
+      "n_families": 61
+    },
+    "malay_male|lo": {
+      "estimate": 0.0035460992907801418,
+      "lo": -0.005319148936170213,
+      "hi": 0.012411347517730497,
+      "n_pairs": 564,
+      "n_families": 47
+    },
+    "chinese_male|lo": {
+      "estimate": 0.001366120218579235,
+      "lo": -0.006830601092896175,
+      "hi": 0.009562841530054645,
+      "n_pairs": 732,
+      "n_families": 61
+    },
+    "indian_male|hi": {
+      "estimate": -0.0036231884057971015,
+      "lo": -0.016304347826086956,
+      "hi": 0.007246376811594203,
+      "n_pairs": 552,
+      "n_families": 46
+    },
+    "indian_male|lo": {
+      "estimate": -0.007246376811594203,
+      "lo": -0.016304347826086956,
+      "hi": 0.0,
+      "n_pairs": 552,
+      "n_families": 46
+    },
+    "chinese_female|hi": {
+      "estimate": -0.001488095238095238,
+      "lo": -0.00744047619047619,
+      "hi": 0.004464285714285714,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|hi": {
+      "estimate": 0.0016339869281045752,
+      "lo": -0.008169934640522876,
+      "hi": 0.013071895424836602,
+      "n_pairs": 612,
+      "n_families": 51
+    },
+    "chinese_female|lo": {
+      "estimate": -0.001488095238095238,
+      "lo": -0.008928571428571428,
+      "hi": 0.004464285714285714,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|lo": {
+      "estimate": 0.0016339869281045752,
+      "lo": -0.008169934640522876,
+      "hi": 0.00980392156862745,
+      "n_pairs": 612,
+      "n_families": 51
+    },
+    "indian_female|hi": {
+      "estimate": 0.0,
+      "lo": -0.011627906976744186,
+      "hi": 0.009689922480620155,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_female|lo": {
+      "estimate": 0.001937984496124031,
+      "lo": -0.007751937984496124,
+      "hi": 0.011627906976744186,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_marker|hi": {
+      "estimate": 0.0,
+      "lo": -0.011363636363636364,
+      "hi": 0.011363636363636364,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|hi": {
+      "estimate": -0.0030864197530864196,
+      "lo": -0.012345679012345678,
+      "hi": 0.006172839506172839,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "indian_marker|lo": {
+      "estimate": 0.007575757575757576,
+      "lo": 0.0,
+      "hi": 0.01893939393939394,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|lo": {
+      "estimate": -0.0030864197530864196,
+      "lo": -0.015432098765432098,
+      "hi": 0.006172839506172839,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "malay_marker|hi": {
+      "estimate": 0.002688172043010753,
+      "lo": 0.0,
+      "hi": 0.008064516129032258,
+      "n_pairs": 372,
+      "n_families": 31
+    },
+    "malay_marker|lo": {
+      "estimate": -0.002688172043010753,
+      "lo": -0.013440860215053764,
+      "hi": 0.005376344086021506,
+      "n_pairs": 372,
+      "n_families": 31
+    }
+  },
+  "S_identity_vs_same_group_structured": {
+    "identity_flip": 0.043859649122807015,
+    "same_group_flip": 0.03070175438596491,
+    "difference": 0.013157894736842105,
+    "lo": 0.0,
+    "hi": 0.02850877192982456,
+    "n_families": 38,
+    "n_pairs": 456
+  },
+  "S_signed_by_group_structured": {
+    "malay_male|hi": {
+      "estimate": 0.0,
+      "lo": -0.010657193605683837,
+      "hi": 0.012411347517730497,
+      "n_pairs": 563,
+      "n_families": 47
+    },
+    "chinese_male|hi": {
+      "estimate": 0.0013679890560875513,
+      "lo": -0.006830601092896175,
+      "hi": 0.009575923392612859,
+      "n_pairs": 731,
+      "n_families": 61
+    },
+    "malay_male|lo": {
+      "estimate": 0.0035650623885918,
+      "lo": -0.008896797153024912,
+      "hi": 0.017825311942959002,
+      "n_pairs": 561,
+      "n_families": 47
+    },
+    "chinese_male|lo": {
+      "estimate": -0.00273224043715847,
+      "lo": -0.01092896174863388,
+      "hi": 0.00546448087431694,
+      "n_pairs": 732,
+      "n_families": 61
+    },
+    "indian_male|hi": {
+      "estimate": -0.0018115942028985507,
+      "lo": -0.014492753623188406,
+      "hi": 0.010869565217391304,
+      "n_pairs": 552,
+      "n_families": 46
+    },
+    "indian_male|lo": {
+      "estimate": -0.0054446460980036296,
+      "lo": -0.016333938294010888,
+      "hi": 0.0036496350364963502,
+      "n_pairs": 551,
+      "n_families": 46
+    },
+    "chinese_female|hi": {
+      "estimate": -0.002976190476190476,
+      "lo": -0.011904761904761904,
+      "hi": 0.004464285714285714,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|hi": {
+      "estimate": 0.0032679738562091504,
+      "lo": -0.008169934640522876,
+      "hi": 0.011437908496732025,
+      "n_pairs": 612,
+      "n_families": 51
+    },
+    "chinese_female|lo": {
+      "estimate": -0.002976190476190476,
+      "lo": -0.011904761904761904,
+      "hi": 0.004464285714285714,
+      "n_pairs": 672,
+      "n_families": 56
+    },
+    "malay_female|lo": {
+      "estimate": 0.004918032786885246,
+      "lo": -0.006600660066006601,
+      "hi": 0.016339869281045753,
+      "n_pairs": 610,
+      "n_families": 51
+    },
+    "indian_female|hi": {
+      "estimate": 0.0,
+      "lo": -0.013565891472868217,
+      "hi": 0.013565891472868217,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_female|lo": {
+      "estimate": 0.003875968992248062,
+      "lo": -0.005813953488372093,
+      "hi": 0.015503875968992248,
+      "n_pairs": 516,
+      "n_families": 43
+    },
+    "indian_marker|hi": {
+      "estimate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|hi": {
+      "estimate": 0.0030864197530864196,
+      "lo": 0.0,
+      "hi": 0.009259259259259259,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "indian_marker|lo": {
+      "estimate": -0.011363636363636364,
+      "lo": -0.03409090909090909,
+      "hi": 0.003787878787878788,
+      "n_pairs": 264,
+      "n_families": 22
+    },
+    "chinese_marker|lo": {
+      "estimate": 0.0,
+      "lo": -0.012345679012345678,
+      "hi": 0.012345679012345678,
+      "n_pairs": 324,
+      "n_families": 27
+    },
+    "malay_marker|hi": {
+      "estimate": -0.002688172043010753,
+      "lo": -0.008064516129032258,
+      "hi": 0.0,
+      "n_pairs": 372,
+      "n_families": 31
+    },
+    "malay_marker|lo": {
+      "estimate": 0.008064516129032258,
+      "lo": -0.008064516129032258,
+      "hi": 0.024193548387096774,
+      "n_pairs": 372,
+      "n_families": 31
+    }
+  }
+}

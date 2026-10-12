@@ -4,9 +4,18 @@ Version 1.1.0. Files: `data/dev/`, `data/final/`, `data/manifest.json`.
 
 ## What the data is
 
-FairScreen contains fictional job applicants and fictional eligibility policies. Each application is rendered as text from a hidden canonical record. Gold labels are computed from the record and the policy by two implementations (`src/fairscreen/policy.py` and `src/fairscreen/runtime.py::replay`) that agree on every generated variant. A text-only rule parser (`analysis/rule_baseline.py`) reads only the rendered text and reproduces the gold label on every variant, which checks that each rendering states its record (it was written with knowledge of the templates and is not a competitor). Two blind readers agreed with the gold label on 44 of 44 sampled items of version 1.0.0 (`validation/DEFECTS.md`). No model defines a label.
+FairScreen contains fictional job applicants and fictional eligibility policies. Each variant is one application,
+rendered as text from a hidden canonical record. Two implementations compute the gold label from the record and the
+policy (`src/fairscreen/policy.py` and `src/fairscreen/runtime.py::replay`) and agree on every generated
+variant. A text-only rule parser (`analysis/rule_baseline.py`) reads only the rendered text and reproduces the gold
+label on every variant, a check that each rendering states its record. The parser was written with knowledge of the
+templates and is not a competitor. Two separate Claude Sonnet sessions agreed with the gold label on 44 of 44
+sampled items of version 1.0.0. They saw only the policy and application text: no labels, code or model outputs. No human
+rater reviewed the items (`validation/DEFECTS.md`). No model defines a label.
 
-Labels are `MEETS`, `DOES_NOT_MEET` and `INSUFFICIENT_EVIDENCE`. A policy is a conjunction of requirements, each TRUE, FALSE or UNKNOWN. Any FALSE gives `DOES_NOT_MEET`, all TRUE gives `MEETS`, and otherwise the label is `INSUFFICIENT_EVIDENCE`.
+Labels are `MEETS`, `DOES_NOT_MEET` and `INSUFFICIENT_EVIDENCE`. A policy is a conjunction of requirements (all must hold), each TRUE,
+FALSE or UNKNOWN. Any FALSE gives `DOES_NOT_MEET`, all TRUE gives `MEETS`, and
+otherwise the label is `INSUFFICIENT_EVIDENCE`.
 
 ## Suites and counts
 
@@ -19,35 +28,57 @@ Labels are `MEETS`, `DOES_NOT_MEET` and `INSUFFICIENT_EVIDENCE`. A policy is a c
 | Audit framing | 8 / 24 | 96 / 288 |
 | Total | 88 / 344 | 662 / 2528 |
 
-A core family crosses qualification state (a requirement crossed or not), identity (A or B) and presentation (clean or changed), giving eight variants, and some families add control variants. Sufficiency, relevance and realistic families have four variants each, and audit families have twelve. MEETS and DOES_NOT_MEET are equally frequent in every suite, and INSUFFICIENT_EVIDENCE is half of the sufficiency variants.
+Each core family varies three factors: qualification (the requirement is crossed or not), identity (A or B) and
+presentation (clean or changed). Together they give eight variants, and some families add control variants. Sufficiency, relevance and realistic families have four variants each, and audit families have twelve.
+MEETS and DOES_NOT_MEET are equally frequent in every suite, and INSUFFICIENT_EVIDENCE is half of the sufficiency
+variants.
 
 ## Identity signals
 
-The locale is Singapore. Names are Chinese, Malay and Indian, each female and male, with eight names per group (four per split) in local conventions: Chinese surname first, Malay with bin or binte and a father's name, Indian with s/o or d/o and a father's name. The indirect marker is a volunteering line for CDAC (Chinese), Yayasan MENDAKI (Malay) or SINDA (Indian), written under a neutral applicant ID in place of a name.
+The locale is Singapore. Names are Chinese, Malay and Indian, each female and male, with eight names per group (four
+per split). Names follow local conventions: Chinese surname first, Malay with bin or binte and a father's name,
+Indian with s/o or d/o and a father's name. The indirect marker is a volunteering line for CDAC (Chinese), Yayasan
+MENDAKI (Malay) or SINDA (Indian), written under a neutral applicant ID in place of a name.
 
-Names and markers signal a perceived group to a reader. They say nothing about the ethnicity, gender, religion or qualifications of any real person, including people who share these names. All applicants are fictional. Malay names may also signal religion.
+Names and markers signal a perceived group to a reader. They say nothing about the ethnicity, gender, religion or
+qualifications of any real person, including people who share these names. All applicants are fictional. Malay
+names may also signal religion.
 
 ## Locale and policy assumptions
 
-Experience is counted to a screening date of 1 October 2026. Employers are invented, and education lines name Singapore institutions. Policies are benchmark specifications and make no claim about how these jobs should be filled. Each has two requirements, drawn from experience thresholds, assessment results, certificate validity, a degree-or-experience alternative, an exception (certificate waived after five years) and a language requirement. Threshold crossings keep a margin of at least five months. In the relevance suite the name group matches the language skill (Mandarin with Chinese names, Malay with Malay names, Tamil with Indian names), so skill and perceived group co-occur by construction.
+Experience is counted to a screening date of 1 October 2026. Employers are invented, and education lines name
+Singapore institutions. Policies are benchmark specifications and make no claim about how these jobs should be
+filled. Each has two requirements, drawn from experience thresholds, assessment results, certificate
+validity, a degree-or-experience alternative, an exception (certificate waived after five years) and a language
+requirement. Threshold crossings keep a margin of at least five months. In the relevance suite the name group matches
+the language skill (Mandarin with Chinese names, Malay with Malay names, Tamil with Indian names). As a result, skill and
+perceived group co-occur by construction.
 
 ## Development and held-out split
 
-Development uses the classic layout, policy phrasing 1, the first four names of each pool and four occupations (backend developer, customer support, payroll operations, warehouse coordination). The confirmatory split (`final`) uses the modern layout, policy phrasing 2, the last four names of each pool and eight occupations. The four held-out occupations are data analyst, laboratory support, technical writing and bilingual support; the bilingual support policy also appears in the development relevance suite.
+Development uses the classic layout, policy phrasing 1, the first four names of each pool and four occupations
+(backend developer, customer support, payroll operations, warehouse coordination). The confirmatory split (`final`)
+uses the modern layout, policy phrasing 2, the last four names of each pool and eight occupations. The four held-out
+occupations are data analyst, laboratory support, technical writing and bilingual support. The bilingual support
+policy also appears in the development relevance suite.
 
 ## Intended use
 
-Testing policy fidelity (whether a decision follows the stated policy applied to the evidence in the file) and paired invariance (whether the decision stays the same when only identity or only presentation changes) of screening configurations.
+The data test two properties of screening configurations. The first is policy fidelity: whether a decision follows
+the stated policy applied to the evidence in the file. The second is paired invariance: whether the decision stays
+the same when only identity or only presentation changes.
 
 ## Out-of-scope use
 
-Certifying a hiring system as fair or compliant, predicting job performance, establishing legal compliance, and making statements about real people or groups.
+Certifying a hiring system as fair or compliant, predicting job performance, establishing legal compliance, and
+making statements about real people or groups.
 
 ## Known limitations
 
-- The name lists are our own choice of common forms. They were not validated by human raters or against a frequency table.
-- Malay and Indian names carry a patronymic marker and are longer than Chinese names, so a name swap changes more than perceived group.
-- The Indian group uses mainly South Indian names, and Indian Singaporeans are more varied.
+- The name lists are a choice of common forms. Neither human raters nor a frequency table validated them.
+- Malay and Indian names carry a patronymic marker and are longer than Chinese names, so a name swap changes more
+  than perceived group.
+- The Indian group uses mainly South Indian names, while Indian Singaporeans are more varied.
 - The text is English only, from one locale and one screening date.
 - Core documents are short and templated.
 - Threshold margins were chosen to be unambiguous, so the data says nothing about near-threshold decisions.

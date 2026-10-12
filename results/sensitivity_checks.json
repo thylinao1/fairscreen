@@ -1,0 +1,148 @@
+{
+ "c3_with_qwen_thinking_on": {
+  "estimate": 0.16232638888888887,
+  "lo": 0.1423611111111111,
+  "hi": 0.18229166666666666,
+  "p": 0.0,
+  "per_model": {
+   "gemma-3-27b-it": 0.22916666666666666,
+   "gpt-oss-120b": 0.0,
+   "gpt-oss-20b": 0.041666666666666664,
+   "llama-3.1-8b-instruct": 0.5520833333333334,
+   "mistral-small-3.2-24b": 0.11979166666666667,
+   "qwen3-32b": 0.03125
+  }
+ },
+ "length_stops": {
+  "gemma-3-27b-it/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "gemma-3-27b-it/extract_only": {
+   "length": 0,
+   "n": 2832
+  },
+  "gemma-3-27b-it/fairness": {
+   "length": 0,
+   "n": 2832
+  },
+  "gemma-3-27b-it/structured": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-120b/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-120b/extract_only": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-120b/fairness": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-120b/structured": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-20b/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "gpt-oss-20b/extract_only": {
+   "length": 2,
+   "n": 2832
+  },
+  "gpt-oss-20b/fairness": {
+   "length": 1,
+   "n": 2832
+  },
+  "gpt-oss-20b/structured": {
+   "length": 1,
+   "n": 2832
+  },
+  "llama-3.1-8b-instruct/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "llama-3.1-8b-instruct/extract_only": {
+   "length": 5,
+   "n": 2832
+  },
+  "llama-3.1-8b-instruct/fairness": {
+   "length": 0,
+   "n": 2832
+  },
+  "llama-3.1-8b-instruct/structured": {
+   "length": 5,
+   "n": 2832
+  },
+  "mistral-small-3.2-24b/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "mistral-small-3.2-24b/extract_only": {
+   "length": 0,
+   "n": 2832
+  },
+  "mistral-small-3.2-24b/fairness": {
+   "length": 0,
+   "n": 2832
+  },
+  "mistral-small-3.2-24b/structured": {
+   "length": 0,
+   "n": 2832
+  },
+  "qwen3-32b/direct": {
+   "length": 0,
+   "n": 2832
+  },
+  "qwen3-32b/extract_only": {
+   "length": 0,
+   "n": 2832
+  },
+  "qwen3-32b/fairness": {
+   "length": 0,
+   "n": 2832
+  },
+  "qwen3-32b/structured": {
+   "length": 0,
+   "n": 2832
+  }
+ },
+ "method_selection": {
+  "google_gemini-3.1-flash-lite-preview": {
+   "selected": "structured",
+   "changed_quartet": {
+    "direct": 0.6041666666666666,
+    "fairness": 0.6458333333333334,
+    "structured": 0.8333333333333334
+   },
+   "regret_among_frozen": 0.0,
+   "policy_code_changed_quartet_not_a_candidate": 0.7916666666666666
+  },
+  "openai_gpt-5.4-nano-2026-03-17": {
+   "selected": "structured",
+   "changed_quartet": {
+    "direct": 0.08333333333333333,
+    "fairness": 0.08333333333333333,
+    "structured": 0.20833333333333334
+   },
+   "regret_among_frozen": 0.0,
+   "policy_code_changed_quartet_not_a_candidate": 0.3541666666666667
+  }
+ },
+ "signed_cells": {
+  "n_cells": 108,
+  "n_exclude_zero": 4,
+  "expected_by_chance": 5.4,
+  "largest_negative": {
+   "estimate": -0.0546875,
+   "lo": -0.11538461538461539,
+   "hi": -0.007751937984496124,
+   "n_pairs": 128,
+   "n_families": 13
+  }
+ }
+}
