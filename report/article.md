@@ -1,6 +1,6 @@
 ---
 title: "A consistent screener can still be wrong: what paired applicants revealed about LLM policy decisions"
-published: false
+published: true
 tags: devchallenge, kagglechallenge, ai, machinelearning
 cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b4025260fbda6135795ed0324f6e758cdf7/results/figures/cluster/fig4_decomposition.png
 ---
@@ -38,7 +38,7 @@ catch both name sensitivity and policy errors at once.
 > - Exploratory, added after the main analysis: with thinking on, Qwen3-32B scored [[th_on]] instead of [[th_off]],
 >   at about [[th_tok_ratio]] times the output tokens.
 >
-> Kaggle benchmark: [[KAGGLE LINK]]. Explorer with every family's saved decisions:
+> Kaggle benchmark: https://www.kaggle.com/benchmarks/maksimsilchenko/fairscreen-testing-llm-hiring-decisions/leaderboard. Explorer with every family's saved decisions:
 > https://thylinao1.github.io/fairscreen/. Code, data, protocol and raw outputs: https://github.com/thylinao1/fairscreen
 
 ## What I Benchmarked
@@ -300,7 +300,7 @@ it as a strong lead.
 
 ## My Benchmark
 
-Kaggle benchmark: [[KAGGLE LINK]]. Its four public tasks, each with its leaderboard:
+Kaggle benchmark: https://www.kaggle.com/benchmarks/maksimsilchenko/fairscreen-testing-llm-hiring-decisions/leaderboard. Its four public tasks, each with its leaderboard:
 
 - [fairscreen-direct](https://www.kaggle.com/benchmarks/tasks/maksimsilchenko/fairscreen-direct)
 - [fairscreen-fairness-instruction](https://www.kaggle.com/benchmarks/tasks/maksimsilchenko/fairscreen-fairness-instruction)
