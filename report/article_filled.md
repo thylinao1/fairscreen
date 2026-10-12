@@ -239,21 +239,16 @@ sufficiency suite its structured decisions passed 56% of families; code on the s
 ### 5. The same model scored 63% on Kaggle and 98% on my cluster
 
 On the 31 families where every Kaggle answer was complete, both platforms passed 30 of 31. The
-other families contain hosted answers cut off mid-word, such as `{"decision": "DOES_NOT_ME`. Their lengths do not match one
-common cutoff: cut-off answers had 137 to 758 output tokens, while complete ones ran to
-1,175. The cause (a hidden budget, reasoning accounting or a provider error) is unresolved. In the direct run 15 of the 21 cut-offs fell on changed
-layouts, against 6 of 14 in the fairness run. That imbalance, not the instruction,
-produces most of the positive Kaggle C2 (+22.9 points from gpt-oss-120b, +0.0 on average for the other
-four). My registered parser scores an answer as wrong when it finds no decision. A cut-off direct answer has none,
-while a structured answer missing only its closing brace still has one; that difference is the asymmetry in finding 4.
-The leaderboard keeps these conservative numbers.
+other hosted answers were cut off mid-word, such as `{"decision": "DOES_NOT_ME`, and the cause is unresolved. The
+cut-offs fell unevenly across layouts. That imbalance, not the instruction, produces most of the positive Kaggle C2
+(+22.9 points from gpt-oss-120b, +0.0 on average for the other four). The leaderboard keeps these
+conservative numbers.
 
 ### 6. Missing evidence, relevance, longer documents and framing
 
-On the open-weight panel every model marked explicit conflicts (a recruiter note saying two records disagree) as
-INSUFFICIENT_EVIDENCE on 94% to 100% of files. On missing information they differed
-(from 46% for gemma-3-27b-it to 88% for mistral-small-3.2-24b). Llama 3.1 8B defaulted to "insufficient evidence" on 68% of fully decidable files.
-On the Kaggle sufficiency task (48 families, four decisions each):
+Every open-weight model marked explicit conflicts as INSUFFICIENT_EVIDENCE on 94% to 100% of
+files; on missing information they differed (from 46% for gemma-3-27b-it to 88% for mistral-small-3.2-24b). On the Kaggle sufficiency task (48 families, four
+decisions each):
 
 | Model | Families passed | Families with every answer complete | Passed among those |
 |---|---|---|---|
@@ -263,14 +258,9 @@ On the Kaggle sufficiency task (48 families, four decisions each):
 | gpt-5.4-nano | 6 of 48 | 48 | 6 |
 | gpt-oss-120b | 25 of 48 | 34 | 25 |
 
-Gemini 3.7 Flash answered every item it received correctly. However, 23 of its 192 calls got no response
-after three attempts, which my rule scores as wrong (the run started with little quota left; the run file does not
-record the error).
-
-On the other open-weight suites, every model except Llama ignored a language skill the policy excluded. On longer
-CVs the gpt-oss models stayed above 90 percent of families, while Gemma 3, Qwen3 and Mistral passed
-35 to 50 percent. The audit framing note showed no shared pattern: Mistral fell from 50% to
-29% under the operational note and Gemma 3 rose (24 families per cell).
+Gemini 3.7 Flash answered every item it received correctly, but 23 of its 192 calls got no response after
+three attempts, and my rule scores those as wrong. Results for the relevance, longer-CV and framing suites are in the
+[full tables](https://github.com/thylinao1/fairscreen/blob/main/report/tables.md).
 
 ### 7. A thinking-enabled configuration of the same model passed (exploratory)
 
