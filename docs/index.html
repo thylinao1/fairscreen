@@ -162,6 +162,13 @@ h1 {
   margin-top: 1rem;
   font-weight: 600;
 }
+.data-note {
+  margin: 0.7rem 0 0;
+  max-width: 44rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
 
 /* ---------- controls ---------- */
 .controls {
@@ -598,9 +605,11 @@ footer p { margin: 0; max-width: 52rem; }
     <p class="eyebrow">Replay of saved model decisions</p>
     <h1>FairScreen explorer</h1>
     <p class="lede">Each family is one fictional applicant shown 8 ways: qualified or not, two identity signals, clean or changed layout. A screener passes the family only if all 8 decisions match the written policy.</p>
+    <p class="data-note">Open-weight cluster panel, 192 core families, dataset v1.1.0; Qwen3-32B ran with thinking off.</p>
     <nav class="links" aria-label="Project links">
       <a id="article-link" href="#">Article</a>
       <a href="https://github.com/thylinao1/fairscreen" rel="noopener">Code and data</a>
+      <a href="https://www.kaggle.com/benchmarks/maksimsilchenko/fairscreen-testing-llm-hiring-decisions/leaderboard" rel="noopener">Kaggle benchmark</a>
     </nav>
   </div>
 </header>

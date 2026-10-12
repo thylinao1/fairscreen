@@ -60,7 +60,7 @@ every number from result files. Tables: `report/tables.md`. Figures: `results/fi
 uv venv --python 3.12 .venv && source .venv/bin/activate
 uv pip install kaggle-benchmarks pandas scikit-learn matplotlib pytest
 PYTHONPATH=src python -m fairscreen.build_dataset          # regenerates data/ (checksums in data/manifest.json)
-PYTHONPATH=src pytest tests                                 # 55 validity tests
+PYTHONPATH=src pytest tests                                 # 95 tests: validity, analysis guards, strict parser
 python analysis/rule_baseline.py --split final              # text-only parser agrees with gold on 2528/2528
 python analysis/kaggle_records.py results/kaggle_runs       # rebuild records from raw Kaggle run files
 python analysis/cluster_records.py                          # rebuild records from raw cluster outputs
@@ -72,6 +72,14 @@ python report/fill_article.py
 ```
 
 No step calls a model.
+
+The exact package versions used are in `requirements-lock.txt`.
+
+### Notes on intervals
+
+Family-level percentile bootstrap intervals collapse to a single point when every family passes or none does, so the
+write-up reports exact (Clopper-Pearson style, one-sided 2.5 percent) bounds in those cases. Bootstrap p-values come
+from 2,000 resamples, so a saved p of 0 means below 1 in 2,000.
 
 ## Licence
 
