@@ -7,8 +7,12 @@ cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b402526
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
 
-Qwen3-32B, with its thinking mode off, read a job application and recorded 1.8 years of technical writing experience, quoting the right dates.
-It then approved the applicant for a role that requires three years:
+Qwen3-32B, with thinking mode off, read a fictional job application and extracted 1.8 years of technical writing
+experience.
+
+The policy required three years.
+
+The model then marked the applicant MEETS:
 
 ```json
 {"facts": {"technical_writing_experience_years": 1.8,
@@ -17,10 +21,14 @@ It then approved the applicant for a role that requires three years:
  "decision": "MEETS"}
 ```
 
-Deciding directly, the model changed about 2.2% of its decisions when the name was swapped (4.8%
-in the extract-then-decide run shown here), so a name-swap audit would call it consistent. With thinking mode on, the
-same model got this applicant right, and seeing that was the most useful thing I learned. FairScreen is built to
-catch both name sensitivity and policy errors at once.
+Changing the applicant's name did not fix the decision. Deciding directly, the model gave the same wrong answer for
+both names in both layouts: consistent across identities, and consistently wrong about the requirement.
+
+A later run with thinking enabled got the same case right. That changed how I interpreted the result: this was a
+failure of a particular model configuration, not evidence that the model could never apply the policy.
+
+I built FairScreen to examine these distinctions together: whether an LLM follows a written policy, whether
+irrelevant changes disturb its decisions, and where the decision process breaks.
 
 > **TL;DR.** FairScreen checks LLM screeners against a written hiring policy. Each fictional applicant gives a test
 > family of eight paired decisions: requirement met or not, two names, two layouts.
