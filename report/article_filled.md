@@ -7,12 +7,12 @@ cover_image: https://raw.githubusercontent.com/thylinao1/fairscreen/c8350b402526
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
 
-Qwen3-32B, with thinking mode off, read a fictional job application and extracted 1.8 years of technical writing
-experience.
+If a company uses an LLM to screen your job application, the outcome can depend on choices you never see: which
+model it uses, what instructions it receives, and how it is configured.
 
-The policy required three years.
-
-The model then marked the applicant MEETS:
+Those choices matter even when the requirements are straightforward. A role requires three years of relevant
+experience. An applicant has fewer than two. A human reviewer can check that mismatch directly. Yet in my tests, an
+LLM extracted the applicant’s experience correctly and still marked them as meeting the requirement.
 
 ```json
 {"facts": {"technical_writing_experience_years": 1.8,
@@ -21,14 +21,19 @@ The model then marked the applicant MEETS:
  "decision": "MEETS"}
 ```
 
-Changing the applicant's name did not fix the decision. Deciding directly, the model gave the same wrong answer for
-both names in both layouts: consistent across identities, and consistently wrong about the requirement.
+This raises a practical question: **how reliably do different LLMs apply the same hiring rules to the same
+applicants?**
 
-A later run with thinking enabled got the same case right. That changed how I interpreted the result: this was a
-failure of a particular model configuration, not evidence that the model could never apply the policy.
+I built **FairScreen** to investigate, testing ten LLMs on fictional applications with known answers. The benchmark
+checks whether models recognize changes in qualifications, ignore irrelevant changes to names and presentation, and
+handle missing evidence appropriately.
 
-I built FairScreen to examine these distinctions together: whether an LLM follows a written policy, whether
-irrelevant changes disturb its decisions, and where the decision process breaks.
+The differences were substantial. Some configurations rejected qualified applicants; others approved applicants who
+failed explicit requirements. In an exploratory rerun, one model’s benchmark score rose from **39% to 98%** under a
+different reasoning configuration.
+
+These results show why evaluating the actual screening setup matters. A model’s reputation, a fairness instruction, or
+a plausible explanation does not tell us whether it applies the requirements correctly.
 
 > **TL;DR.** FairScreen checks LLM screeners against a written hiring policy. Each fictional applicant gives a test
 > family of eight paired decisions: requirement met or not, two names, two layouts.
