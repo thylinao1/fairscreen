@@ -570,6 +570,34 @@ fieldset.seg legend { padding: 0; margin-bottom: 0.4rem; }
   line-height: 1.5;
   cursor: text;
 }
+.doc-dialog {
+  width: min(56rem, calc(100vw - 2rem));
+  max-height: min(88vh, 64rem);
+  padding: 0;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+}
+.doc-dialog.wide { width: min(92rem, calc(100vw - 2rem)); }
+.doc-dialog[open] { display: flex; flex-direction: column; }
+.doc-dialog::backdrop { background: rgba(20, 18, 14, 0.5); }
+.dd-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+.dd-title { margin: 0; font-size: 1.15rem; line-height: 1.3; }
+.dd-meta { margin: 0.3rem 0 0; font-size: 0.86rem; color: var(--ink-soft); }
+.dd-body { overflow: auto; padding: 0.9rem 1.25rem 1.3rem; }
+.dd-body .doc { margin-top: 0; padding-top: 0; font-size: 0.82rem; }
+.dd-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 2rem; }
+.dd-item h3 { margin: 0 0 0.45rem; padding-bottom: 0.35rem; font-size: 0.9rem; border-bottom: 1px solid var(--rule); }
+@media (max-width: 899px) { .dd-grid { grid-template-columns: minmax(0, 1fr); } }
 .ln { display: flex; gap: 0.5rem; padding: 0 0.3rem 0 0.1rem; border-radius: 2px; }
 .gut { flex: none; width: 3.1em; padding-left: 0.4em; font-size: 0.9em; font-weight: 700; color: var(--ink); }
 .ln:not(.q):not(.id) .gut { visibility: hidden; }
@@ -585,6 +613,8 @@ footer {
   color: var(--ink-soft);
 }
 footer p { margin: 0; max-width: 52rem; }
+.foot-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.6rem 2rem; }
+footer .author { white-space: nowrap; font-weight: 600; color: var(--ink); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 899px) {
@@ -613,7 +643,7 @@ footer p { margin: 0; max-width: 52rem; }
     <p class="eyebrow">Replay of saved model decisions</p>
     <h1>FairScreen explorer</h1>
     <p class="lede">Each family is one fictional applicant shown 8 ways: qualified or not, two identity signals, clean or changed layout. A screener passes the family only if all 8 decisions match the written policy.</p>
-    <p class="data-note">Open-weight cluster panel, 192 core families, dataset v1.1.0; Qwen3-32B ran with thinking off.</p>
+    <p class="data-note">Open-weight cluster panel, 192 core families, dataset v1.1.0.</p>
     <nav class="links" aria-label="Project links">
       <a id="article-link" href="#">Article</a>
       <a href="https://github.com/thylinao1/fairscreen" rel="noopener">Code and data</a>
@@ -693,14 +723,13 @@ footer p { margin: 0; max-width: 52rem; }
       </fieldset>
       <div class="toolbar-actions">
         <button type="button" class="btn small" id="expand-all">Show all texts</button>
-        <button type="button" class="btn small" id="collapse-all">Hide all texts</button>
       </div>
     </div>
     <div class="legend" id="legend">
       <p><span class="mono-key">M</span> = MEETS, <span class="mono-key">DNM</span> = DOES_NOT_MEET, <span class="mono-key">IE</span> = INSUFFICIENT_EVIDENCE, <span class="mono-key">none</span> = no saved decision.</p>
       <p><span class="ok-key">&#10003; correct</span> means the decision equals the gold answer. <span class="bad-key">&#10007; wrong</span> means it does not.</p>
-      <p><span class="swatch q">Q</span>In an open text, a line that differs from the same applicant in the other qualification row (the qualification edit).</p>
-      <p><span class="swatch id">ID</span>In an open text, a line that differs from the other identity with the same qualification and layout. A line can carry both marks.</p>
+      <p><span class="swatch q">Q</span>In a shown text, a line that differs from the same applicant in the other qualification row (the qualification edit).</p>
+      <p><span class="swatch id">ID</span>In a shown text, a line that differs from the other identity with the same qualification and layout. A line can carry both marks.</p>
     </div>
     <div class="colheads" aria-hidden="true">
       <span>Identity A, clean</span><span>Identity A, changed</span><span>Identity B, clean</span><span>Identity B, changed</span>
@@ -709,9 +738,21 @@ footer p { margin: 0; max-width: 52rem; }
   </article>
 </main>
 
+<dialog id="doc-dialog" class="doc-dialog" aria-labelledby="doc-dialog-title">
+  <div class="dd-head">
+    <div>
+      <h2 id="doc-dialog-title" class="dd-title"></h2>
+      <p id="doc-dialog-meta" class="dd-meta"></p>
+    </div>
+    <button type="button" class="btn small" id="doc-dialog-close">Close</button>
+  </div>
+  <div class="dd-body" id="doc-dialog-body"></div>
+</dialog>
+
 <footer>
-  <div class="wrap">
+  <div class="wrap foot-row">
     <p>Fictional applicants and policies. Names signal a perceived group, not anyone's identity. Decisions are saved outputs from the NUS cluster run (vLLM); this page makes no model calls.</p>
+    <p class="author">Maksim Silchenko</p>
   </div>
 </footer>
 
@@ -1052,9 +1093,9 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     const layoutTag = spec.ctx === "clean" ? "Clean layout" : "Changed layout: " + words(fam.changed);
     const tally = h("p", { class: "tally" });
     const list = h("ul", { class: "decisions", "aria-label": "Decisions by model" });
-    const btn = h("button", { type: "button", class: "expand", "aria-expanded": "false", "aria-controls": docId },
-      h("span", { text: "Show application text" }), h("span", { "aria-hidden": "true", text: "▾" }));
-    const doc = h("div", { class: "doc", id: docId, role: "region", "aria-label": "Application text, " + name, hidden: true });
+    const btn = h("button", { type: "button", class: "expand", "aria-haspopup": "dialog" },
+      h("span", { text: "Show application text" }), h("span", { "aria-hidden": "true", text: "↗" }));
+    const doc = h("div", { class: "doc", id: docId });
 
     const card = h("article", { class: "card", "data-open": "false", "data-idx": String(idx), "aria-label": name },
       h("div", { class: "who" },
@@ -1065,9 +1106,9 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
       h("div", { class: "tags" },
         h("span", { class: "tag", text: layoutTag }),
         h("span", { class: "tag gold", text: "Gold: " + v.gold })),
-      tally, list, btn, doc);
+      tally, list, btn);
 
-    cardViews.push({ fam, v, tally, list, card, btn, doc, built: false });
+    cardViews.push({ fam, v, spec, layoutTag, tally, list, card, btn, doc, built: false });
     return card;
   }
 
@@ -1114,13 +1155,32 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     view.built = true;
   }
 
-  function setOpen(view, open) {
-    if (open && !view.built) buildDoc(view);
-    view.doc.hidden = !open;
-    view.card.dataset.open = String(open);
-    view.btn.setAttribute("aria-expanded", String(open));
-    view.btn.firstChild.textContent = open ? "Hide application text" : "Show application text";
-    view.btn.lastChild.textContent = open ? "▴" : "▾";
+  const qualLabel = (view) => (view.spec.q === "hi" ? "Qualified" : "Not qualified");
+  let lastTrigger = null;
+
+  function docCopy(view) {
+    if (!view.built) buildDoc(view);
+    return h("div", { class: "doc" }, ...Array.from(view.doc.childNodes).map((n) => n.cloneNode(true)));
+  }
+
+  function openDocs(views, trigger) {
+    const dlg = $("doc-dialog");
+    const single = views.length === 1;
+    const first = views[0];
+    $("doc-dialog-title").textContent = single ? first.v.label : "All application texts in this family";
+    $("doc-dialog-meta").textContent = single
+      ? [qualLabel(first), "Signals: " + (first.v.group ? sentence(first.v.group) : "not recorded"),
+         first.layoutTag, "Gold: " + first.v.gold].join(" · ")
+      : famLabel(first.fam);
+    const body = $("doc-dialog-body");
+    body.replaceChildren(single ? docCopy(first) : h("div", { class: "dd-grid" }, ...views.map((view) =>
+      h("section", { class: "dd-item" },
+        h("h3", { text: view.v.label + " · " + qualLabel(view).toLowerCase() + " · " + view.layoutTag }),
+        docCopy(view)))));
+    dlg.classList.toggle("wide", !single);
+    lastTrigger = trigger || null;
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    body.scrollTop = 0;
   }
 
   function onGridClick(e) {
@@ -1129,7 +1189,7 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     if (e.target.closest(".doc")) return;
     if (String(window.getSelection && window.getSelection()).length > 0) return;
     const view = cardViews[Number(cardEl.dataset.idx)];
-    if (view) setOpen(view, cardEl.dataset.open !== "true");
+    if (view) openDocs([view], view.btn);
   }
 
   /* ---------- boot ---------- */
@@ -1153,8 +1213,11 @@ const ARTICLE_URL = "https://dev.to/thylinao/what-actually-changes-an-llms-hirin
     $("filter-select").addEventListener("change", (e) => { setState({ filter: e.target.value }); update(true); });
     $("prev-btn").addEventListener("click", () => step(-1));
     $("next-btn").addEventListener("click", () => step(1));
-    $("expand-all").addEventListener("click", () => cardViews.forEach((view) => setOpen(view, true)));
-    $("collapse-all").addEventListener("click", () => cardViews.forEach((view) => setOpen(view, false)));
+    $("expand-all").addEventListener("click", (e) => { if (cardViews.length) openDocs(cardViews, e.currentTarget); });
+    const dlg = $("doc-dialog");
+    $("doc-dialog-close").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("close", () => { if (lastTrigger) lastTrigger.focus(); });
     $("grid").addEventListener("click", onGridClick);
     window.addEventListener("hashchange", onHashChange);
   }
