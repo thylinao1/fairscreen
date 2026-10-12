@@ -3,6 +3,9 @@
 python analysis/analyze.py --records results/records --split final --out results/final
 python analysis/analyze.py --local results/raw_local/dev --split dev --out results/dev
 
+Expected-family check: a core family a run was scheduled to answer but has no records for counts as failed in robust
+fidelity and coverage (see --expected-core); missing, duplicate and unexpected IDs are printed as a WARNING.
+
 Inputs are response records (one per model call) rebuilt from raw outputs. Outputs: tables (CSV and markdown) and
 figures. No model call is made here.
 """
@@ -22,10 +25,13 @@ TASK_RECIPE = {"fairscreen-direct": "direct", "fairscreen-fairness-instruction":
                "fairscreen-structured": "structured", "fairscreen-extract-policy-code": "extract_only"}
 SEED = 20261012
 REPS = 2000
+# scripts/make_tasks.py --core-slice 48: the Kaggle FairScreen-48 tasks hold the core families whose numeric suffix is < 48
+KAGGLE_CORE_SLICE = 48
 
 
 # ------------------------------------------------------------------ loading
-def load_records(args):
+def read_records(args):
+    """Every raw response record, tagged with its model and the layout it came from. Nothing is dropped here."""
     recs = []
     if args.records:
         for path in glob.glob(os.path.join(args.records, "*", "*.jsonl")):
@@ -34,6 +40,7 @@ def load_records(args):
             for l in open(path):
                 r = json.loads(l)
                 r["model"] = model
+                r["_source"] = "records"
                 recs.append(r)
     if args.local:
         for path in glob.glob(os.path.join(args.local, "*", "*.jsonl")):
@@ -41,14 +48,26 @@ def load_records(args):
             for l in open(path):
                 r = json.loads(l)
                 r["model"] = model
+                r["_source"] = "local"
                 recs.append(r)
+    return recs
+
+
+def dedup_records(recs):
+    """One record per (model, recipe, variant, rep). Returns (records, duplicated keys with their record counts)."""
     # keep the first non-transport record per (model, recipe, variant, rep); transport errors only if nothing else
     best = {}
+    seen = defaultdict(int)
     for r in recs:
         k = (r["model"], r["recipe"], r["variant_id"], r["rep"])
+        seen[k] += 1
         if k not in best or (best[k]["status"] == "transport_error" and r["status"] != "transport_error"):
             best[k] = r
-    return list(best.values())
+    return list(best.values()), {k: n for k, n in seen.items() if n > 1}
+
+
+def load_records(args):
+    return dedup_records(read_records(args))[0]
 
 
 def load_data(split):
@@ -94,12 +113,102 @@ def quartet(fid, ctx):
     return [vid(fid, q=q, id=i, ctx=ctx) for q in ("hi", "lo") for i in ("A", "B")]
 
 
+# ------------------------------------------------------------------ expected-family check
+def family_of(variant_id):
+    return variant_id.split("/")[0]
+
+
+def family_index(family_id):
+    return int(family_id.split("-")[-1])
+
+
+def resolve_expected_core(mode, split, source, fams):
+    """The core family IDs a (model, recipe) run was scheduled to cover, or None for "score what is present".
+
+    mode: "all" (every core family of the split), an integer N (the first N core families, the rule that
+    scripts/make_tasks.py --core-slice N uses), "observed" (None: only families that appear in the records, for pilot
+    runs that are partial by design) or "auto". auto on the final split expects the first KAGGLE_CORE_SLICE core
+    families for Kaggle records (--records) and every core family for cluster records (--local); on any other split
+    it is observed, because the dev runs are partial by design."""
+    ids = [f["family_id"] for f in fams if f["suite"] == "core"]
+    mode = str(mode)
+    if mode == "observed":
+        return None
+    if mode == "all":
+        return frozenset(ids)
+    if mode.isdigit():
+        if int(mode) < 1:
+            raise ValueError("--expected-core N needs N >= 1")
+        return frozenset(i for i in ids if family_index(i) < int(mode))
+    if mode != "auto":
+        raise ValueError(f"unknown --expected-core value {mode!r} (use auto, all, observed or an integer N)")
+    if split != "final":
+        return None
+    return resolve_expected_core(KAGGLE_CORE_SLICE if source == "records" else "all", split, source, fams)
+
+
+def audit_families(view, vs, fams, expected, duplicates=()):
+    """Compare the families a run answered with the families it was scheduled to answer.
+
+    missing: expected core families with no response record at all (scored as failed by metrics()).
+    incomplete: scored core families that have records but lack one of their eight core cells (also scored as failed).
+    duplicate: (variant, rep) keys that had more than one record before load_records kept one.
+    unexpected: record IDs outside the split, plus core families outside the expected set (ignored by the core score).
+    expected is None means no expected set (pilot run): only incomplete, duplicate and unknown IDs are reported."""
+    suite_of = {f["family_id"]: f["suite"] for f in fams}
+    ran = {family_of(k[0]) for k in view.d}
+    scored = ran & {i for i, s in suite_of.items() if s == "core"} if expected is None else set(expected)
+    unexpected = {i for i in ran if i not in suite_of}
+    unexpected |= {v for v, _ in view.d if family_of(v) in suite_of and v not in vs}
+    if expected is not None:
+        unexpected |= {i for i in ran if suite_of.get(i) == "core" and i not in expected}
+    return {"expected": None if expected is None else len(expected),
+            "missing": sorted(scored - ran),
+            "incomplete": sorted(i for i in scored & ran if any((v, 0) not in view.d for v in core_cells(i))),
+            "duplicate": sorted(duplicates),
+            "unexpected": sorted(unexpected)}
+
+
+def audit_has_issues(audit):
+    return any(audit[k] for k in ("missing", "incomplete", "duplicate", "unexpected"))
+
+
+def format_audit(label, audit, limit=12):
+    head = ("no expected family set, pilot run" if audit["expected"] is None
+            else f"{audit['expected']} expected core families")
+    notes = {"missing": "no records; scored as failed", "incomplete": "some core cells have no record; scored as failed",
+             "duplicate": "more than one record; the first non-transport one was kept",
+             "unexpected": "outside the expected set; not part of the core score"}
+    lines = [f"WARNING [{label}] expected-family check ({head}):"]
+    for key in ("missing", "incomplete", "duplicate", "unexpected"):
+        ids = audit[key]
+        if ids:
+            shown = ", ".join(ids[:limit]) + (f", ... (+{len(ids) - limit} more)" if len(ids) > limit else "")
+            lines.append(f"  {key} ({len(ids)}; {notes[key]}): {shown}")
+    return "\n".join(lines)
+
+
 # ------------------------------------------------------------------ metrics per (model, recipe)
-def metrics(view, vs, fams):
+def metrics(view, vs, fams, expected_core=None):
+    """All per-(model, recipe) metrics from one View.
+
+    expected_core: the core family IDs this run was scheduled to cover (see resolve_expected_core). A scheduled family
+    with no responses counts as failed in robust fidelity, the quartets, accuracy, coverage and invalid; the score
+    denominator is the expected set, never just the families that happen to appear in the records. None keeps the
+    older behaviour (only core families that appear in the records are scored), which the exploratory scripts rely on
+    for subset runs; analysis runs through main() always pass an explicit set unless --expected-core observed."""
     out = {}
     ran = {k[0].split("/")[0] for k in view.d}
-    fams = [f for f in fams if f["family_id"] in ran]  # families this run covered (all of them in the final run)
-    core = [f for f in fams if f["suite"] == "core"]
+    all_core = [f for f in fams if f["suite"] == "core"]
+    fams = [f for f in fams if f["family_id"] in ran]  # families this run covered, for the diagnostic suites below
+    if expected_core is None:
+        core = [f for f in fams if f["suite"] == "core"]
+    else:
+        expected = set(expected_core)
+        if expected - {f["family_id"] for f in all_core}:
+            raise ValueError(f"expected_core names families that are not core families of this split: "
+                             f"{sorted(expected - {f['family_id'] for f in all_core})[:5]}")
+        core = [f for f in all_core if f["family_id"] in expected]
     gold = lambda v: vs[v]["gold_decision"]
     ok = lambda v, rep=0: view.get(v, rep) == gold(v)
     strata = [f["occupation"] for f in core]
@@ -107,7 +216,9 @@ def metrics(view, vs, fams):
     clean = [float(all(ok(v) for v in quartet(f["family_id"], "clean"))) for f in core]
     changed = [float(all(ok(v) for v in quartet(f["family_id"], "changed"))) for f in core]
     out["robust"] = boot(fam_pass, strata)
-    # completed-items sensitivity: drop families with any invalid, empty, truncated or failed response
+    # robust_completed_items = robust fidelity over parser-answerable items: drop every family with an invalid, empty or
+    # transport-error response (or no record at all, status None). Fallback-parsed answers are kept, and a truncated
+    # response is dropped only when the parser found no answer in it. Registered; do not change the computation.
     bad_status = ("invalid", "empty", "transport_error", None)
     ok_fams = [(p_, s_) for f, p_, s_ in zip(core, fam_pass, strata)
                if not any(view.status.get((v, 0)) in bad_status for v in core_cells(f["family_id"]))]
@@ -381,18 +492,35 @@ def main():
     ap.add_argument("--local", default="")
     ap.add_argument("--split", default="final")
     ap.add_argument("--out", default="results/final")
+    ap.add_argument("--expected-core", default="auto",
+                    help="core families each run must cover; any missing one counts as failed. auto (default): final "
+                         "split = first 48 core families for --records (Kaggle FairScreen-48), all core families for "
+                         "--local; other splits = observed. Or all, an integer N (first N), or observed (score only "
+                         "families present in the records; for pilot runs)")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     vs, fams = load_data(a.split)
-    recs = load_records(a)
+    recs, dups = dedup_records(read_records(a))
     groups = defaultdict(list)
     for r in recs:
         groups[(r["model"], r["recipe"])].append(r)
+    dup_ids = defaultdict(list)
+    for (model, recipe, variant, rep), _ in sorted(dups.items()):
+        dup_ids[(model, recipe)].append(variant if rep == 0 else f"{variant}#rep{rep}")
     M = {}
+    flagged = []
     for (model, recipe), rs in sorted(groups.items()):
-        M[(model, recipe)] = metrics(View(rs), vs, fams)
+        view = View(rs)
+        source = "local" if any(r["_source"] == "local" for r in rs) else "records"
+        expected = resolve_expected_core(a.expected_core, a.split, source, fams)
+        M[(model, recipe)] = metrics(view, vs, fams, expected)
+        audit = audit_families(view, vs, fams, expected, dup_ids.get((model, recipe), ()))
+        if audit_has_issues(audit):
+            flagged.append(f"{model}|{recipe}")
+            M[(model, recipe)]["family_check"] = audit
+            print(format_audit(f"{model} | {recipe}", audit), file=sys.stderr)
         if recipe == "structured":
-            M[(model, "policy_code_same_extraction")] = metrics(View(rs, key="replay"), vs, fams)
+            M[(model, "policy_code_same_extraction")] = metrics(View(rs, key="replay"), vs, fams, expected)
             M[(model, "policy_code_same_extraction")]["decomposition"] = decomposition(rs, vs)
             M[(model, recipe)]["decomposition"] = M[(model, "policy_code_same_extraction")]["decomposition"]
         M[(model, recipe)]["signed"] = signed_effects(View(rs), vs, fams)
@@ -460,6 +588,9 @@ def main():
             print(f"{k}: identity {100*v['identity_flip']:.1f}% vs same-group {100*v['same_group_flip']:.1f}% diff {100*v['difference']:+.1f} [{100*v['lo']:+.1f}, {100*v['hi']:+.1f}] n_fam={v['n_families']} pairs={v['n_pairs']}")
         else:
             print(k, {g: f"{100*x['estimate']:+.1f} [{100*x['lo']:+.1f},{100*x['hi']:+.1f}]" for g, x in sorted(v.items())})
+    if flagged:
+        print(f"WARNING: expected-family check flagged {len(flagged)} run(s): {', '.join(flagged)}. Missing and incomplete "
+              f"families are scored as failed in the tables above; details are in metrics.json (family_check).")
 
 
 if __name__ == "__main__":
